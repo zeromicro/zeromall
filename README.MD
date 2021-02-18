@@ -25,6 +25,14 @@
 
 ```
 
+# clone repo:
+git clone git@github.com:zeromicro/zeromall.git
+
+# enter project root:
+cd zeromall/
+
+# install require pkg:
+make go.mod.tidy
 
 ```
 
