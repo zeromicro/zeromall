@@ -12,7 +12,8 @@ import (
 	"mall/app/basic/demo/proto/config"
 )
 
-var configFile = flag.String("f", "../configs/configs.yaml", "the config file")
+// fix for air reload:
+var configFile = flag.String("f", "configs/configs.yaml", "the config file")
 
 func main() {
 	flag.Parse()

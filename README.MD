@@ -45,6 +45,9 @@ cd ./app/basic/demo
 # 启动 API 服务:
 make run.demo
 
+# 或者使用: 基于 air, watch 该服务目录, 修改后, 自动 hot reload, 无需重新编译
+make run.auto.reload
+
 
 # http echo test:
 make curl.api

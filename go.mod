@@ -5,6 +5,7 @@ go 1.15
 require (
 	github.com/Shopify/sarama v1.26.1 // indirect
 	github.com/antlr/antlr4 v0.0.0-20210216171041-fde0b28dfbd6 // indirect
+	github.com/cosmtrek/air v1.15.1 // indirect
 	github.com/ghodss/yaml v1.0.1-0.20190212211648-25d852aebe32 // indirect
 	github.com/go-critic/go-critic v0.4.3
 	github.com/go-redis/redis/v7 v7.2.0
@@ -27,4 +28,5 @@ require (
 	github.com/tal-tech/go-zero v1.1.4
 	go.uber.org/automaxprocs v1.4.0 // indirect
 	golang.org/x/lint v0.0.0-20200302205851-738671d3881b
+	golang.org/x/sys v0.0.0-20210218085108-9555bcde0c6a // indirect
 )

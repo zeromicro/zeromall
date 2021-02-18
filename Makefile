@@ -18,7 +18,7 @@ go.mod.tidy:
 go.require.add:
 	go get -u github.com/tal-tech/go-zero
 	GO111MODULE=on go get -u github.com/tal-tech/go-zero/tools/goctl
-
+	go get -u -v github.com/cosmtrek/air
 
 ################################################################################################
 # gen demo:
