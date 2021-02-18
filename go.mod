@@ -4,6 +4,7 @@ go 1.15
 
 require (
 	github.com/Shopify/sarama v1.26.1 // indirect
+	github.com/antlr/antlr4 v0.0.0-20210216171041-fde0b28dfbd6 // indirect
 	github.com/ghodss/yaml v1.0.1-0.20190212211648-25d852aebe32 // indirect
 	github.com/go-critic/go-critic v0.4.3
 	github.com/go-redis/redis/v7 v7.2.0
@@ -12,6 +13,7 @@ require (
 	github.com/golang/protobuf v1.4.2
 	github.com/gomodule/redigo v2.0.0+incompatible
 	github.com/google/uuid v1.1.1
+	github.com/iancoleman/strcase v0.1.3 // indirect
 	github.com/jinzhu/gorm v1.9.12
 	github.com/jinzhu/now v1.1.1
 	github.com/klauspost/compress v1.10.5 // indirect
@@ -22,6 +24,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/rcrowley/go-metrics v0.0.0-20200313005456-10cdbea86bc0 // indirect
 	github.com/rs/xid v1.2.1
-	github.com/tal-tech/go-zero v1.1.4 // indirect
+	github.com/tal-tech/go-zero v1.1.4
+	go.uber.org/automaxprocs v1.4.0 // indirect
 	golang.org/x/lint v0.0.0-20200302205851-738671d3881b
 )

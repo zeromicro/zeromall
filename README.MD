@@ -16,6 +16,7 @@
 
 ## QuickStart:
 
+- https://www.yuque.com/tal-tech/go-zero/yaoehb
 
 
 ### Development Environment:
