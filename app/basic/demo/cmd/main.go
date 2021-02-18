@@ -3,12 +3,13 @@ package main
 import (
 	"flag"
 	"fmt"
-	svc "mall/app/basic/demo/internal/domain/demo"
-	handler "mall/app/basic/demo/internal/service"
-	"mall/app/basic/demo/proto/config"
 
 	"github.com/tal-tech/go-zero/core/conf"
 	"github.com/tal-tech/go-zero/rest"
+
+	svc "mall/app/basic/demo/internal/dao"
+	"mall/app/basic/demo/internal/router"
+	"mall/app/basic/demo/proto/config"
 )
 
 var configFile = flag.String("f", "../configs/configs.yaml", "the config file")
@@ -23,7 +24,7 @@ func main() {
 	server := rest.MustNewServer(c.RestConf)
 	defer server.Stop()
 
-	handler.RegisterHandlers(server, ctx)
+	router.RegisterHandlers(server, ctx)
 
 	fmt.Printf("Starting server at %s:%d...\n", c.Host, c.Port)
 	server.Start()

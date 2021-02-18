@@ -1,4 +1,4 @@
-package demo
+package dao
 
 import (
 	"mall/app/basic/demo/proto/config"

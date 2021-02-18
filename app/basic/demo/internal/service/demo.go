@@ -1,13 +1,12 @@
 package service
 
 import (
-	svc "mall/app/basic/demo/internal/domain/demo"
-	types "mall/app/basic/demo/proto/api"
 	"net/http"
 
-
-
 	"github.com/tal-tech/go-zero/rest/httpx"
+	svc "mall/app/basic/demo/internal/dao"
+	"mall/app/basic/demo/internal/domain/demo"
+	types "mall/app/basic/demo/proto/api"
 )
 
 func DemoHandler(ctx *svc.ServiceContext) http.HandlerFunc {
@@ -18,7 +17,7 @@ func DemoHandler(ctx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		l := NewDemoLogic(r.Context(), ctx)
+		l := demo.NewDemoLogic(r.Context(), ctx)
 		resp, err := l.Demo(req)
 		if err != nil {
 			httpx.Error(w, err)
