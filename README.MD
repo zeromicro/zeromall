@@ -38,9 +38,38 @@
 
 ## Structure:
 
+- 简略说明: 对整体目录的 quick look.
 
 
--
+```html
+
+
+-> % tree . -L 3
+.
+├── app
+│   ├── basic            // 基础服务: 通常是业务无关的
+│   │   ├── demo         //     示例:
+│   │   └── user         //     用户管理:
+│   ├── biz              // 业务服务: 根据业务切分
+│   │   └── member       //     会员服务:
+│   │   └── order        //     订单服务:
+│   │   └── cart         //     购物车服务:
+│   └── std              // 业务内统一定义:
+│       ├── proto        //     统一定义业务状态码
+├── deploy               // 部署脚本, 服务编排
+│   ├── local
+│   │   └── Makefile
+│   └── staging
+│       └── Makefile
+├── infra                // 基础设施
+│   └── tool
+└── pkg                  // 项目积累的 utility 代码库, 与业务无关
+
+
+```
+
+
+- 详细说明:
 
 
 
