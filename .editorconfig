@@ -1,0 +1,99 @@
+################################################################################################################
+#                                    IDE/text editor config style:
+#
+# std:
+#   - http://editorconfig.org
+#   - https://github.com/editorconfig/editorconfig-core-go
+#
+# usage ref:
+#   - https://github.com/editorconfig/editorconfig/wiki/Projects-Using-EditorConfig
+#   - https://github.com/gogs/gogs/blob/master/.editorconfig
+#   - https://github.com/django/django/blob/master/.editorconfig
+#   - https://github.com/vuejs/vue/blob/master/.editorconfig
+#
+################################################################################################################
+
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+charset = utf-8
+end_of_line = lf
+trim_trailing_whitespace = true
+insert_final_newline = true
+max_line_length = 600
+
+
+################################################################################################################
+#  for all languages
+################################################################################################################
+
+# for golang:
+[*.go]
+indent_style = tab
+indent_size = 4
+
+[*.tmpl]
+indent_style = tab
+indent_size = 2
+
+# for java:
+[*.{groovy, java, kt, kts}]
+indent_style = tab
+
+[*.{xml, xsd}]
+indent_style = tab
+
+
+[*.py]
+indent_size = 4
+max_line_length = 119
+
+[*.{js, ts, tsx}]
+indent_size = 2
+
+[*.html]
+indent_size = 2
+
+[*.{less, css}]
+indent_size = 2
+
+################################################################################################################
+#  for script
+################################################################################################################
+
+
+# Makefiles always use tabs for indentation
+[Makefile]
+indent_style = tab
+
+[Makefile.*]
+indent_style = tab
+
+# Batch files use tabs for indentation
+[*.bat]
+indent_style = tab
+
+
+################################################################################################################
+#  for files
+################################################################################################################
+
+
+[*.json]
+indent_size = 2
+
+[*.{tsx, jsx}]
+indent_size = 2
+
+[{*.yml, *.yaml}]
+indent_size = 2
+
+[*.sql]
+indent_size = 2
+
+[*.md]
+insert_final_newline = false
+trim_trailing_whitespace = false
+

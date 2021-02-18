@@ -1,0 +1,18 @@
+################################################################################################################
+# ref:
+#   - create hook: https://pre-commit.com/#creating-new-hooks
+#   - https://github.com/golangci/golangci-lint/blob/master/.pre-commit-hooks.yaml
+#   - https://github.com/TekWizely/pre-commit-golang
+#   - https://github.com/Bahjat/pre-commit-golang
+#   - https://github.com/dnephin/pre-commit-golang
+################################################################################################################
+
+
+# go lint:
+- id: golangci-lint
+  name: golangci-lint
+  description: Fast linters runner for Go.
+  entry: golangci-lint run --fix
+  types: [go]
+  language: golang
+  pass_filenames: false

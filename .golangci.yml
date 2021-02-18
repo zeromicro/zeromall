@@ -1,0 +1,100 @@
+################################################################################################################
+#
+# ref:
+#   - https://github.com/golangci/golangci-lint#config-file
+#   - https://github.com/golangci/golangci-lint/blob/master/.golangci.example.yml
+#   - https://github.com/caddyserver/caddy/blob/master/.golangci.yml
+#
+################################################################################################################
+
+linters-settings:
+  gocritic:
+    disabled-checks:
+      - singleCaseSwitch
+  goconst:
+    min-len: 2
+  misspell:
+    locale: US
+
+linters:
+  disable-all: true
+  enable:
+    - bodyclose
+    - deadcode
+    - depguard
+    - dogsled
+    - dupl
+    - errcheck
+    - funlen
+    - gochecknoinits
+    - goconst
+    - gocritic
+    - gocyclo
+    - gofmt
+    - goimports
+    - golint
+    - gomnd
+    - goprintffuncname
+    - gosec
+    - gosimple
+    - govet
+    - ineffassign
+    - interfacer
+    - lll
+    - misspell
+    - nakedret
+    - rowserrcheck
+    - scopelint
+    - staticcheck
+    - structcheck
+    - stylecheck
+    - typecheck
+    - unconvert
+    - unparam
+    - unused
+    - varcheck
+    - whitespace
+  # don't enable:
+  # - gochecknoglobals
+  # - gocognit
+  # - godox
+  # - maligned
+  # - prealloc
+
+
+run:
+  modules-download-mode: readonly
+  deadline: 5m
+  issues-exit-code: 1
+  tests: false
+  skip-dirs:
+    - pkg/database
+    - tmp
+    - doc
+
+
+
+# output configuration options
+output:
+  # colored-line-number|line-number|json|tab|checkstyle|code-climate, default is "colored-line-number"
+  format: colored-line-number
+
+  # print lines of code with issue, default is true
+  print-issued-lines: true
+
+  # print linter name in the end of issue text, default is true
+  print-linter-name: true
+
+  # make issues output unique by line, default is true
+  uniq-by-line: true
+
+
+issues:
+  # List of regexps of issue texts to exclude, empty list by default.
+  # But independently from this option we use default exclude patterns,
+  # it can be disabled by `exclude-use-default: false`. To list all
+  # excluded by default patterns execute `golangci-lint run --help`
+  exclude:
+    - pkg/database
+    - tmp
+    - doc

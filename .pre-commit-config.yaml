@@ -1,0 +1,39 @@
+# ==============================================================================
+# See https://pre-commit.com            for more information
+# See https://pre-commit.com/hooks.html for more hooks
+# ref:
+#   - https://pre-commit.com/#pre-commit-configyaml---hooks
+# usage repo:
+#   - hook list: https://pre-commit.com/hooks.html
+#   - golang:
+#     - https://github.com/TekWizely/pre-commit-golang
+#     - https://github.com/dnephin/pre-commit-golang
+#     - https://github.com/lietu/go-pre-commit
+#
+# ==============================================================================
+
+
+repos:
+  #
+  # 插件库列表:
+  #
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.0.0
+    hooks:
+      - id: check-merge-conflict
+      - id: trailing-whitespace
+      - id: check-yaml
+
+  #
+  # for golang:
+  #
+  - repo: git://github.com/dnephin/pre-commit-golang
+    rev: master
+    hooks:
+      - id: go-fmt
+      - id: go-imports
+      - id: validate-toml
+      - id: no-go-testing
+      - id: golangci-lint
+#      - id: go-unit-tests    # 单元测试, 有效
+#      - id: go-build
