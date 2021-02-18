@@ -41,6 +41,20 @@ make run.demo
 # http echo test:
 make curl.api
 
+
+#
+# will print:
+#
+-> % make curl.api
+curl -i http://localhost:8888/from/you
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Thu, 18 Feb 2021 10:48:23 GMT
+Content-Length: 25
+
+{"message":"hello world"}%
+
+
 ```
 
 
