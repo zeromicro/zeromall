@@ -29,9 +29,17 @@
 ```
 
 
-- run:
+- run 示例服务: `app/basic/demo`
 
 ```
+cd ./app/basic/demo
+
+# 启动 API 服务:
+make run.demo
+
+
+# http echo test:
+make curl.api
 
 ```
 
