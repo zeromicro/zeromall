@@ -10,12 +10,16 @@ import (
 )
 
 func RegisterHandlers(engine *rest.Server, serverCtx *svc.ServiceContext) {
+	// new:
+	s := service.NewService()
+
+	// register:
 	engine.AddRoutes(
 		[]rest.Route{
 			{
 				Method:  http.MethodGet,
 				Path:    "/from/:name",
-				Handler: service.DemoHandler(serverCtx),
+				Handler: s.Outer.DemoHandler(serverCtx),
 			},
 		},
 	)
