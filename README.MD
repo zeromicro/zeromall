@@ -216,7 +216,8 @@ Content-Length: 25
 
 
 - https://github.com/macrozheng/mall
-
-
+- https://zeromicro.github.io/go-zero/rpc-dir.html
+- rest: https://www.yuque.com/tal-tech/go-zero/bqdcb3
+- zrpc(grpc+): https://www.yuque.com/tal-tech/go-zero/rslrhx
 
 
