@@ -219,5 +219,5 @@ Content-Length: 25
 - https://zeromicro.github.io/go-zero/rpc-dir.html
 - rest: https://www.yuque.com/tal-tech/go-zero/bqdcb3
 - zrpc(grpc+): https://www.yuque.com/tal-tech/go-zero/rslrhx
-
+- 项目目录脚手架: https://github.com/better-go/cookiecutter-go
 
