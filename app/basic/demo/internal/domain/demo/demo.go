@@ -2,32 +2,51 @@ package demo
 
 import (
 	"context"
-	svc "mall/app/basic/demo/internal/dao"
-
-	types "mall/app/basic/demo/proto/api"
+	"mall/app/basic/demo/proto/config"
 
 	"github.com/tal-tech/go-zero/core/logx"
+
+	"mall/app/basic/demo/internal/dao"
 )
 
+/*
+一个业务单元聚合:
+	- 聚合一块业务逻辑
 
-type Scope struct {
+*/
+type Domain struct {
 	logx.Logger
+
 	ctx    context.Context
-	svcCtx *svc.ServiceContext
+	svcCtx *dao.ServiceContext
+
+	///////////////////////////////////////
+
+	// inner global use:
+	g *dao.MetaResource
+
+	// biz:
+	Hello *HelloScope
 }
 
-func NewScope(ctx context.Context, svcCtx *svc.ServiceContext) Scope {
-	return Scope{
+//
+func NewScope(cfg *config.Config, ctx context.Context, svcCtx *dao.ServiceContext) *Domain {
+	// global:
+	g := dao.NewMetaResource(cfg)
+
+	return &Domain{
 		Logger: logx.WithContext(ctx),
 		ctx:    ctx,
 		svcCtx: svcCtx,
+
+		g: g,
+
+		// biz:
+		Hello: newAuthScope(g),
 	}
 }
 
-func (l *Scope) Demo(req types.Request) (*types.Response, error) {
-	// todo: add your logic here and delete this line
-	return &types.Response{
-		Message: "hello world",
-	}, nil
+func (m *Domain) Close() {
+	m.g.Close()
+	return
 }
-

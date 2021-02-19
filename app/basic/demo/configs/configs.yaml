@@ -1,3 +1,27 @@
 Name: demo-api
 Host: 0.0.0.0
 Port: 8888
+
+########################################################################
+# meta:
+Meta:
+  Name: 'mall.demo'
+  Version: '0.0.1'
+
+DB:
+  Demo: 'todo'
+
+Cache:
+  Demo: 'todo'
+
+MQ:
+  Demo: 'todo'
+
+RPC:
+  Demo: 'todo'
+
+HTTP:
+  Demo: 'todo'
+
+
+

@@ -5,13 +5,14 @@ import (
 
 	"github.com/tal-tech/go-zero/rest"
 
-	svc "mall/app/basic/demo/internal/dao"
+	"mall/app/basic/demo/internal/dao"
 	"mall/app/basic/demo/internal/service"
+	"mall/app/basic/demo/proto/config"
 )
 
-func RegisterHandlers(engine *rest.Server, serverCtx *svc.ServiceContext) {
+func RegisterHandlers(engine *rest.Server, cfg *config.Config, serverCtx *dao.ServiceContext) {
 	// new:
-	s := service.NewService()
+	s := service.NewService(cfg, serverCtx)
 
 	// register:
 	engine.AddRoutes(
@@ -19,7 +20,7 @@ func RegisterHandlers(engine *rest.Server, serverCtx *svc.ServiceContext) {
 			{
 				Method:  http.MethodGet,
 				Path:    "/from/:name",
-				Handler: s.Outer.DemoHandler(serverCtx),
+				Handler: s.Outer.DemoHandler(cfg, serverCtx),
 			},
 		},
 	)

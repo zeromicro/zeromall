@@ -1,11 +1,13 @@
 package outer
 
 import (
+	"context"
+	"mall/app/basic/demo/proto/config"
 	"net/http"
 
 	"github.com/tal-tech/go-zero/rest/httpx"
 
-	svc "mall/app/basic/demo/internal/dao"
+	"mall/app/basic/demo/internal/dao"
 	"mall/app/basic/demo/internal/domain/demo"
 	types "mall/app/basic/demo/proto/api"
 )
@@ -15,15 +17,18 @@ import (
 
 */
 type Server struct {
+	d *demo.Domain // 引入业务单元
 }
 
-func NewServer() *Server {
-	return &Server{}
+func NewServer(cfg *config.Config, ctx *dao.ServiceContext) *Server {
+	return &Server{
+		// todo: need fix
+		d: demo.NewScope(cfg, context.TODO(), ctx),
+	}
 }
-
 
 // 示例 API:
-func (m *Server) DemoHandler(ctx *svc.ServiceContext) http.HandlerFunc {
+func (m *Server) DemoHandler(cfg *config.Config, ctx *dao.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.Request
 		if err := httpx.Parse(r, &req); err != nil {
@@ -31,8 +36,9 @@ func (m *Server) DemoHandler(ctx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		l := demo.NewScope(r.Context(), ctx)
-		resp, err := l.Demo(req)
+		l := demo.NewScope(cfg, r.Context(), ctx)
+
+		resp, err := l.Hello.Demo(req)
 		if err != nil {
 			httpx.Error(w, err)
 		} else {

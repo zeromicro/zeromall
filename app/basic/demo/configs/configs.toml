@@ -1,0 +1,100 @@
+############################################################################################################
+#                     toml 项目配置文件:
+# ref:
+#
+############################################################################################################
+
+############################################################################################################
+# service meta info
+############################################################################################################
+
+[meta]
+    name = "com.mall.demo.hello"
+    version = "0.1.0"
+
+############################################################################################################
+# require middleware settings
+############################################################################################################
+
+# http group:
+[HTTP]
+    [HTTP.HomeServer]  # demo
+        HomeServerUrl = "https://"
+    [HTTP.Email] # email provider
+        ApiUser = "ApiUser"
+        ApiKey = "ApiKey"
+        SendFrom = "SendFrom"  # 发件人地址
+        [HTTP.Email.Template]
+            [HTTP.Email.Template.Register]
+                Subject = "email_title"         # 邮件标题
+                Html = "email_content_template" # 邮件正文
+
+# db:
+[db]
+    [db.DB1]  # 区分下划线 和 驼峰命名:
+        Dialect = "mysql"
+#       DSN = "root:123456@tcp(127.0.0.1:3306)/user?timeout=1s&readTimeout=1s&writeTimeout=1s&parseTime=true&loc=Local&charset=utf8mb4"
+        DSN = "dev:dev@tcp(127.0.0.1:13306)/dev?timeout=1s&readTimeout=1s&writeTimeout=1s&parseTime=true&loc=Local&charset=utf8mb4"
+        ActiveNum = 20
+        IdleNum = 10
+        IdleTimeout = "4h" # 注意自动转换:
+        IsSingularTable = true
+        IsDebugMode = true
+        queryTimeout = "1s"
+        execTimeout = "1s"
+        tranTimeout = "1s"
+
+    [db.DB2]  # 区分下划线 和 驼峰命名:
+        Dialect = "mysql"
+#       DSN = "root:123456@tcp(127.0.0.1:3306)/user?timeout=1s&readTimeout=1s&writeTimeout=1s&parseTime=true&loc=Local&charset=utf8mb4"
+        DSN = "dev:dev@tcp(127.0.0.1:13306)/dev?timeout=1s&readTimeout=1s&writeTimeout=1s&parseTime=true&loc=Local&charset=utf8mb4"
+        ActiveNum = 20
+        IdleNum = 10
+        IdleTimeout = "4h" # 注意自动转换:
+        IsSingularTable = true
+        IsDebugMode = true
+        queryTimeout = "1s"
+        execTimeout = "1s"
+        tranTimeout = "1s"
+
+# cache:
+[cache]
+    # redis 集群配置:
+    [cache.R1]
+        Name = "redis cluster 1"
+        Addr = ":6379"
+        Auth = ""
+        DialTimeout = "1s"
+        ReadTimeout = "1s"
+        WriteTimeout = "1s"
+        IdleTimeout = "10s"
+        PoolSize = 10
+    [cache.R2]
+        Name = "redis cluster 2"
+        Addr = ":6379"
+        Auth = ""
+        DialTimeout = "1s"
+        ReadTimeout = "1s"
+        WriteTimeout = "1s"
+        IdleTimeout = "10s"
+        PoolSize = 10
+
+    # 超时参数:
+    [cache.Expiration]
+        Second = 1          # 1s
+        Minute = 60         # 1*60 = 60s
+        Hour   = 3600       # 1*60*60 = 3600s
+        Day    = 86400      # 1*60*60*24 = 86400s
+        Month  = 2678400    # 1*60*60*24*31 = 2678400s
+
+############################################################################################################
+# biz settings
+############################################################################################################
+
+[biz]
+    ServiceName = "user.identity"
+    ServiceToken = "token1"
+    AuthGatewayUrl = "http://127.0.0.1:8080/api/v1/user/auth/gateway/verify" # API auth 网关
+
+    [biz.Demo]
+        app1 = 1

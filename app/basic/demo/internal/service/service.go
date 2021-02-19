@@ -1,10 +1,12 @@
 package service
 
 import (
+	"mall/app/basic/demo/internal/dao"
 	"mall/app/basic/demo/internal/service/admin"
 	"mall/app/basic/demo/internal/service/inner"
 	"mall/app/basic/demo/internal/service/job"
 	"mall/app/basic/demo/internal/service/outer"
+	"mall/app/basic/demo/proto/config"
 )
 
 /*
@@ -18,9 +20,9 @@ type Service struct {
 	Job   *job.Server   // 对内 Job Server
 }
 
-func NewService() *Service {
+func NewService(cfg *config.Config, ctx *dao.ServiceContext) *Service {
 	return &Service{
-		Outer: outer.NewServer(),
+		Outer: outer.NewServer(cfg, ctx),
 		Inner: inner.NewServer(),
 		Admin: admin.NewServer(),
 		Job:   job.NewServer(),
