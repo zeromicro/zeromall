@@ -2,7 +2,7 @@ package demo
 
 import (
 	"mall/app/basic/demo/internal/dao"
-	types "mall/app/basic/demo/proto/api"
+	"mall/app/basic/demo/proto/api"
 )
 
 // demo:
@@ -14,11 +14,10 @@ func newAuthScope(g *dao.MetaResource) *HelloScope {
 	return &HelloScope{g}
 }
 
-
 // one api:
-func (m *HelloScope) Demo(req types.Request) (*types.Response, error) {
+func (m *HelloScope) Demo(req api.Request) (*api.Response, error) {
 	// todo: add your logic here and delete this line
-	return &types.Response{
+	return &api.Response{
 		Message: "hello world",
 	}, nil
 }
