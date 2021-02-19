@@ -103,18 +103,18 @@ Content-Length: 25
 
 
 - 代码调用链路说明: 以 `app/basic/demo` 服务为例(自顶向下调用)
-    - 启动入口: `app/basic/demo/cmd/main.go`
+    - Cmd 启动入口: `app/basic/demo/cmd/main.go`
     - Service 入口: `app/basic/demo/internal/service/service.go`
         - 对外 API 网关: `app/basic/demo/internal/service/outer/outer.go`
         - 对内 RPC 网关: `app/basic/demo/internal/service/inner/inner.go`
         - 对内 Admin API 网关: `app/basic/demo/internal/service/admin/admin.go`
         - 对内 Job 网关: `app/basic/demo/internal/service/job/job.go`
-    - 数据定义:
+    - Proto 数据定义:
         - API 层: `app/basic/demo/proto/api/api.proto`
         - Config 层: `app/basic/demo/proto/config/config.proto`
         - Model 层: `app/basic/demo/proto/model/model.proto`
-    - 路由注册: `app/basic/demo/internal/router/router.go`
-    - 业务领域 Domain:
+    - Router 路由注册: `app/basic/demo/internal/router/router.go`
+    - Domain 业务领域:
         - 某业务单元: `app/basic/demo/internal/domain/demo/demo.go`
     - Dao 数据层操作:
         - Meta 聚合(收敛 Dao 层资源): `app/basic/demo/internal/dao/meta.go`
