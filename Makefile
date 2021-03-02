@@ -10,6 +10,13 @@
 # update requirements:
 ################################################################################################
 
+dev.require:
+	# https://pre-commit.com/
+	brew install pre-commit
+	# 不建议使用 pip 安装, 如果对 Python 很熟悉, 可以用
+	# pip install pre-commit
+
+
 # update package:
 .PHONY:
 go.mod.tidy:
