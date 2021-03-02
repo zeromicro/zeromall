@@ -13,9 +13,9 @@
 dev.require:
 	# https://pre-commit.com/
 	brew install pre-commit
-	# 不建议使用 pip 安装, 如果对 Python 很熟悉, 可以用
+	# 不建议使用 pip 安装, 除非你对 python 很熟悉
 	# pip install pre-commit
-
+	pre-commit --version
 
 # update package:
 .PHONY:
