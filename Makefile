@@ -17,6 +17,9 @@ dev.require:
 	# pip install pre-commit
 	pre-commit --version
 
+	# docker: https://github.com/docker/compose
+	brew install docker-compose
+
 # update package:
 .PHONY:
 go.mod.tidy:

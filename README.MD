@@ -12,7 +12,7 @@
 - mysql
 - redis
 - kafka
-
+- docker + docker-compose
 
 ## QuickStart:
 

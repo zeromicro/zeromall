@@ -1,0 +1,24 @@
+##########################################################################################
+#                              portainer service:
+#
+# ref:
+#   - https://docs.docker.com/compose/compose-file/
+#   - https://github.com/micahhausler/rabbitmq-compose/blob/master/docker-compose.yml
+
+##########################################################################################
+
+version: "3.3"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: "rabbit"
+    environment:
+      # vhost:
+      RABBITMQ_DEFAULT_VHOST: "exchange_server"
+      # user:
+      RABBITMQ_DEFAULT_USER: "rabbit"
+      RABBITMQ_DEFAULT_PASS: "rabbit"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
