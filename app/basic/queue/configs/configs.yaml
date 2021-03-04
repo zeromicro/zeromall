@@ -1,11 +1,11 @@
-Name: demo-api
+Name: queue-proxy
 Host: 0.0.0.0
-Port: 8888
+Port: 8080
 
 ########################################################################
 # meta:
 Meta:
-  Name: 'mall.demo'
+  Name: 'queue.proxy'
   Version: '0.0.1'
 
 DB:
@@ -15,7 +15,9 @@ Cache:
   Demo: 'todo'
 
 MQ:
-  Demo: 'todo'
+  Demo:
+    Url: 'amqp://rabbit:rabbit@localhost:5672/exchange_server'
+    Timeout: '5s'
 
 RPC:
   Demo: 'todo'

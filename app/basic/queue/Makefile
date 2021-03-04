@@ -20,4 +20,10 @@ run.auto.reload:
 
 # echo test:
 curl.api:
-	curl -i http://localhost:8888/from/you
+	curl -i http://localhost:8080/from/me
+
+curl.api2:
+	curl -i http://localhost:8080/hello/tom
+
+	curl -i http://localhost:8080/hello/jim
+

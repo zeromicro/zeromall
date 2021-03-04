@@ -15,9 +15,9 @@ func newAuthScope(g *dao.MetaResource) *HelloScope {
 }
 
 // one api:
-func (m *HelloScope) Demo(req api.Request) (*api.Response, error) {
+func (m *HelloScope) Demo(req api.HelloReq) (*api.Response, error) {
 	// todo: add your logic here and delete this line
 	return &api.Response{
-		Message: "hello world",
+		Message: "hello " + req.Name,
 	}, nil
 }

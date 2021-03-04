@@ -68,7 +68,7 @@ type CacheUnit struct {
 
 // mq:
 type MQUnit struct {
-	//Demo *DemoMQ
+	Demo *DemoMQ
 }
 
 type DemoMQ struct {

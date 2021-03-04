@@ -14,15 +14,24 @@ import (
 
 */
 type Service struct {
+	// common:
+	cfg    *config.Config
+	srvCtx *dao.ServiceContext
+
+	// biz:
 	Outer *outer.Server // 对外 HTTP API Server
 	Inner *inner.Server // 对内 RPC Server
 	Admin *admin.Server // 对内 Admin HTTP API Server
 	Job   *job.Server   // 对内 Job Server
 }
 
-func NewService(cfg *config.Config, ctx *dao.ServiceContext) *Service {
+func NewService(cfg *config.Config, srvCtx *dao.ServiceContext) *Service {
 	return &Service{
-		Outer: outer.NewServer(cfg, ctx),
+		cfg:    cfg,
+		srvCtx: srvCtx,
+
+		// biz:
+		Outer: outer.NewServer(cfg, srvCtx),
 		Inner: inner.NewServer(),
 		Admin: admin.NewServer(),
 		Job:   job.NewServer(),

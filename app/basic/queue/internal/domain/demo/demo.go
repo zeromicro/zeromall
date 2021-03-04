@@ -30,7 +30,7 @@ type Domain struct {
 }
 
 //
-func NewScope(cfg *config.Config, ctx context.Context, svcCtx *dao.ServiceContext) *Domain {
+func NewDomain(cfg *config.Config, ctx context.Context, svcCtx *dao.ServiceContext) *Domain {
 	// global:
 	g := dao.NewMetaResource(cfg)
 

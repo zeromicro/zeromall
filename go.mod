@@ -5,6 +5,7 @@ go 1.15
 require (
 	github.com/Shopify/sarama v1.26.1 // indirect
 	github.com/antlr/antlr4 v0.0.0-20210216171041-fde0b28dfbd6 // indirect
+	github.com/better-go/pkg v0.1.5
 	github.com/cosmtrek/air v1.15.1 // indirect
 	github.com/ghodss/yaml v1.0.1-0.20190212211648-25d852aebe32 // indirect
 	github.com/go-critic/go-critic v0.4.3
@@ -18,7 +19,7 @@ require (
 	github.com/jinzhu/gorm v1.9.12
 	github.com/jinzhu/now v1.1.1
 	github.com/klauspost/compress v1.10.5 // indirect
-	github.com/micro/go-micro/v2 v2.3.0
+	github.com/micro/go-micro/v2 v2.8.0
 	github.com/micro/micro/v2 v2.3.1
 	github.com/microcosm-cc/bluemonday v1.0.2
 	github.com/pierrec/lz4 v2.5.2+incompatible // indirect
