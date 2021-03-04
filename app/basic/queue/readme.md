@@ -10,6 +10,14 @@
 - 类似 graphQL 把 DB 能力开放给前端, 这里把 MQ 能力, 开放给前端.
 
 
+## API List: 
+
+- `app/basic/queue/internal/router/router.go`
+
+- 队列写入消息: http://localhost:8080/queue/publish/
+    - POST
+    - Makefile 有 curl 示例
+
 
 ## 功能: 
 
