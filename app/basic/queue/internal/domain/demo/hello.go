@@ -21,3 +21,11 @@ func (m *HelloScope) Demo(req api.HelloReq) (*api.Response, error) {
 		Message: "hello " + req.Name,
 	}, nil
 }
+
+// one api:
+func (m *HelloScope) Publish(req api.MessageReq) (resp *api.MessageResp, err error) {
+	resp = new(api.MessageResp)
+
+	err = m.MQ.Hello.Publish(req.Data)
+	return
+}

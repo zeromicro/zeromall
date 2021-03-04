@@ -27,3 +27,8 @@ curl.api2:
 
 	curl -i http://localhost:8080/hello/jim
 
+curl.pub.msg:
+	curl --request POST \
+		--url http://localhost:8080/queue/publish/ \
+		--header 'content-type: application/json' \
+		--data '{"queue_name": "test-queue",	"type": "type1",	"data": "test message6",	"raw_data": 1,	"timestamp": 2	}'

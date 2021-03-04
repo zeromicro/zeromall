@@ -1,11 +1,11 @@
 package router
 
 import (
-	"github.com/better-go/pkg/log"
-	"github.com/tal-tech/go-zero/rest/httpx"
 	"net/http"
 
+	"github.com/better-go/pkg/log"
 	"github.com/tal-tech/go-zero/rest"
+	"github.com/tal-tech/go-zero/rest/httpx"
 
 	"mall/app/basic/queue/internal/dao"
 	"mall/app/basic/queue/internal/service"
@@ -33,9 +33,11 @@ func RegisterHandlers(engine *rest.Server, cfg *config.Config, serverCtx *dao.Se
 				//Handler: s.Outer.DemoHandler(cfg, serverCtx),
 			},
 			{
-				Method:  http.MethodPost,
-				Path:    "/queue/publish",
-				Handler: s.Outer.PublishMessage(cfg, serverCtx),
+				Method: http.MethodPost,
+				Path:   "/queue/publish", // 队列写入
+				Handler: HandlerWrap(func(r *http.Request) (resp interface{}, err error) {
+					return s.Outer.PublishMessage(r)
+				}),
 			},
 		},
 	)
