@@ -59,9 +59,25 @@ cd ./app/basic/demo
 # 启动 API 服务:
 make run.demo
 
+########################################################################################
+#
 # 或者使用: 基于 air, watch 该服务目录, 修改后, 自动 hot reload, 无需重新编译
-make run.auto.reload
+#
+########################################################################################
 
+# 启动 http api sever:
+make run.auto.api
+
+# 启动 internal rpc sever:
+make run.auto.svc
+
+# 启动 job sever:
+make run.auto.job
+
+# 启动 admin api sever:
+make run.auto.admin
+
+########################################################################################
 
 # http echo test:
 make curl.api
