@@ -36,6 +36,20 @@ make go.mod.tidy
 
 ```
 
+- 开发环境配置 git-pre-commit-hook:
+
+```bash
+
+# 安装依赖工具:
+brew install pre-commit
+
+# 会自动添加 hook 文件到: .git/hooks/pre-commit
+pre-commit install
+
+
+```
+
+
 
 - run 示例服务: `app/basic/demo`
 
