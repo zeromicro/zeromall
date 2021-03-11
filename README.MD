@@ -16,7 +16,7 @@
 
 ## QuickStart:
 
-- https://www.yuque.com/tal-tech/go-zero/yaoehb
+- [zeromicro.github.io/go-zero](https://zeromicro.github.io/go-zero)
 
 
 ### Development Environment:
@@ -64,8 +64,6 @@ Date: Thu, 18 Feb 2021 10:48:23 GMT
 Content-Length: 25
 
 {"message":"hello world"}%
-
-
 ```
 
 
@@ -75,8 +73,6 @@ Content-Length: 25
 
 
 ```html
-
-
 -> % tree . -L 3
 .
 ├── app
@@ -97,8 +93,6 @@ Content-Length: 25
 ├── infra                // 基础设施
 │   └── tool
 └── pkg                  // 项目积累的 utility 代码库, 与业务无关
-
-
 ```
 
 
@@ -124,12 +118,7 @@ Content-Length: 25
 
 - 目录结构详细说明:
 
-
-
 ```html
-
-
-
 -> % tree . -L 6
 .
 ├── LICENSE
@@ -207,8 +196,6 @@ Content-Length: 25
 └── pkg                                            // 项目中逐步积累的 utility 代码库
 
 46 directories, 24 files
-
-
 ```
 
 
@@ -220,4 +207,3 @@ Content-Length: 25
 - rest: https://www.yuque.com/tal-tech/go-zero/bqdcb3
 - zrpc(grpc+): https://www.yuque.com/tal-tech/go-zero/rslrhx
 - 项目目录脚手架: https://github.com/better-go/cookiecutter-go
-
