@@ -30,7 +30,7 @@ func Runner(inner server.Server, outer server.Server, job server.Server, admin s
 			&cli.StringFlag{
 				Name:    "configFile",
 				Aliases: []string{"f"},
-				Usage:   "run server type: [inner/outer/job/admin]",
+				Usage:   "config file path: [configs/configs.yaml]",
 				EnvVars: []string{"CONFIG_FILE", "configFile"},
 				//FilePath: "configs/configs.yaml", // 会自动解析文件内容
 			},
