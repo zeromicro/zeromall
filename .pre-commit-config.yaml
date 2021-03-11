@@ -34,6 +34,6 @@ repos:
       - id: go-imports
       - id: validate-toml
       - id: no-go-testing
-      - id: golangci-lint
+#      - id: golangci-lint
 #      - id: go-unit-tests    # 单元测试, 有效
 #      - id: go-build

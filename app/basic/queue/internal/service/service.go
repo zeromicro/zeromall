@@ -34,6 +34,6 @@ func NewService(cfg *config.Config, srvCtx *dao.ServiceContext) *Service {
 		Outer: outer.NewServer(cfg, srvCtx),
 		Inner: inner.NewServer(),
 		Admin: admin.NewServer(),
-		Job:   job.NewServer(),
+		Job:   job.NewServer(cfg, srvCtx),
 	}
 }

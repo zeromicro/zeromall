@@ -39,6 +39,13 @@ func RegisterHandlers(engine *rest.Server, cfg *config.Config, serverCtx *dao.Se
 					return s.Outer.PublishMessage(r)
 				}),
 			},
+			{
+				Method: http.MethodGet,
+				Path:   "/graphql/do", // query block
+				Handler: HandlerWrap(func(r *http.Request) (resp interface{}, err error) {
+					return s.Outer.ParseBlock(r)
+				}),
+			},
 		},
 	)
 }

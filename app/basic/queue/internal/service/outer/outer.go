@@ -62,3 +62,9 @@ func (m *Server) PublishMessage(r *http.Request) (*api.MessageResp, error) {
 	}
 	return m.d.Hello.Publish(req)
 }
+
+// 解析块:
+func (m *Server) ParseBlock(r *http.Request) (*api.Response, error) {
+	m.d.Graph.BlockParse(context.Background())
+	return nil, nil
+}

@@ -12,11 +12,13 @@ type Config struct {
 	//
 	// common:
 	//
-	DB    *DBUnit    // db
-	Cache *CacheUnit // cache
-	MQ    *MQUnit    // mq
-	HTTP  *HttpUnit  // http
-	RPC   *RpcUnit   // rpc
+	DB      *DBUnit      // db
+	Cache   *CacheUnit   // cache
+	MQ      *MQUnit      // mq
+	HTTP    *HttpUnit    // http
+	RPC     *RpcUnit     // rpc
+	GraphQL *GraphQLUnit // graphql
+	Job     *JobUnit     // 异步 Job
 
 	//
 	// biz:
@@ -85,6 +87,33 @@ type HttpUnit struct {
 	//Email      *EmailHttp // SendCloud
 }
 
+/*
+
+
+# Currently unused
+SUBGRAPH_URL_1={mainnet-subgraph}
+SUBGRAPH_URL_42={kovan-subgraph}
+SUBGRAPH_URL_LOCAL={local-subgraph}
+REACT_APP_SUPPORTED_NETWORK_ID=42
+FROM_BLOCK
+QUERY_INTERVAL=12
+
+*/
+type GraphQLUnit struct {
+	Url           string // url
+	Url42         string // SubGraph URL 42
+	NetworkID     int32  // 区块链主链 ID
+	BlockStart    int64  // 起始块高度
+	QueryInterval int32  // 查询间隔周期
+}
+
+// Job 触发调度条件:
+type JobUnit struct {
+	IntervalMinute int64 // 间隔:
+	TickerSecond   int32 //
+	SlotNum        int   // 时间轮
+	SleepDuration  int32 // 休眠
+}
 
 /////////////////////////////////////////////////////////////////////////////////////
 //  rpc config unit:

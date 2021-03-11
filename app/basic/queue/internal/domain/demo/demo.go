@@ -27,6 +27,7 @@ type Domain struct {
 
 	// biz:
 	Hello *HelloScope
+	Graph *GraphScope
 }
 
 //
@@ -43,6 +44,7 @@ func NewDomain(cfg *config.Config, ctx context.Context, svcCtx *dao.ServiceConte
 
 		// biz:
 		Hello: newAuthScope(g),
+		Graph: newGraphScope(g),
 	}
 }
 

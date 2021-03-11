@@ -26,4 +26,17 @@ HTTP:
   Demo: 'todo'
 
 
+# graphql:
+GraphQL:
+  Url42: 'http://34.87.21.221:8000/subgraphs/name/SkyWalker'
+  Url: 'http://34.87.21.221:8000/subgraphs/name/SkyWalker'
+  NetworkID: 42      # 主网编号
+  BlockStart: 10000  # 起始块高度
+  QueryInterval: 12  # 12s
 
+
+Job:
+  IntervalMinute: 1 # 1min
+  TickerSecond: 5   # 5s
+  SlotNum: 600      # 600个 task slot
+  SleepDuration: 1  #
