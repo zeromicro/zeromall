@@ -13,7 +13,7 @@ type Dao struct {
 	Hello *HelloStorage // demo db
 }
 
-func New(cfg *config.DBUnit) *Dao {
+func New(cfg config.DBUnit) *Dao {
 	// db meta:
 	g := newConnGroup(cfg)
 
@@ -44,7 +44,7 @@ type ConnGroup struct {
 }
 
 // todo:
-func newConnGroup(cfg *config.DBUnit) *ConnGroup {
+func newConnGroup(cfg config.DBUnit) *ConnGroup {
 	// item:
 	//db1 := mysql.NewClient(cfg.DB1)
 	//db2 := mysql.NewClient(cfg.DB2)

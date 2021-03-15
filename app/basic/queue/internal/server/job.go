@@ -1,33 +1,36 @@
 package server
 
 import (
+	"context"
 	"github.com/better-go/pkg/log"
 	"github.com/tal-tech/go-zero/core/conf"
 	"github.com/tal-tech/go-zero/rest"
 
-	"mall/app/basic/queue/internal/dao"
-	"mall/app/basic/queue/internal/router"
+	"mall/app/basic/queue/internal/service/job"
 	"mall/app/basic/queue/proto/config"
 )
 
-// 异步 task:
-type JobServer struct {
-}
+// internal job task server:
+type JobServer struct{}
 
 func (m *JobServer) Run(configFile string) {
+	ctx := context.Background()
+
 	// parse config:
-	var c config.Config
-	conf.MustLoad(configFile, &c)
+	var cfg config.Config
+	conf.MustLoad(configFile, &cfg)
 
-	ctx := dao.NewServiceContext(c)
+	// new biz service:
+	svc := job.NewService(cfg, ctx)
+	defer svc.Close()
 
-	// new server:
-	server := rest.MustNewServer(c.RestConf)
-	defer server.Stop()
+	// run job:
+	svc.RunAsync()
 
-	// register routes:
-	router.RegisterHandlers(server, &c, ctx)
+	// new engine:
+	engine := rest.MustNewServer(cfg.Server.Job.RestConf)
+	defer engine.Stop()
 
-	log.Infof("Starting server at %s:%d...\n", c.Host, c.Port)
-	server.Start()
+	log.Infof("starting job engine at %v\n", cfg.Server.Job.RestConf)
+	engine.Start()
 }

@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+//import "gogoproto/gogo.proto";
+
+
+package queue.rpc;
+option go_package = "rpc";
+option (gogoproto.goproto_getters_all) = false;
+option (gogoproto.testgen_all) = false; // auto gen test codes
+option (gogoproto.goproto_enum_prefix_all) = false; // disable enum prefix, 自己加前缀(防止C++冲突)
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 特别注意:
+//    - 涉及 HTTP API 正常使用:(必要条件)
+//    - req 参数: 必须显式加tag (bind 依赖): [(gogoproto.moretags) = 'form:"created_start"']
+//    - resp 返回值: 必须显式加tag (disable omit empty field): [(gogoproto.jsontag) = "channel"]
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+service QueueService {
+    rpc grace (Request) returns (Response);
+    rpc adminCall (AdminReq) returns (AdminResp);
+    rpc restCall (RestReq) returns (RestResp);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+message Request {
+    string from = 1 [(gogoproto.moretags) = 'form:"from"'];
+}
+
+message Response {
+    string host = 2;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+message AdminReq {
+    string from = 1 [(gogoproto.moretags) = 'form:"from"'];
+}
+
+message AdminResp {
+    string message = 1;
+    string status = 2;
+    string host = 3;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+message RestReq {
+    string from = 1 [(gogoproto.moretags) = 'form:"from"'];
+}
+
+message RestResp {
+    string message = 1;
+    string status = 2;
+    string host = 3;
+}
+

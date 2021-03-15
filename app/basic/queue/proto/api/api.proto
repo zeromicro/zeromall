@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package api;
+option go_package = "api";
+
+
+message Request {
+    string from = 1;
+}
+
+message Response {
+    string message = 1;
+    string host = 2;
+}

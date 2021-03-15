@@ -1,29 +1,46 @@
 package config
 
-import "github.com/tal-tech/go-zero/rest"
+import (
+	"mall/std/proto/config"
+)
 
 // load config:
 type Config struct {
-	rest.RestConf
+	//
+	// meta:
+	//
+	Server ServerUnit // 服务定义
+	Client ClientUnit // 依赖服务 client(包含本服务的 rpc client)
 
 	//
-	Meta *MetaUnit // core meta
-
+	// common required:
 	//
-	// common:
-	//
-	DB      *DBUnit      // db
-	Cache   *CacheUnit   // cache
-	MQ      *MQUnit      // mq
-	HTTP    *HttpUnit    // http
-	RPC     *RpcUnit     // rpc
-	GraphQL *GraphQLUnit // graphql
-	Job     *JobUnit     // 异步 Job
+	DB      DBUnit      // db
+	Cache   CacheUnit   // cache
+	MQ      MQUnit      // mq
+	HTTP    HttpUnit    // http
+	RPC     RpcUnit     // rpc
+	GraphQL GraphQLUnit // graphql
+	Job     JobUnit     // 异步 Job
 
 	//
 	// biz:
 	//
 	//Biz *BizUnit //
+}
+
+// 本服务定义: internal total
+type ServerUnit struct {
+	config.ServerUnit
+}
+
+// 依赖服务定义:
+type ClientUnit struct {
+	config.ClientUnit
+
+	// 其他依赖服务:
+	// TODO: required other services, add here
+	Grace config.RpcClientConf // other rpc client
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -42,7 +59,7 @@ type BizUnit struct {
 	//AuthGatewayUrl string // auth gateway url
 
 	// biz:
-	Demo *DemoBiz
+	Demo DemoBiz
 }
 
 type DemoBiz struct {
@@ -70,7 +87,7 @@ type CacheUnit struct {
 
 // mq:
 type MQUnit struct {
-	Demo *DemoMQ
+	Demo DemoMQ
 }
 
 type DemoMQ struct {
@@ -113,6 +130,14 @@ type JobUnit struct {
 	TickerSecond   int32 //
 	SlotNum        int   // 时间轮
 	SleepDuration  int32 // 休眠
+
+	// Job 计划表:
+	Schedule JobSchedule
+}
+
+// Job 计划表:
+type JobSchedule struct {
+	QueryBlock string // 块分析
 }
 
 /////////////////////////////////////////////////////////////////////////////////////

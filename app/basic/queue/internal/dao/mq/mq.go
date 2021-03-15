@@ -13,7 +13,7 @@ type Dao struct {
 	Hello *HelloQueue
 }
 
-func NewDao(cfg *config.MQUnit) *Dao {
+func NewDao(cfg config.MQUnit) *Dao {
 	// mq meta:
 	g := newConnGroup(cfg)
 
@@ -37,7 +37,7 @@ type ConnGroup struct {
 	cli *rabbitmq.Producer
 }
 
-func newConnGroup(cfg *config.MQUnit) *ConnGroup {
+func newConnGroup(cfg config.MQUnit) *ConnGroup {
 	cli, _ := rabbitmq.NewProducer(&rabbitmq.ConnOption{
 		Uri: cfg.Demo.Url,
 	})

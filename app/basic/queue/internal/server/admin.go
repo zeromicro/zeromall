@@ -4,29 +4,31 @@ import (
 	"github.com/better-go/pkg/log"
 	"github.com/tal-tech/go-zero/core/conf"
 	"github.com/tal-tech/go-zero/rest"
-	"mall/app/basic/queue/internal/dao"
+
 	"mall/app/basic/queue/internal/router"
+	"mall/app/basic/queue/internal/service/admin"
 	"mall/app/basic/queue/proto/config"
 )
 
 // internal admin HTTP/API server:
-type AdminServer struct {
-}
+type AdminServer struct{}
 
 func (m *AdminServer) Run(configFile string) {
 	// parse config:
-	var c config.Config
-	conf.MustLoad(configFile, &c)
+	var cfg config.Config
+	conf.MustLoad(configFile, &cfg)
 
-	ctx := dao.NewServiceContext(c)
+	// admin api:
+	svc := admin.NewService(cfg)
+	defer svc.Close()
 
-	// new server:
-	server := rest.MustNewServer(c.RestConf)
-	defer server.Stop()
+	// new engine:
+	engine := rest.MustNewServer(cfg.Server.Admin.RestConf)
+	defer engine.Stop()
 
 	// register routes:
-	router.RegisterHandlers(server, &c, ctx)
+	router.RegisterAdminRoutes(engine, svc)
 
-	log.Infof("Starting server at %s:%d...\n", c.Host, c.Port)
-	server.Start()
+	log.Infof("starting admin api engine at %v\n", cfg.Server.Admin.RestConf)
+	engine.Start()
 }

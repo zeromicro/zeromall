@@ -50,16 +50,16 @@ func Runner(inner server.Server, outer server.Server, job server.Server, admin s
 			// dispatch:
 			switch serverType {
 			case "inner":
-				log.Infof("run <internal service> server...")
+				log.Infof("run <rpc service> server...")
 				inner.Run(configFile)
 			case "outer":
-				log.Infof("run <interface service> server...")
+				log.Infof("run <api service> server...")
 				outer.Run(configFile)
 			case "job":
 				log.Infof("run <job service> server...")
 				job.Run(configFile)
 			case "admin":
-				log.Infof("run <job service> server...")
+				log.Infof("run <admin service> server...")
 				admin.Run(configFile)
 			}
 			return nil

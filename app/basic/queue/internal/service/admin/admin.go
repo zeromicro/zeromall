@@ -1,13 +1,24 @@
 package admin
 
+import (
+	"mall/app/basic/queue/internal/domain/demo"
+	"mall/app/basic/queue/proto/config"
+)
 
 /*
-	Admin API Server: 提供内部 API
+	Admin API Service: 提供内部 API
 
 */
-type Server struct {
+type Service struct {
+	d *demo.Domain // 引入业务单元
 }
 
-func NewServer() *Server {
-	return &Server{}
+func NewService(cfg config.Config) *Service {
+	return &Service{
+		d: demo.NewDomain(cfg, false),
+	}
+}
+
+func (m *Service) Close() {
+	m.d.Close()
 }

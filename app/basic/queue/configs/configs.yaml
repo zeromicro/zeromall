@@ -1,8 +1,93 @@
-Name: queue-proxy
-Host: 0.0.0.0
-Port: 8080
+########################################################################
+# 本服务 Server 定义
+########################################################################
+
+# 本服务定义:
+Server:
+  # rpc server:
+  Inner:
+    Name: queue.rpc
+    Version: 0.0.1
+    ListenOn: 0.0.0.0:6000  # default port: 6000
+    Etcd: # 服务发现
+      Hosts:
+        - 0.0.0.0:2379
+      Key: queue.rpc
+
+  # api server:
+  Outer:
+    Name: queue.api
+    Version: 0.0.1
+    Host: 0.0.0.0
+    Port: 8000
+    MaxConns: 1000000
+
+  # admin api server:
+  Admin:
+    Name: queue.admin
+    Version: 0.0.1
+    Host: 0.0.0.0
+    Port: 8001
+    MaxConns: 1000000
+
+  # job server:
+  Job:
+    Name: queue.job
+    Version: 0.0.1
+    Host: 0.0.0.0
+    Port: 8002
+    MaxConns: 1000000
 
 ########################################################################
+# 依赖的 RPC 服务 Client 列表:
+########################################################################
+
+
+Client:
+  #
+  # 本服务: rpc client
+  #
+  Inner:
+    Name: queue.rpc
+    Version: 0.0.1
+    # 服务发现:
+    Etcd:
+      Hosts:
+        - 0.0.0.0:2379
+      Key: queue.rpc
+    # 直连:
+#    Endpoints:
+#      - 127.0.0.1:6000
+
+  # TODO: required others service, add here
+
+  #
+  #
+  #
+  Demo:
+    Name: demo
+    Version: 0.0.1
+    Etcd:
+      Hosts:
+        - 127.0.0.1:2379
+      Key: demo.rpc
+
+  #
+  # 3rd rpc client:
+  #
+  Grace:
+    Name: grace
+    Version: 0.0.1
+    Etcd:
+      Hosts:
+        - 0.0.0.0:2379
+      Key: zrpc
+
+
+########################################################################
+# 公共依赖组件配置:
+########################################################################
+
 # meta:
 Meta:
   Name: 'queue.proxy'
@@ -25,6 +110,7 @@ RPC:
 HTTP:
   Demo: 'todo'
 
+########################################################################
 
 # graphql:
 GraphQL:
@@ -34,9 +120,13 @@ GraphQL:
   BlockStart: 10000  # 起始块高度
   QueryInterval: 12  # 12s
 
+########################################################################
 
 Job:
   IntervalMinute: 1 # 1min
   TickerSecond: 5   # 5s
   SlotNum: 600      # 600个 task slot
   SleepDuration: 1  #
+  Schedule:                   # Job 计划周期表: cron job 表达式 # https://en.wikipedia.org/wiki/Cron
+    QueryBlock: '@every 10s'   # "@every 2s"
+

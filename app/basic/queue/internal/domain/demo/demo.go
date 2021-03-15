@@ -1,10 +1,6 @@
 package demo
 
 import (
-	"context"
-
-	"github.com/tal-tech/go-zero/core/logx"
-
 	"mall/app/basic/queue/internal/dao"
 	"mall/app/basic/queue/proto/config"
 )
@@ -15,13 +11,6 @@ import (
 
 */
 type Domain struct {
-	logx.Logger
-
-	ctx    context.Context
-	svcCtx *dao.ServiceContext
-
-	///////////////////////////////////////
-
 	// inner global use:
 	g *dao.MetaResource
 
@@ -31,14 +20,11 @@ type Domain struct {
 }
 
 //
-func NewDomain(cfg *config.Config, ctx context.Context, svcCtx *dao.ServiceContext) *Domain {
+func NewDomain(cfg config.Config, isRpcServer bool) *Domain {
 	// global:
-	g := dao.NewMetaResource(cfg)
+	g := dao.NewMetaResource(cfg, isRpcServer)
 
 	return &Domain{
-		Logger: logx.WithContext(ctx),
-		ctx:    ctx,
-		svcCtx: svcCtx,
 
 		g: g,
 

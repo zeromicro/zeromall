@@ -13,7 +13,7 @@ type Dao struct {
 	Hello *HelloCache // demo db
 }
 
-func New(cfg *config.CacheUnit) *Dao {
+func New(cfg config.CacheUnit) *Dao {
 	// db meta:
 	g := newConnGroup(cfg)
 
@@ -46,7 +46,7 @@ type ConnGroup struct {
 	//closer []*redis.Client
 }
 
-func newConnGroup(cfg *config.CacheUnit) *ConnGroup {
+func newConnGroup(cfg config.CacheUnit) *ConnGroup {
 	// item:
 	//rds1 := redis.NewClient(cfg.R1)
 	//rds2 := redis.NewClient(cfg.R2)

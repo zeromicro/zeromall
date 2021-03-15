@@ -5,6 +5,7 @@ import (
 	"mall/app/basic/queue/internal/dao/db"
 	"mall/app/basic/queue/internal/dao/graphql"
 	"mall/app/basic/queue/internal/dao/mq"
+	"mall/app/basic/queue/internal/dao/rpc"
 	"mall/app/basic/queue/proto/config"
 )
 
@@ -16,10 +17,10 @@ type MetaResource struct {
 	MQ    *mq.Dao      // mq layer
 	Graph *graphql.Dao // graphql
 	//HTTP  *http.Dao  // http layer
-	//RPC   *rpc.Dao   // rpc layer
+	RPC *rpc.Dao // rpc layer
 }
 
-func NewMetaResource(cfg *config.Config) *MetaResource {
+func NewMetaResource(cfg config.Config, isRpcServer bool) *MetaResource {
 	return &MetaResource{
 		//Async: async.New(),
 		DB:    db.New(cfg.DB),
@@ -27,7 +28,7 @@ func NewMetaResource(cfg *config.Config) *MetaResource {
 		MQ:    mq.NewDao(cfg.MQ),
 		Graph: graphql.NewDao(cfg.GraphQL),
 		//HTTP:  http.New(cfg.HTTP),
-		//RPC:   rpc.New(cfg.RPC),
+		RPC: rpc.New(cfg.Client, isRpcServer),
 	}
 }
 
@@ -39,19 +40,5 @@ func (m *MetaResource) Close() {
 	m.DB.Close()
 	m.Graph.Close()
 	//m.HTTP.Close()
-	//m.RPC.Close()
-}
-
-/*
-
-todo: need refactor
-*/
-type ServiceContext struct {
-	Config config.Config
-}
-
-func NewServiceContext(c config.Config) *ServiceContext {
-	return &ServiceContext{
-		Config: c,
-	}
+	m.RPC.Close()
 }

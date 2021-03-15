@@ -53,13 +53,13 @@ build.run.way2: build
 # run 不同子服务:
 ############################################################
 
-# 自动编译+执行 API: outer/interface
-run.auto.api:
-	export serverType=outer; export configFile=configs/configs.yaml; air -d    # 开发环境
-
 # 自动编译+执行 SVC: inner
 run.auto.svc:
 	export serverType=inner; export configFile=configs/configs.yaml; air -d    # 开发环境
+
+# 自动编译+执行 API: outer/interface
+run.auto.api:
+	export serverType=outer; export configFile=configs/configs.yaml; air -d    # 开发环境
 
 # 自动编译+执行 Job:
 run.auto.job:
@@ -76,18 +76,24 @@ run.auto.admin:
 
 # echo test:
 curl.api:
-	curl -i http://localhost:8080/from/me
+	curl -i http://localhost:8000/from/me
 
 curl.api2:
-	curl -i http://localhost:8080/hello/tom
+	curl -i http://localhost:8000/hello/tom
 
-	curl -i http://localhost:8080/hello/jim
+	curl -i http://localhost:8000/hello/jim
 
 curl.pub.msg:
 	curl --request POST \
 		--url http://localhost:8080/queue/publish/ \
 		--header 'content-type: application/json' \
-		--data '{"queue_name": "test-queue",	"type": "type1",	"data": "test message10",	"raw_data": 1,	"timestamp": 2	}'
+		--data '{"queue_name": "test-queue",	"type": "type1",	"data": "test messagexxxx6",	"raw_data": 1,	"timestamp": 2	}'
 
 curl.graphql:
-	curl -i http://localhost:8080/graphql/do
+	curl -i http://localhost:8000/graphql/do
+
+curl.admin.api:
+	curl --request GET \
+      --url 'http://localhost:8001/admin/api/rpc/test?from=jim' \
+      --header 'Content-Type: application/json' \
+      --data '{    	"from": "xxx"    }'

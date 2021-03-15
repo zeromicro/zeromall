@@ -13,7 +13,7 @@ type Dao struct {
 	Chain *ChainGraph
 }
 
-func NewDao(cfg *config.GraphQLUnit) *Dao {
+func NewDao(cfg config.GraphQLUnit) *Dao {
 	// mq meta:
 	g := newConnGroup(cfg)
 
@@ -37,7 +37,7 @@ type ConnGroup struct {
 	cli *graphql.Client
 }
 
-func newConnGroup(cfg *config.GraphQLUnit) *ConnGroup {
+func newConnGroup(cfg config.GraphQLUnit) *ConnGroup {
 	cli := graphql.NewClient(cfg.Url, nil)
 
 	return &ConnGroup{

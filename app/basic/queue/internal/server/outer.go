@@ -1,34 +1,38 @@
 package server
 
 import (
+	"context"
+
 	"github.com/better-go/pkg/log"
 	"github.com/tal-tech/go-zero/core/conf"
 	"github.com/tal-tech/go-zero/rest"
 
-	"mall/app/basic/queue/internal/dao"
 	"mall/app/basic/queue/internal/router"
+	"mall/app/basic/queue/internal/service/outer"
 	"mall/app/basic/queue/proto/config"
 )
 
 // interface HTTP/API server:
-type OuterServer struct {
-}
+type OuterServer struct{}
 
 func (m *OuterServer) Run(configFile string) {
+	ctx := context.Background()
+
 	// parse config:
-	var c config.Config
-	conf.MustLoad(configFile, &c)
-	log.Infof("server config: %+v", c)
+	var cfg config.Config
+	conf.MustLoad(configFile, &cfg)
 
-	ctx := dao.NewServiceContext(c)
+	// api engine:
+	svc := outer.NewService(cfg, ctx)
+	defer svc.Close()
 
-	// new server:
-	server := rest.MustNewServer(c.RestConf)
-	defer server.Stop()
+	// new engine:
+	engine := rest.MustNewServer(cfg.Server.Outer.RestConf)
+	defer engine.Stop()
 
 	// register routes:
-	router.RegisterHandlers(server, &c, ctx)
+	router.RegisterApiRoutes(engine, svc)
 
-	log.Infof("Starting server at %s:%d...\n", c.Host, c.Port)
-	server.Start()
+	log.Infof("starting api engine at %v\n", cfg.Server.Outer.RestConf)
+	engine.Start()
 }
