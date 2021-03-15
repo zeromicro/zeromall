@@ -1,0 +1,36 @@
+##########################################################################################
+#                              etcd service:
+# ref:
+#   - https://github.com/evildecay/etcdkeeper
+#   - 本地浏览器访问:
+#       - http://0.0.0.0:12001
+#       - 手动设置 etcd 地址:
+#         - 需要指定: 本机本地 IP (192.168.2.10:2379)
+#         - 非 127.0.0.1 和 0.0.0.0
+#         - 亲测有效
+##########################################################################################
+
+version: '3.5'
+
+# SET ENV: in .env file
+
+
+services:
+  # etcd:
+  discov:
+    image: gcr.io/etcd-development/etcd:latest
+    container_name: discov
+    environment:
+      ETCDCTL_API: "3" # api version
+      #      ALLOW_NONE_AUTHENTICATION: yes
+      ETCD_LISTEN_PEER_URLS: http://0.0.0.0:2380
+      ETCD_LISTEN_CLIENT_URLS: http://0.0.0.0:2379
+      ETCD_INITIAL_ADVERTISE_PEER_URLS: "${ENV_LOCAL_IP}:2380"  # my host ip
+      ETCD_ADVERTISE_CLIENT_URLS: "${ENV_LOCAL_IP}:2379" # my host ip
+      ETCD_INITIAL_CLUSTER: "node1=${ENV_LOCAL_IP}:2380"
+      #      ETCD_NAME: "etcd1"
+    ports:
+      - 2379:2379
+      - 2380:2380
+      - 4001:4001
+    #network_mode: "host" # fix ETCD_LISTEN_CLIENT_URLS
