@@ -10,6 +10,16 @@ run.mq.rabbitmq:
 run.kv.etcd:
 	docker-compose -f ./infra-kv-etcd.yml up -d
 
+
+run.mysql:
+	docker-compose -f ./infra-db-mysql.yml up -d
+	docker-compose -f ./infra-db-mysql.yml ps
+
+run.redis:
+	docker-compose -f ./infra-cache-redis.yml -p redis up -d
+	docker-compose -f ./infra-cache-redis.yml ps
+
+
 restart.kv.etcd:
 	docker-compose -f ./infra-kv-etcd.yml restart
 
