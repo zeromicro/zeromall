@@ -27,7 +27,7 @@
 
 ### Development Environment:
 
-- [x][搭建本地开发环境 - wiki](https://github.com/zeromicro/zeromall/wiki/setup-development)
+- [x] [搭建本地开发环境 - wiki](https://github.com/zeromicro/zeromall/wiki/setup-development)
     - 请务必仔细查看文档, 有详细说明
 
 - install:
@@ -42,54 +42,14 @@ cd zeromall/
 
 # install require pkg:
 make go.mod.tidy
+go mod tidy -v
 
 ```
 
+### 示例服务:
 
-- run 示例服务: `app/basic/demo`
-
-```
-cd ./app/basic/demo
-
-# 启动 API 服务:
-make run.demo
-
-########################################################################################
-#
-# 或者使用: 基于 air, watch 该服务目录, 修改后, 自动 hot reload, 无需重新编译
-#
-########################################################################################
-
-# 启动 http api sever:
-make run.auto.api
-
-# 启动 internal rpc sever:
-make run.auto.svc
-
-# 启动 job sever:
-make run.auto.job
-
-# 启动 admin api sever:
-make run.auto.admin
-
-########################################################################################
-
-# http echo test:
-make curl.api
-
-
-#
-# will print:
-#
--> % make curl.api
-curl -i http://localhost:8888/from/you
-HTTP/1.1 200 OK
-Content-Type: application/json
-Date: Thu, 18 Feb 2021 10:48:23 GMT
-Content-Length: 25
-
-{"message":"hello world"}%
-```
+- [x] [示例服务 app/basic/demo - wiki](https://github.com/zeromicro/zeromall/wiki/demo-service)
+- [x] 服务启动说明, 辅助理解代码结构
 
 
 ## Structure:
