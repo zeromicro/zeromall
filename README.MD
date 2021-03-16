@@ -20,6 +20,11 @@
 
 > 这也是掌握本项目, 需要熟知的先修技能栈.
 
+## Wiki:
+
+- [ZeroMall - wiki](https://github.com/zeromicro/zeromall/wiki)
+- 项目文档
+
 ## QuickStart:
 
 - [zeromicro.github.io/go-zero](https://zeromicro.github.io/go-zero)
