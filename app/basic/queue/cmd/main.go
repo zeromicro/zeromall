@@ -1,8 +1,9 @@
 package main
 
 import (
+	"github.com/better-go/pkg/x/go-zero/cmd"
+
 	"mall/app/basic/queue/internal/server"
-	"mall/std/cmd"
 )
 
 func main() {

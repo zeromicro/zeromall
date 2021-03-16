@@ -3,7 +3,7 @@ module mall
 go 1.15
 
 require (
-	github.com/better-go/pkg v0.1.8
+	github.com/better-go/pkg v0.1.9
 	github.com/gogo/protobuf v1.3.1
 	github.com/golang/protobuf v1.4.2
 	github.com/tal-tech/go-zero v1.1.5
