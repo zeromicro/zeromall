@@ -1,0 +1,46 @@
+##########################################################################################
+#                              redis service:
+# ref:
+#   - https://hub.docker.com/_/redis/
+#   - https://hub.docker.com/r/bitnami/redis/
+#   - https://yq.aliyun.com/articles/57953
+#   - WEB UI:
+#     - https://github.com/joeferner/redis-commander/blob/master/docker-compose.yml
+#   - https://docs.docker.com/compose/reference/envvars/#compose_file#compose_project_name
+#   - 本地浏览器访问:
+#       - http://127.0.0.1:18081/
+##########################################################################################
+
+version: "3.3"
+
+services:
+  redis:
+    container_name: redis
+    hostname: redis
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  redis-commander:
+    container_name: redis-commander
+    hostname: redis-commander
+    image: rediscommander/redis-commander:latest
+    restart: always
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "18081:8081"
+
+##########################################################################################
+#                                 自定义依赖:
+##########################################################################################
+
+# 自定义数据卷:
+volumes:
+  redis_data:
+
+networks:
+  redis:

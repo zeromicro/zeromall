@@ -1,0 +1,71 @@
+##########################################################################################
+#                              mysql service:
+#
+# msyql + Adminer(Adminer better than phpMyAdmin)
+# Use root/example as user/password credentials
+# Run docker stack deploy -c stack.yml mysql (or docker-compose -f stack.yml up),
+# wait for it to initialize completely,
+# and visit http://swarm-ip:8080, http://localhost:8080, or http://host-ip:8080 (as appropriate).
+#
+# ref:
+#   - https://hub.docker.com/_/mysql/
+#   - https://docs.docker.com/compose/compose-file/#endpoint_mode
+#   - https://docs.docker.com/samples/library/mysql/#-via-docker-stack-deploy-or-docker-compose
+#   - env variables:
+#     - https://dev.mysql.com/doc/refman/5.7/en/environment-variables.html
+#   - fix utf8:
+#     - https://github.com/docker-library/mysql/issues/201
+#     - https://hub.docker.com/_/mysql/
+# 创建测试 db+table:
+#   - docker exec -it a3567fb78d0d bash
+#   - mysql -u root -p
+#   - 导入 db 创建 sql:
+#     - 方法1: mysql -u 用户名 -p 密码 数据库名 < 数据库名.sql
+#     - 方法2: mysql> source /home/to/path/infra-db-mysql-init.sql;
+#     - 方法3: IDE db 插件连接 db, 导入初始化 sql.  ( db 右键: run sql script, 选择 sql 文件, 执行)
+#
+##########################################################################################
+
+
+
+version: '3.1'
+
+services:
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - mysql_data:/var/lib/mysql/
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root    # root: root
+      # project:
+      MYSQL_DATABASE: dev
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: dev
+    # fix utf8:
+    command: >
+      mysqld
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "0.0.0.0:13306:3306"
+
+  adminer:
+    image: adminer
+    restart: always
+    links:
+      - mysql
+    depends_on:
+      - mysql
+    ports:
+      - "0.0.0.0:18080:8080"
+
+
+##########################################################################################
+#                                 自定义依赖:
+##########################################################################################
+
+# 自定义数据卷:
+volumes:
+  mysql_data:
