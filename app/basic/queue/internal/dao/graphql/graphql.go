@@ -13,7 +13,7 @@ type Dao struct {
 	Chain *ChainGraph
 }
 
-func NewDao(cfg config.GraphQLUnit) *Dao {
+func New(cfg config.GraphQLUnit) *Dao {
 	// mq meta:
 	g := newConnGroup(cfg)
 

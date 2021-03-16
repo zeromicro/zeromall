@@ -39,8 +39,8 @@ func NewMetaResource(cfg config.Config, isRpcServer bool) *MetaResource {
 		Async: async.New(),
 		DB:    db.New(cfg.DB),
 		Cache: cache.New(cfg.Cache),
-		MQ:    mq.NewDao(cfg.MQ),
-		Graph: graphql.NewDao(cfg.GraphQL),
+		MQ:    mq.New(cfg.MQ),
+		Graph: graphql.New(cfg.GraphQL),
 		HTTP:  http.New(),
 		RPC:   rpc.New(cfg.Client, isRpcServer),
 	}

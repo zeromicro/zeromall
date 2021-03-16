@@ -12,6 +12,7 @@ version: "3.3"
 services:
   rabbitmq:
     image: rabbitmq:3-management
+    container_name: rabbitmq
     hostname: "rabbit"
     environment:
       # vhost:

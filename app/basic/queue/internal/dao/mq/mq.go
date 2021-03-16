@@ -13,7 +13,7 @@ type Dao struct {
 	Hello *HelloQueue
 }
 
-func NewDao(cfg config.MQUnit) *Dao {
+func New(cfg config.MQUnit) *Dao {
 	// mq meta:
 	g := newConnGroup(cfg)
 
