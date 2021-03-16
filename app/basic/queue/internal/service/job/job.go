@@ -82,5 +82,6 @@ func (m *Service) taskQueryBlock() {
 }
 
 func (m *Service) Close() {
+	m.d.Close()
 	m.cronJob.Stop()
 }

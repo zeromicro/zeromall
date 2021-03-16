@@ -7,8 +7,9 @@ import (
 
 /*
 一个业务单元聚合:
-	- 聚合一块业务逻辑
-
+	- 聚合一堆业务逻辑: 所有业务层的 logic, 都在此层, 与 dao 层区别
+	- g: 公共数据资源对象, 包含数据层所有可操作资源
+	- bizScope list: 根据业务拆分的单元, 聚合相关 biz logic
 */
 type Domain struct {
 	// inner global use:
@@ -25,7 +26,6 @@ func NewDomain(cfg config.Config, isRpcServer bool) *Domain {
 	g := dao.NewMetaResource(cfg, isRpcServer)
 
 	return &Domain{
-
 		g: g,
 
 		// biz:

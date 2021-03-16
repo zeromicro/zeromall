@@ -94,6 +94,24 @@ curl.graphql:
 
 curl.admin.api:
 	curl --request GET \
-      --url 'http://localhost:8001/admin/api/rpc/test?from=jim' \
-      --header 'Content-Type: application/json' \
-      --data '{    	"from": "xxx"    }'
+		--url 'http://localhost:8001/admin/api/rpc/test?from=jim' \
+		--header 'Content-Type: application/json' \
+		--data '{    	"from": "xxx"    }'
+
+
+############################################################
+# kill 进程:
+############################################################
+
+pid.get:
+	# rpc server
+	lsof -i:6000
+	# api server
+	lsof -i:8000
+	# admin api
+	lsof -i:8001
+	# job server
+	lsof -i:8002
+
+pid.kill:
+	kill -9 server-pid
