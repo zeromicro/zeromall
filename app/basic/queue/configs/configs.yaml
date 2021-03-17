@@ -93,16 +93,59 @@ Meta:
   Name: 'queue.proxy'
   Version: '0.0.1'
 
+
+########################################################################
+
 DB:
-  Demo: 'todo'
+  # mysql 1:
+  Demo:
+    Dialect: 'mysql'
+    DSN: "dev:dev@tcp(127.0.0.1:13306)/dev?timeout=1s&readTimeout=1s&writeTimeout=1s&parseTime=true&loc=Local&charset=utf8mb4"
+    ActiveNum: 20
+    IdleNum: 10
+    IdleTimeout: 4 # "4h" # 注意自动转换:
+    IsSingularTable: true
+    IsDebugMode: true
+    CreatedTsName: "created_at"
+    UpdatedTsName: "updated_at"
+    DeletedTsName: "deleted_at"
+    IsDeletedName: "is_deleted"
+    QueryTimeout: "1s"
+    ExecTimeout: "1s"
+    TranTimeout: "1s"
+
+########################################################################
 
 Cache:
-  Demo: 'todo'
+  # redis 1:
+  Demo:
+    Name: "redis cluster 1"
+    Proto: ""
+    Addr: "localhost:6379"
+    Auth: ""
+    #
+    DialTimeout: 1  # "1s"
+    ReadTimeout: 1  # "1s"
+    WriteTimeout: 1 # "1s"
+    SlowLog: 10
+    PoolSize: 10
+    #
+    Active: 10
+    Idle: 10
+    IdleTimeout: 10 # "10s"
+    WaitTimeout: 10
+    Wait: true
+
+
+########################################################################
 
 MQ:
+  # rabbitmq:
   Demo:
     Url: 'amqp://rabbit:rabbit@localhost:5672/exchange_server'
     Timeout: '5s'
+
+########################################################################
 
 RPC:
   Demo: 'todo'

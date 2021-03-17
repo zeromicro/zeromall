@@ -1,4 +1,4 @@
-package queue
+package db
 
 import (
 	"os"
@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	testDomain *Domain // for unit test case use
+	testDao *Dao // for unit test case use
 )
 
 func TestMain(m *testing.M) {
@@ -21,11 +21,11 @@ func TestMain(m *testing.M) {
 	// parse config:
 	var cfg config.Config
 	conf.MustLoad(configFile, &cfg)
-	log.Infof("test dao config: %+v", cfg.GraphQL)
+	log.Infof("test dao config: %+v, %+v", cfg.DB, cfg.Cache)
 
 	// new:
-	testDomain = NewDomain(cfg, true)
-	defer testDomain.Close()
+	testDao = New(cfg)
+	defer testDao.Close()
 
 	if code := m.Run(); code != 0 {
 		os.Exit(code)

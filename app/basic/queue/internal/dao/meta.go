@@ -37,7 +37,7 @@ type MetaResource struct {
 func NewMetaResource(cfg config.Config, isRpcServer bool) *MetaResource {
 	return &MetaResource{
 		Async: async.New(),
-		DB:    db.New(cfg.DB),
+		DB:    db.New(cfg),
 		Cache: cache.New(cfg.Cache),
 		MQ:    mq.New(cfg.MQ),
 		Graph: graphql.New(cfg.GraphQL),

@@ -26,6 +26,8 @@ func New(cfg config.ClientUnit, isRpcServer bool) *Dao {
 }
 
 func (m *Dao) Close() {
-	defer m.Inner.Conn().Close()
+	if m.Inner != nil {
+		defer m.Inner.Conn().Close()
+	}
 	//defer m.Grace.Conn().Close()
 }

@@ -1,6 +1,8 @@
 package config
 
 import (
+	"github.com/better-go/pkg/cache/redis"
+	"github.com/better-go/pkg/database/orm"
 	"github.com/better-go/pkg/x/go-zero/option"
 )
 
@@ -71,7 +73,7 @@ type DemoBiz struct {
 
 // db:
 type DBUnit struct {
-	//DB1 *orm.Options
+	Demo *orm.Options // 示例 db
 	//DB2 *orm.Options
 }
 
@@ -79,7 +81,7 @@ type DBUnit struct {
 
 // cache:
 type CacheUnit struct {
-	//R1 *redis.Options
+	Demo *redis.Options // 示例 redis
 	//R2 *redis.Options
 }
 
@@ -145,7 +147,7 @@ type JobSchedule struct {
 /////////////////////////////////////////////////////////////////////////////////////
 
 type RpcUnit struct {
-	//Demo *DemoRpc
+	//DBCached *DemoRpc
 }
 
 type DemoRpc struct {
