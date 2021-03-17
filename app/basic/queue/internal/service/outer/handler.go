@@ -33,7 +33,7 @@ func (m *Service) PublishMessage(r *http.Request) (*api.MessageResp, error) {
 
 // 解析块:
 func (m *Service) ParseBlock(r *http.Request) (*api.Response, error) {
-	m.d.Graph.BlockParse(context.Background())
+	m.d.Block.BlockParse(context.Background())
 	return nil, nil
 }
 

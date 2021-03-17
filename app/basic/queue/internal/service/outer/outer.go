@@ -2,7 +2,7 @@ package outer
 
 import (
 	"context"
-	"mall/app/basic/queue/internal/domain/demo"
+	"mall/app/basic/queue/internal/domain/queue"
 	"mall/app/basic/queue/proto/config"
 )
 
@@ -11,12 +11,12 @@ import (
 
 */
 type Service struct {
-	d *demo.Domain // 引入业务单元
+	d *queue.Domain // 引入业务单元
 }
 
 func NewService(cfg config.Config, ctx context.Context) *Service {
 	return &Service{
-		d: demo.NewDomain(cfg, false),
+		d: queue.NewDomain(cfg, false),
 	}
 }
 

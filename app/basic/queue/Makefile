@@ -103,15 +103,13 @@ curl.admin.api:
 # kill 进程:
 ############################################################
 
-pid.get:
-	# rpc server
-	lsof -i:6000
-	# api server
-	lsof -i:8000
-	# admin api
-	lsof -i:8001
-	# job server
-	lsof -i:8002
-
+# under mac osx:
 pid.kill:
-	kill -9 server-pid
+	# rpc server
+	lsof -ti :6000 | xargs kill
+	# api server
+	lsof -ti :8000 | xargs kill
+	# admin api
+	lsof -ti :8001 | xargs kill
+	# job server
+	lsof -ti :8002 | xargs kill

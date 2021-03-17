@@ -8,7 +8,7 @@ import (
 	"github.com/better-go/pkg/log"
 	"github.com/tal-tech/go-zero/core/collection"
 
-	"mall/app/basic/queue/internal/domain/demo"
+	"mall/app/basic/queue/internal/domain/queue"
 	"mall/app/basic/queue/proto/config"
 )
 
@@ -20,7 +20,7 @@ import (
 
 */
 type Service struct {
-	d *demo.Domain // 引入业务单元
+	d *queue.Domain // 引入业务单元
 
 	cfg config.JobUnit
 
@@ -32,7 +32,7 @@ type Service struct {
 
 func NewService(cfg config.Config, ctx context.Context) *Service {
 	return &Service{
-		d:   demo.NewDomain(cfg, false),
+		d:   queue.NewDomain(cfg, false),
 		cfg: cfg.Job,
 
 		//

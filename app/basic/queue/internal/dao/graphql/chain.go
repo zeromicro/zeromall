@@ -19,3 +19,13 @@ func newChainGraph(g *ConnGroup) *ChainGraph {
 func (m *ChainGraph) Block(ctx context.Context, query *graphql.Query) error {
 	return m.g.cli.Query(ctx, &query, nil)
 }
+
+// market create:
+func (m *ChainGraph) CreateMarketEvents(ctx context.Context, query *graphql.QueryCreateMarketEvents) error {
+	return m.g.cli.Query(ctx, &query, nil)
+}
+
+// QueryFinalizeMarketEvents
+func (m *ChainGraph) FinalizeMarketEvents(ctx context.Context, query *graphql.QueryFinalizeMarketEvents) error {
+	return m.g.cli.Query(ctx, &query, nil)
+}

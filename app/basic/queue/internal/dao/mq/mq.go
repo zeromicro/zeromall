@@ -11,6 +11,7 @@ type Dao struct {
 
 	// biz:
 	Hello *HelloQueue
+	Block *BlockQueue
 }
 
 func New(cfg config.MQUnit) *Dao {
@@ -22,6 +23,7 @@ func New(cfg config.MQUnit) *Dao {
 
 		// biz:
 		Hello: newHelloQueue(g),
+		Block: newBlockQueue(g),
 	}
 }
 
