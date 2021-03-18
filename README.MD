@@ -52,6 +52,7 @@ go mod tidy -v
 ```
 
 - 创建新服务目录:
+    - [go-zero 微服务创建脚手架: cookiecutter-go](https://github.com/better-go/cookiecutter-go)
 
 ```bash
 cd zeromall/
