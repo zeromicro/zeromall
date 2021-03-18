@@ -51,6 +51,19 @@ go mod tidy -v
 
 ```
 
+- 创建新服务目录:
+
+```bash
+cd zeromall/
+
+# 在 app/biz 下创建一个新的业务服务目录:
+make app.gen.biz
+
+# 在 app/basic 下创建一个新的基础服务目录:
+make app.gen.basic
+```
+
+
 ### 示例服务:
 
 - [x] [示例服务 app/basic/demo - wiki](https://github.com/zeromicro/zeromall/wiki/demo-service)
