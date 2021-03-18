@@ -28,3 +28,9 @@ proto.gen.data.only:
 		{} \;
 
 
+app.gen.basic:
+	cd app/basic; cookiecutter https://github.com/better-go/cookiecutter-go.git --directory="single-app/go-zero"
+
+app.gen.biz:
+	cd app/biz; cookiecutter https://github.com/better-go/cookiecutter-go.git --directory="single-app/go-zero"
+
