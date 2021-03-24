@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+package error;
+option go_package = "error";
+
