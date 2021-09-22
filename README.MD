@@ -45,9 +45,18 @@ git clone git@github.com:zeromicro/zeromall.git
 # enter project root:
 cd zeromall/
 
-# install require pkg:
-make go.mod.tidy
-go mod tidy -v
+
+# install:
+make install
+make init
+
+# install go pkg:
+task tidy
+
+
+# run:
+task run
+
 
 ```
 

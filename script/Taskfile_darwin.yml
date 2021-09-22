@@ -7,9 +7,23 @@ version: '3'
 tasks:
   install:
     desc: install requirements
+    deps:
+      - install-osx-tool
+      - install-brew
+      - update
     cmds:
       - task: install-plugins
       - task: install-go
+
+  install-osx-tool:
+    cmds:
+      - xcode-select --install
+    ignore_error: true
+
+  # ref: https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/
+  install-brew:
+    cmds:
+      - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   install-plugins:
     cmds:
@@ -32,4 +46,8 @@ tasks:
   init:
     cmds:
       - cp .env.local ../.env
+
+  update:
+    cmds:
+      - brew update
 
