@@ -1,0 +1,253 @@
+version: '3'
+
+################################################################################################
+#
+# local dev:
+#   - run:
+#   - clean:
+#
+################################################################################################
+
+#
+# global vars: https://taskfile.dev/#/usage?id=variables
+#
+vars:
+  VAR1: "some-var"
+
+# global env:
+env:
+  ENV1: testing
+
+# env file:
+dotenv:
+  - .env
+
+################################################################################################
+
+
+# task groups:
+tasks:
+  default:
+    cmds:
+      - task: init
+      - task: run
+
+  install:
+    cmds:
+      - brew tap leoafarias/fvm   # flutter version management
+      - brew install fvm
+#      - fvm install 2.2.3 # install flutter sdk
+      - fvm use 2.5.0  # install and use
+      - pub global activate fvm # update fvm
+
+  tool:
+    cmds:
+      - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh  # install rust
+      - cargo install svgcleaner # fix svg file meta error
+
+  init:
+    cmds:
+      - cp .env.local .env
+      - task: get
+      - task: activate
+      - task: get-gen-locales # i18n
+      - task: gen
+
+  get:
+    cmds:
+      - fvm flutter pub get
+
+  run:
+    cmds:
+      - fvm flutter run
+
+  run-ios:
+    cmds:
+      - fvm flutter run -d $RUN_IOS_DEVICE_ID
+
+  run-android:
+    cmds:
+      - fvm flutter run --debug -d $RUN_ANDROID_DEVICE_ID
+
+  run-clean:
+    cmds:
+      - task: clean
+      - task: run
+
+  #########################################################################
+
+  clean:
+    cmds:
+      - fvm flutter clean
+
+  activate: # activate tools
+    cmds:
+      - fvm flutter pub global activate get_cli
+
+  gen:
+    cmds:
+      - fvm flutter packages pub run build_runner build
+
+  release:
+    cmds:
+      - task: release-ios
+      - task: release-android
+
+  release-ios:
+    cmds:
+      - fvm flutter build ios
+      - open build/ios/iphoneos
+      - task: open-xcode
+
+  open-xcode:
+    cmds:
+      - open ios/Runner.xcworkspace   # not Runner.xcodeproj
+
+  release-android:
+    cmds:
+      - fvm flutter build apk
+      - echo 'check build/app/outputs/flutter-apk/ folder'
+      - cp build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/wallet-v`date +%Y-%m-%d`-release.apk
+      - open build/app/outputs/flutter-apk/
+  #      - fvm flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi  # 分 ARM 架构打包, 包更小
+
+  clean-release-ios:
+    cmds:
+      - task clean
+      - task get
+      - task release-ios
+
+
+  version-check:
+    cmds:
+      - fvm releases
+      - fvm list
+
+  mkdir:
+    desc: "create app folder"
+    cmds:
+      - mkdir -p {{.FOLDER}}
+
+  # 会自动生成 ios/ Android/ 下的 icon 图标, 需要删掉之前的 app, 重新 build 安装
+  gen-app-icon:
+    desc: "generate installed app icon"
+    cmds:
+      - fvm flutter pub get
+      - fvm flutter pub run flutter_launcher_icons:main
+
+  fix-build:
+    cmds:
+      - rm -rf ios
+      - rm -rf android
+      - fvm flutter create --project-name=wallet --org=com.bytefire .
+
+  # fix svg file:
+  #   - https://github.com/RazrFalcon/svgcleaner
+  fix-svg:
+    cmds:
+      - svgcleaner --allow-bigger-file assets/image/coin/uni.svg tmp/uni.svg
+      - svgcleaner --allow-bigger-file assets/image/coin/usdt.svg tmp/usdt.svg
+      - svgcleaner --allow-bigger-file assets/image/coin/dai.svg tmp/dai.svg
+      - svgcleaner --allow-bigger-file assets/image/coin/busd.svg tmp/busd.svg
+
+  #########################################################################
+
+  get-create-project:
+    cmds:
+      - get create project:my_app
+
+  # 初始化 app 目录:
+  get-init:
+    cmds:
+      - get init
+      - task: mkdir
+        vars: {FOLDER: "lib/app/data/locales"}
+
+  # 代码格式化:
+  get-sort:
+    cmds:
+      - get sort
+
+  get-gen-locales:
+    desc: "generate multi language(i18n)"
+    cmds:
+      - get generate locales assets/locales on data/locales
+
+  get-add-page:
+    cmds:
+      - get create page:$PAGE_NAME # set from .env(check .env.local)
+
+  get-add-sub-page:
+    cmds:
+      - get create page:$PAGE_NAME on $PAGE_PATH
+
+  get-add-controller:
+    cmds:
+      - get create controller:$VIEW_NAME on $VIEW_PATH
+
+  get-add-view-only:
+    cmds:
+      - get create view:$VIEW_NAME on $VIEW_PATH
+
+  get-add-view:
+    cmds:
+      - task: get-add-view-only
+      - task: get-add-controller
+
+  get-provider:
+    cmds:
+      - get create provider:$PROVIDER_NAME on data
+
+  get-gen-model:
+    cmds:
+      #- get generate model with assets/models/wallet_address_asset_entity.json --skipProvider
+      - get generate model with $MODEL_JSON_FILE_PATH --skipProvider
+
+
+  #########################################################################
+
+  stash:
+    cmds:
+      - git stash
+
+  quick:
+    cmds:
+      - task: commit
+      - task: pull
+      - task: push
+
+  commit:
+    cmds:
+      - git add lib/
+      - git commit -m "update"
+
+  push:
+    cmds:
+      - git push origin main --tags
+
+  pull:
+    cmds:
+      - git config pull.rebase false
+      - git pull
+
+  #########################################################################
+
+  # test data:
+  mock-wallet:
+    cmds:
+      # 开源:
+      #   - https://github.com/iancoleman/bip39
+      #   - https://iancoleman.io/
+      #   - 参考: https://github.com/ebellocchia/bip_utils
+      #   - 私钥生成
+      - open https://iancoleman.io/bip39/#english
+
+
+  add-lints:
+    cmds:
+      - fvm flutter pub add --dev lints
+      - fvm flutter pub add --dev flutter_lints
+
+  lints:
+    cmds:
+      - fvm flutter analyze

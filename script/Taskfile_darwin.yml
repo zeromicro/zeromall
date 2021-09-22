@@ -1,0 +1,31 @@
+version: '3'
+
+
+################################################################################################
+
+
+tasks:
+  install:
+    desc: install requirements
+    cmds:
+      - brew install go
+      - go version
+      - brew install --cask ngrok
+      - brew install go-task/tap/go-task
+      # https://pre-commit.com/
+      - brew install pre-commit
+      # 不建议使用 pip 安装, 除非你对 python 很熟悉
+      # pip install pre-commit
+      - pre-commit --version
+      # docker: https://github.com/docker/compose
+      - brew install docker-compose
+      - brew install protobuf
+
+  version:
+    cmds:
+      - sw_vers
+
+  init:
+    cmds:
+      - cp .env.local ../.env
+

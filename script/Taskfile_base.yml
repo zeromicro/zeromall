@@ -1,0 +1,37 @@
+version: '3'
+
+
+################################################################################################
+#
+# ref:
+#   - https://taskfile.dev/#/styleguide
+#     - https://taskfile.dev/#/styleguide?id=use-the-correct-order-of-keywords
+#     - https://taskfile.dev/#/styleguide?id=use-colon-for-task-namespacing
+#   - yml format: https://juejin.cn/post/6844903972688363534
+#
+################################################################################################
+
+
+tasks:
+  stash:
+    cmds:
+      - git stash
+
+  quick:
+    cmds:
+      - task: commit
+      - task: pull
+      - task: push
+
+  push:
+    cmds:
+      - git push origin main --tags
+
+  pull:
+    cmds:
+      - git config pull.rebase false
+      - git pull
+
+
+################################################################################################
+
