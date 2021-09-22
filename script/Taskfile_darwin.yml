@@ -53,5 +53,11 @@ tasks:
 
   update:
     cmds:
+      - softwareupdate --all --install --force
       - brew update
+    ignore_error: true
+
+  check:
+    cmds:
+      - brew doctor
 
