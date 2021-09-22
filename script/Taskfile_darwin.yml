@@ -39,6 +39,10 @@ tasks:
       - brew install go
       - go version
 
+  install-java:
+    cmds:
+      - brew install openjdk@11
+
   version:
     cmds:
       - sw_vers
