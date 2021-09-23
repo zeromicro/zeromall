@@ -1,0 +1,112 @@
+version: '3'
+
+################################################################################################
+#
+# ref:
+#   - https://taskfile.dev/#/styleguide
+#     - https://taskfile.dev/#/styleguide?id=use-the-correct-order-of-keywords
+#     - https://taskfile.dev/#/styleguide?id=use-colon-for-task-namespacing
+#   - yml format: https://juejin.cn/post/6844903972688363534
+#
+################################################################################################
+
+vars:
+  COMPOSE_FILE:
+
+################################################################################################
+
+tasks:
+  default:
+    cmds:
+      - task: init
+
+
+  ################################################################################################
+
+  init:
+    cmds:
+      - task: up:mysql
+      - task: up:redis
+      - task: up:rabbitmq
+      - task: up:etcd
+
+  clean:
+    cmds:
+      - task: down:mysql
+      - task: down:rabbitmq
+      - task: down:etcd
+
+  ################################################################################################
+
+  up:rabbitmq:
+    cmds:
+      - task: docker:up
+        vars:
+          { COMPOSE_FILE: infra-mq-rabbitmq.yml }
+
+  up:mysql:
+    cmds:
+      - task: docker:up
+        vars:
+          { COMPOSE_FILE: infra-db-mysql.yml }
+
+  up:etcd:
+    cmds:
+      - task: docker:up
+        vars:
+          { COMPOSE_FILE: infra-kv-etcd.yml }
+
+  ################################################################################################
+
+  down:rabbitmq:
+    cmds:
+      - task: docker:down
+        vars:
+          { COMPOSE_FILE: infra-mq-rabbitmq.yml }
+
+  down:mysql:
+    cmds:
+      - task: docker:down
+        vars:
+          { COMPOSE_FILE: infra-db-mysql.yml }
+
+  down:etcd:
+    cmds:
+      - task: docker:down
+        vars:
+          { COMPOSE_FILE: infra-kv-etcd.yml }
+
+  ################################################################################################
+
+  docker:up:
+    cmds:
+      - docker-compose -f {{.COMPOSE_FILE}} up -d
+      - docker-compose -f {{.COMPOSE_FILE}} ps
+      - docker-compose -f {{.COMPOSE_FILE}} logs -f
+
+  docker:down:
+    cmds:
+      - docker-compose -f {{.COMPOSE_FILE}} down
+      - docker-compose -f {{.COMPOSE_FILE}} ps
+
+  docker:exec:
+    cmds:
+      - docker exec -it {{.CONTANIER_NAME}} sh
+
+  ################################################################################################
+
+  # 提取本机 IP:
+  #	- https://cloud.tencent.com/developer/article/1015510
+  ip:get:mac:
+    cmds:
+      - ifconfig | grep inet | grep -v inet6 | grep -v 127 | cut -d ' ' -f2
+
+  ip:get:linux:
+    cmds:
+      - ip a | grep inet | grep -v inet6 | grep -v 127 | sed 's/^[ \t]*//g' | cut -d ' ' -f2
+
+
+
+
+
+

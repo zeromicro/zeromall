@@ -23,6 +23,10 @@ includes:
     taskfile: ./script/Taskfile_base_go.yml
     dir: .
 
+  local:
+    taskfile: ./deploy/local
+    dir: ./deploy/local
+
 
 ################################################################################################
 
@@ -83,6 +87,16 @@ tasks:
 
 
   ################################################################################################
+
+
+  infra:
+    cmds:
+      - task: local:up:mysql
+
+  infra:stop:
+    cmds:
+      - task: local:down:mysql
+
 
   new-app-basic:
     cmds:
