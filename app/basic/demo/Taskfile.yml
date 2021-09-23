@@ -1,0 +1,29 @@
+version: '3'
+
+################################################################################################
+#
+# ref:
+#   - https://taskfile.dev/#/styleguide
+#     - https://taskfile.dev/#/styleguide?id=use-the-correct-order-of-keywords
+#     - https://taskfile.dev/#/styleguide?id=use-colon-for-task-namespacing
+#   - yml format: https://juejin.cn/post/6844903972688363534
+#
+################################################################################################
+
+
+tasks:
+  default:
+    cmds:
+      - task: run
+
+  run:
+    cmds:
+      - air
+
+  run:debug:
+    cmds:
+      - go run cmd/main.go -f configs/configs.yaml
+
+  api:test:
+    cmds:
+      - curl -i http://localhost:8888/from/you

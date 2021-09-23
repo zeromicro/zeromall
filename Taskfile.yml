@@ -7,11 +7,12 @@ version: '3'
 #
 ################################################################################################
 
+
 #
 # sub namespace: https://taskfile.dev/#/usage?id=including-other-taskfiles
 #
 includes:
-  platform:
+  os:
     taskfile: ./script/Taskfile_{{OS}}.yml
     dir: ./script
 
@@ -27,6 +28,12 @@ includes:
     taskfile: ./deploy/local
     dir: ./deploy/local
 
+  #
+  # 待测试的服务根目录: 不支持从 .env 读取
+  #
+  app:demo:
+    taskfile: ./app/basic/demo
+    dir: ./app/basic/demo
 
 ################################################################################################
 
@@ -59,14 +66,14 @@ tasks:
 
   install:
     cmds:
-      - task: platform:install
+      - task: os:install
       - task: go:install
       - task: go:install-go-zero
       - task: go:install-proto
 
   init:
     cmds:
-      - task: platform:init
+      - task: os:init
       - task: go:init
 
   tidy:
@@ -82,21 +89,30 @@ tasks:
 
   version:
     cmds:
-      - task: platform:version
+      - task: os:version
       - task: go:version
-
 
   ################################################################################################
 
-
   infra:
     cmds:
-      - task: local:up:mysql
+      - task: local:init
 
   infra:stop:
     cmds:
-      - task: local:down:mysql
+      - task: local:clean
 
+  ################################################################################################
+
+  run:
+    cmds:
+      - task: app:demo:run  # set app first
+
+  api:test:
+    cmds:
+      - task: app:demo:api:test
+
+  ################################################################################################
 
   new-app-basic:
     cmds:
@@ -117,16 +133,6 @@ tasks:
   new-service-proto:
     cmds:
       - goctl rpc template -o ./tmp/demo.proto
-
-  run:
-    cmds:
-      - go run tmp/demo/demo.go -f tmp/demo/etc/demo-api.yaml
-
-  curl-api:
-    cmds:
-      - curl -i http://localhost:8888/from/you
-
-
 
   ################################################################################################
 

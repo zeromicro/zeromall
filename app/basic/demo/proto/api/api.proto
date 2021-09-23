@@ -13,7 +13,7 @@ package ugcpay.common;
 
 // NOTE: 最后请删除这些无用的注释 (゜-゜)つロ
 
-option go_package = "model";
+option go_package = "api";
 option (gogoproto.goproto_getters_all) = true;
 option (gogoproto.testgen_all) = false; // auto gen test codes
 option (gogoproto.goproto_enum_prefix_all) = false; // disable enum prefix, 自己加前缀(防止C++冲突)
