@@ -10,7 +10,7 @@ tasks:
   install:
     cmds:
       - go get -u -v github.com/cosmtrek/air
-      - go install github.com/BurntSushi/toml/cmd/tomlv@master
+      - go install github.com/BurntSushi/toml/cmd/tomlv@master # https://pre-commit.com/hooks.html
 
   install-go-zero:
     cmds:
