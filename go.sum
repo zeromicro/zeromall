@@ -106,8 +106,8 @@ github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973/go.mod h1:Dwedo/Wpr24
 github.com/beorn7/perks v1.0.0/go.mod h1:KWe93zE9D1o94FZ5RNwFwVgaQK1VOXiVxmqh+CedLV8=
 github.com/beorn7/perks v1.0.1 h1:VlbKKnNfV8bJzeqoa4cOKqO6bYr3WgKZxO8Z16+hsOM=
 github.com/beorn7/perks v1.0.1/go.mod h1:G2ZrVWU2WbWT9wwq4/hrbKbnv/1ERSJQ0ibhJ6rlkpw=
-github.com/better-go/pkg v0.1.19 h1:+E307b7qy5r+oL+xeyoOXQkOVmbOymHmLHsVnOE+iKY=
-github.com/better-go/pkg v0.1.19/go.mod h1:+BuWapBKj1435a7+OVhfyXerqbxRkU9mwNX5l/SuU7s=
+github.com/better-go/pkg v0.1.20 h1:QlovMVScJ7zSGsoxTdIR3sx6sbcwN5ufkcCRjJf0vOo=
+github.com/better-go/pkg v0.1.20/go.mod h1:+BuWapBKj1435a7+OVhfyXerqbxRkU9mwNX5l/SuU7s=
 github.com/bitly/go-simplejson v0.5.0/go.mod h1:cXHtHw4XUPsvGaxgjIAn8PhEWG9NfngEKAMDJEczWVA=
 github.com/bkaradzic/go-lz4 v1.0.0/go.mod h1:0YdlkowM3VswSROI7qDxhRvJ3sLhlFrRRwjwegp5jy4=
 github.com/blang/semver v3.1.0+incompatible/go.mod h1:kRBLl5iJ+tD4TcOOxsy/0fnwebNt5EWlYSAyrTnjyyk=

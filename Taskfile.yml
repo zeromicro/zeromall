@@ -35,6 +35,10 @@ includes:
     taskfile: ./app/basic/demo
     dir: ./app/basic/demo
 
+  app:queue:
+    taskfile: ./app/basic/queue
+    dir: ./app/basic/queue
+
 ################################################################################################
 
 #

@@ -1,23 +1,5 @@
 
 
-
-############################################################
-# init db:
-#	- https://segmentfault.com/a/1190000020211225
-#	dump:
-#		- docker exec -it mysql mysqldump -u用户名 -p密码 数据库 > /mnt/vdb/data/mysql/test_db.sql
-############################################################
-
-db.init:
-	docker exec -i mysql mysql --default-character-set=utf8mb4 -uroot -proot dev < ./proto/model/schema.sql
-
-db.dump:
-	docker exec -it mysql mysqldump --no-data --default-character-set=utf8mb4 -R -E --hex-blob -uroot -proot dev > ./tmp/backup_schema.sql
-
-db.dump.with.data:
-	docker exec -it mysql mysqldump --default-character-set=utf8mb4 -R -E --hex-blob -uroot -proot dev > ./tmp/backup.sql
-
-
 ############################################################
 # quick run:
 ############################################################

@@ -10,6 +10,11 @@ version: '3'
 #
 ################################################################################################
 
+env:
+  serverType:
+  configFile:
+
+################################################################################################
 
 tasks:
   default:
@@ -42,14 +47,43 @@ tasks:
 
   ################################################################################################
 
-
-  run:
+  run:svc:
     cmds:
-      - air # 自动watch 代码变更, 热加载:
+      - task: run:auto
+        vars:
+          {SERVER_TYPE: "inner", CONFIG_FILE: "configs/configs.yaml"}
+
+  run:api:
+    cmds:
+      - task: run:auto
+        vars:
+          {SERVER_TYPE: "outer", CONFIG_FILE: "configs/configs.yaml"}
+
+  run:job:
+    cmds:
+      - task: run:auto
+        vars:
+          {SERVER_TYPE: "job", CONFIG_FILE: "configs/configs.yaml"}
+
+  run:admin:
+    cmds:
+      - task: run:auto
+        vars:
+          {SERVER_TYPE: "admin", CONFIG_FILE: "configs/configs.yaml"}
+
+  run:auto:
+    cmds:
+      - export serverType={{.SERVER_TYPE}}; export configFile={{.CONFIG_FILE}}; air -d    # 自动watch 代码变更, 热加载:
 
   run:debug:
     cmds:
       - go run cmd/main.go -f configs/configs.yaml
+
+  build:
+    cmds:
+      - go build -o ./tmp/main ./cmd
+
+  ################################################################################################
 
   test:pub:msg:
     cmds:
