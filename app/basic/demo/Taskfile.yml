@@ -18,7 +18,7 @@ tasks:
 
   run:
     cmds:
-      - air
+      - air # 自动watch 代码变更, 热加载:
 
   run:debug:
     cmds:
