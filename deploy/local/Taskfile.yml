@@ -97,7 +97,7 @@ tasks:
 
   docker:down:
     cmds:
-      - docker-compose -f {{.COMPOSE_FILE}} down
+      - docker-compose -f {{.COMPOSE_FILE}} down --remove-orphans
       - docker-compose -f {{.COMPOSE_FILE}} ps
 
   docker:log:

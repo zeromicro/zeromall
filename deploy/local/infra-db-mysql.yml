@@ -34,6 +34,7 @@ services:
 
   mysql:
     image: mysql:5.7
+    container_name: mysql
     volumes:
       - mysql_data:/var/lib/mysql/
     restart: always
@@ -53,6 +54,7 @@ services:
 
   adminer:
     image: adminer
+    container_name: mysql-adminer
     restart: always
     links:
       - mysql
