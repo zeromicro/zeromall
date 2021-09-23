@@ -6,7 +6,31 @@
     - [x] 综合社区`最佳实践`, 力求`产品级`项目, 而不是 `demo 玩具`.
     - [x] 通用业务单元: 可以自由组合使用.
 
-## Requirements:
+## Wiki:
+
+- [ZeroMall - wiki](https://github.com/zeromicro/zeromall/wiki)
+- 项目文档
+
+## Client:
+
+- [client](./client)
+- https://github.com/zeromicro/zeromall/wiki/client
+- 基于 flutter 实现客户端(Web/iOS/Android/Windows/MacOS/Linux)
+
+### Requirements:
+
+- [x] flutter 2.5.0+
+- [x] GetX: 主要框架
+
+
+## Server:
+
+
+- 基于 go + go-zero 实现
+- [app](./app)
+
+
+### Requirements:
 
 - [x] go 1.15+
 - [x] go-zero: 全功能的 go 微服务框架
@@ -20,18 +44,10 @@
 
 > 这也是掌握本项目, 需要熟知的先修技能栈.
 
-## Wiki:
 
-- [ZeroMall - wiki](https://github.com/zeromicro/zeromall/wiki)
-- 项目文档
+#### Development Environment:
 
-## QuickStart:
-
-- [zeromicro.github.io/go-zero](https://zeromicro.github.io/go-zero)
-
-
-### Development Environment:
-
+- [x] [reference - wiki](https://github.com/zeromicro/zeromall/wiki/reference)
 - [x] [搭建本地开发环境 - wiki](https://github.com/zeromicro/zeromall/wiki/setup-development)
     - 请务必仔细查看文档, 有详细说明
 - [deploy/docs](./deploy/readme.md)
@@ -79,13 +95,13 @@ make app.gen.basic
 ```
 
 
-### 示例服务:
+#### 示例服务:
 
 - [x] [示例服务 app/basic/demo - wiki](https://github.com/zeromicro/zeromall/wiki/demo-service)
 - [x] 服务启动说明, 辅助理解代码结构
 
 
-## Structure:
+### Structure:
 
 - [项目目录结构详细说明 - wiki](https://github.com/zeromicro/zeromall/wiki/project-structure)
 - 非常详细的目录说明, 快速理解项目
@@ -97,12 +113,3 @@ make app.gen.basic
 - https://github.com/zeromicro/zeromall/projects/1
 
 
-## Reference:
-
-
-- https://github.com/zeromicro/zeromall/issues/1
-- https://github.com/macrozheng/mall
-- https://zeromicro.github.io/go-zero/rpc-dir.html
-- rest: https://www.yuque.com/tal-tech/go-zero/bqdcb3
-- zrpc(grpc+): https://www.yuque.com/tal-tech/go-zero/rslrhx
-- 项目目录脚手架: https://github.com/better-go/cookiecutter-go
