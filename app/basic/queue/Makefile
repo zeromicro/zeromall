@@ -1,14 +1,5 @@
 
 
-############################################################
-# update requirements:
-############################################################
-
-# update package:
-.PHONY:
-go.mod.tidy:
-	go mod tidy -v
-
 
 ############################################################
 # init db:
@@ -87,46 +78,3 @@ run.auto.admin:
 	export serverType=admin; export configFile=configs/configs.yaml; air -d      # 开发环境
 
 
-############################################################
-# API 测试:
-############################################################
-
-# echo test:
-curl.api:
-	curl -i http://localhost:8000/from/me
-
-curl.api2:
-	curl -i http://localhost:8000/hello/tom
-
-	curl -i http://localhost:8000/hello/jim
-
-curl.pub.msg:
-	curl --request POST \
-		--url http://localhost:8080/queue/publish/ \
-		--header 'content-type: application/json' \
-		--data '{"queue_name": "test-queue",	"type": "type1",	"data": "test messagexxxx6",	"raw_data": 1,	"timestamp": 2	}'
-
-curl.graphql:
-	curl -i http://localhost:8000/graphql/do
-
-curl.admin.api:
-	curl --request GET \
-		--url 'http://localhost:8001/admin/api/rpc/test?from=jim' \
-		--header 'Content-Type: application/json' \
-		--data '{    	"from": "xxx"    }'
-
-
-############################################################
-# kill 进程:
-############################################################
-
-# under mac osx:
-pid.kill:
-	# rpc server
-	lsof -ti :6000 | xargs kill
-	# api server
-	lsof -ti :8000 | xargs kill
-	# admin api
-	lsof -ti :8001 | xargs kill
-	# job server
-	lsof -ti :8002 | xargs kill
