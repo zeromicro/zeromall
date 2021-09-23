@@ -20,7 +20,7 @@ cmd = "go build -o ./tmp/main ./cmd/"
 bin = "./tmp/main"
 
 # Customize binary.
-full_bin = "APP_ENV=dev APP_USER=air make build.run"
+full_bin = "APP_ENV=dev APP_USER=air ./tmp/main"
 
 # Watch these filename extensions.
 include_ext = ["go", "tpl", "tmpl", "html"]

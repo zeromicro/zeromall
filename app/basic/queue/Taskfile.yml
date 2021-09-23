@@ -44,7 +44,6 @@ tasks:
     cmds:
       - docker exec -it mysql mysqldump --default-character-set=utf8mb4 -R -E --hex-blob -uroot -proot dev > ./tmp/backup.sql
 
-
   ################################################################################################
 
   run:svc:
@@ -71,6 +70,8 @@ tasks:
         vars:
           {SERVER_TYPE: "admin", CONFIG_FILE: "configs/configs.yaml"}
 
+  ################################################################################################
+
   run:auto:
     cmds:
       - export serverType={{.SERVER_TYPE}}; export configFile={{.CONFIG_FILE}}; air -d    # 自动watch 代码变更, 热加载:
@@ -82,6 +83,8 @@ tasks:
   build:
     cmds:
       - go build -o ./tmp/main ./cmd
+#      - ./tmp/main --configFile=configs/configs.yaml --serverType=inner  # 命令行传参方式1
+#      - SERVER_TYPE=inner CONFIG_FILE=configs/configs.yaml ./tmp/main    # 命令行传参方式2
 
   ################################################################################################
 

@@ -10,6 +10,7 @@ tasks:
   install:
     cmds:
       - go get -u -v github.com/cosmtrek/air
+      - go install github.com/BurntSushi/toml/cmd/tomlv@master
 
   install-go-zero:
     cmds:
