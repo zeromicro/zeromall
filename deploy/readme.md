@@ -1,30 +1,41 @@
 
 
-# 部署相关: 
+# 部署相关:
 
 
-# 环境: 
+# 环境:
 
 
+## local:
 
-
-## local: 
-
-- 本地开发环境: 
-- 启动 docker 容器: 
+- 本地开发环境:
+- 启动 docker 容器:
+    - 自动启动: mysql/redis/etcd/rabbitmq
 
 ```bash
+cd zeromall/
+task local:init
+
+# or:
 
 cd zeromall/deploy/local
+task init
 
-
-make run.xxx
 
 ```
 
 
+- 停止中间件:
 
-### 配置: 
+```bash
+
+cd zeromall/
+task local:clean
+
+```
+
+
+### 配置:
 
 - kafka
 - RabbitMQ: https://github.com/service-mesh/devops/blob/master/deploy/compose/local/common-mq-rabbitmq.yml
@@ -33,16 +44,16 @@ make run.xxx
 
 ## staging:
 
-- 预发布环境: 
+- 预发布环境:
 
 
-## production: 
+## production:
 
-- 生产环境: 
+- 生产环境:
 
 
 
-# ref: 
+# ref:
 
 - https://github.com/service-mesh/devops
 

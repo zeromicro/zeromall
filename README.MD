@@ -34,6 +34,8 @@
 
 - [x] [搭建本地开发环境 - wiki](https://github.com/zeromicro/zeromall/wiki/setup-development)
     - 请务必仔细查看文档, 有详细说明
+- [deploy/docs](./deploy/readme.md)
+
 
 - install:
 
@@ -45,6 +47,9 @@ git clone git@github.com:zeromicro/zeromall.git
 # enter project root:
 cd zeromall/
 
+
+# run mysql/redis/rabbitmq/etcd:
+task local:init
 
 # install:
 make install
