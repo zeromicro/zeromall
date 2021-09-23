@@ -28,7 +28,8 @@ tasks:
       - task: up:mysql
       - task: up:redis
       - task: up:rabbitmq
-      - task: up:etcd
+#      - task: up:etcd
+      - task: up:etcd2    # check here!
 
   clean:
     cmds:
@@ -56,11 +57,45 @@ tasks:
         vars:
           { COMPOSE_FILE: infra-db-mysql.yml }
 
+  # ETCDCTL_API =2 或者 3, 切换 API 版本
+  up:etcd2:
+    cmds:
+      - |
+        docker run -d -it --rm \
+        --name etcd_test \
+        -e ETCDCTL_API=3 \
+        -p 2379:2379 \
+        -p 2380:2380 \
+        quay.io/coreos/etcd:v3.3.9 \
+        etcd \
+        --advertise-client-urls http://0.0.0.0:2379 \
+        --listen-client-urls http://0.0.0.0:2379
+
   up:etcd:
     cmds:
       - task: docker:up
         vars:
           { COMPOSE_FILE: infra-kv-etcd.yml }
+
+  ################################################################################################
+
+  exec:etcd:
+    cmds:
+      - task: docker:exec
+        vars:
+          {CONTANIER_NAME: etcd_test}
+
+  ################################################################################################
+
+  test:etcd:v2:
+    cmds:
+      - curl http://127.0.0.1:2379/v2/keys/ | python -m json.tool
+
+  # https://github.com/etcd-io/etcd/issues/6904
+  # ETCDCTL_API=3 ./etcdctl get / --prefix --keys-only
+  test:etcd:v3:
+    cmds:
+      - etcdctl get "" --prefix --keys-only | sed '/^\s*$/d'
 
   ################################################################################################
 

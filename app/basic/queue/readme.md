@@ -24,6 +24,37 @@
 
 ## 运行:
 
+- start:
+    - mysql
+    - redis
+    - rabbitmq
+    - etcd
+
+```bash
+
+cd zeromall/
+task local:init
+
+```
+
+
+- import db:
+
+```bash
+
+cd zeromall/
+task app:queue:init:db
+
+
+# or:
+cd current-app-root/
+task init:db
+
+
+```
+
+
+
 - run server:
 
 ```bash
