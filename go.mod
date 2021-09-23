@@ -3,11 +3,11 @@ module mall
 go 1.15
 
 require (
-	github.com/better-go/pkg v0.1.9
-	github.com/gogo/protobuf v1.3.1
-	github.com/golang/protobuf v1.4.2
-	github.com/tal-tech/go-zero v1.2.0
+	github.com/better-go/pkg v0.1.19
+	github.com/gogo/protobuf v1.3.2
+	github.com/golang/protobuf v1.5.2
+	github.com/tal-tech/go-zero v1.2.1
 	go.uber.org/automaxprocs v1.4.0 // indirect
-	golang.org/x/sys v0.0.0-20210218085108-9555bcde0c6a // indirect
-	google.golang.org/grpc v1.29.1
+	google.golang.org/grpc v1.39.0
+	k8s.io/client-go v0.22.1 // indirect
 )
