@@ -89,7 +89,7 @@ tasks:
     cmds:
       - |
         curl --request POST \
-        --url http://localhost:8080/queue/publish/ \
+        --url http://localhost:8000/queue/publish/ \
         --header 'content-type: application/json' \
         --data '{"queue_name": "test-queue", "type": "type1", "data": "test messagexxxx6", "raw_data":  1, "timestamp": 2}'
 
