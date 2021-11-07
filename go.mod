@@ -12,3 +12,5 @@ require (
 	google.golang.org/grpc v1.42.0
 	k8s.io/client-go v0.22.3 // indirect
 )
+
+replace github.com/dgrijalva/jwt-go => github.com/golang-jwt/jwt v3.2.1+incompatible
