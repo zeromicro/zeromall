@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/better-go/pkg/log"
-	"github.com/tal-tech/go-zero/rest/httpx"
+	"github.com/zeromicro/go-zero/rest/httpx"
 )
 
 type ServiceFunc func(r *http.Request) (resp interface{}, err error)

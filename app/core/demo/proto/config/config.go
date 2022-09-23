@@ -1,6 +1,6 @@
 package config
 
-import "github.com/tal-tech/go-zero/rest"
+import "github.com/zeromicro/go-zero/rest"
 
 // load config:
 type Config struct {
@@ -84,7 +84,6 @@ type HttpUnit struct {
 	//HomeServer *MatrixHttp
 	//Email      *EmailHttp // SendCloud
 }
-
 
 /////////////////////////////////////////////////////////////////////////////////////
 //  rpc config unit:

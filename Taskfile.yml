@@ -32,12 +32,12 @@ includes:
   # 待测试的服务根目录: 不支持从 .env 读取
   #
   app:demo:
-    taskfile: ./app/basic/demo
-    dir: ./app/basic/demo
+    taskfile: ./app/core/demo
+    dir: ./app/core/demo
 
   app:queue:
-    taskfile: ./app/basic/queue
-    dir: ./app/basic/queue
+    taskfile: ./app/core/queue
+    dir: ./app/core/queue
 
 ################################################################################################
 
@@ -82,7 +82,9 @@ tasks:
 
   tidy:
     cmds:
-      - task: go:tidy
+#      - go mod tidy -v
+      - task: app:demo:tidy
+      - task: app:queue:tidy
 
   update:
     cmds:
@@ -107,6 +109,22 @@ tasks:
       - task: local:clean
 
   ################################################################################################
+
+
+  # 项目全局 + 批量生成:
+  proto:gen:all:
+    cmds:
+      - |
+        find ./app -iname "*.proto" -exec \
+          protoc --proto_path=. \
+            --proto_path=$(pwd)/pkg/x \
+            --go_out=paths=source_relative:. \
+            --go-http_out=paths=source_relative:. \
+            --go-grpc_out=paths=source_relative:. \
+            --validate_out=paths=source_relative,lang=go:. \
+            --openapi_out==paths=source_relative:. \
+            {} \;
+
 
   run:
     cmds:

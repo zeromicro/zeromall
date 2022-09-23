@@ -1,12 +1,12 @@
 package service
 
 import (
-	"mall/app/core/demo/internal/dao"
-	"mall/app/core/demo/internal/service/admin"
-	"mall/app/core/demo/internal/service/inner"
-	"mall/app/core/demo/internal/service/job"
-	"mall/app/core/demo/internal/service/outer"
-	"mall/app/core/demo/proto/config"
+	"demo/internal/dao"
+	"demo/internal/service/admin"
+	"demo/internal/service/inner"
+	"demo/internal/service/job"
+	"demo/internal/service/outer"
+	"demo/proto/config"
 )
 
 /*

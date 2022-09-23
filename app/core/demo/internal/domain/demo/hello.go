@@ -1,8 +1,8 @@
 package demo
 
 import (
-	"mall/app/core/demo/internal/dao"
-	"mall/app/core/demo/proto/api"
+	"demo/internal/dao"
+	"demo/proto/api"
 )
 
 // demo:

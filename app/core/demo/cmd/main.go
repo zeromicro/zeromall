@@ -4,12 +4,12 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/tal-tech/go-zero/core/conf"
-	"github.com/tal-tech/go-zero/rest"
+	"github.com/zeromicro/go-zero/core/conf"
+	"github.com/zeromicro/go-zero/rest"
 
-	"mall/app/core/demo/internal/dao"
-	"mall/app/core/demo/internal/router"
-	"mall/app/core/demo/proto/config"
+	"demo/internal/dao"
+	"demo/internal/router"
+	"demo/proto/config"
 )
 
 // fix for air reload:

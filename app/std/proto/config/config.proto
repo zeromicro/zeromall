@@ -1,5 +1,5 @@
 syntax = "proto3";
 
 package conf;
-option go_package = "conf";
+option go_package = "app/std/proto/conf;conf";
 

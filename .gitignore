@@ -40,6 +40,7 @@ tmp/
 *.log
 *.pb.go
 *.pb.micro.go
+*.pb.*.go
 
 # artifacts from pprof tooling
 *.prof

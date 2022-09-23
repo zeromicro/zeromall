@@ -1,5 +1,5 @@
 syntax = "proto3";
 
 package error;
-option go_package = "error";
+option go_package = "app/std/proto/error;error";
 

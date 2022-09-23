@@ -16,6 +16,10 @@ tasks:
     cmds:
       - task: run
 
+  tidy:
+    cmds:
+      - go mod tidy -v
+
   run:
     cmds:
       - air # 自动watch 代码变更, 热加载:
@@ -27,3 +31,17 @@ tasks:
   api:test:
     cmds:
       - curl -i http://localhost:8888/from/you
+
+
+  proto:gen:
+    cmds:
+      - |
+        find ./ -iname "*.proto" -exec \
+          protoc --proto_path=. \
+            --proto_path=../../../pkg/x \
+            --go_out=paths=source_relative:. \
+            --go-http_out=paths=source_relative:. \
+            --go-grpc_out=paths=source_relative:. \
+            --openapi_out==paths=source_relative:. \
+            {} \;
+      - go generate ./...

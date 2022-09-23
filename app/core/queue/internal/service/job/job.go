@@ -6,7 +6,7 @@ import (
 
 	"github.com/better-go/pkg/cronjob"
 	"github.com/better-go/pkg/log"
-	"github.com/tal-tech/go-zero/core/collection"
+	"github.com/zeromicro/go-zero/core/collection"
 
 	"mall/app/core/queue/internal/domain/queue"
 	"mall/app/core/queue/proto/config"
@@ -15,7 +15,7 @@ import (
 /*
 	Job 服务: 定时任务/异步任务
 		- TimingWheel: https://zeromicro.github.io/go-zero/timing-wheel.html
-			- src: github.com/tal-tech/go-zero/core/collection
+			- src: github.com/zeromicro/go-zero/core/collection
 			- usage: /go-zero@v1.1.4/example/timingwheel/main.go
 
 */

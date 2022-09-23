@@ -2,14 +2,14 @@ package outer
 
 import (
 	"context"
-	"mall/app/core/demo/proto/config"
+	"demo/proto/config"
 	"net/http"
 
-	"github.com/tal-tech/go-zero/rest/httpx"
+	"github.com/zeromicro/go-zero/rest/httpx"
 
-	"mall/app/core/demo/internal/dao"
-	"mall/app/core/demo/internal/domain/demo"
-	types "mall/app/core/demo/proto/api"
+	"demo/internal/dao"
+	"demo/internal/domain/demo"
+	types "demo/proto/api"
 )
 
 /*

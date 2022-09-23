@@ -1,9 +1,9 @@
 package dao
 
 import (
-	"mall/app/core/demo/internal/dao/cache"
-	"mall/app/core/demo/internal/dao/db"
-	"mall/app/core/demo/proto/config"
+	"demo/internal/dao/cache"
+	"demo/internal/dao/db"
+	"demo/proto/config"
 )
 
 // 数据层资源收敛入口:

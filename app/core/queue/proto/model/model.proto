@@ -1,3 +1,4 @@
 syntax = "proto3";
 
 package model;
+option go_package = "mall/app/core/queue/proto/model;model";

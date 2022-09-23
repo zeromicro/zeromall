@@ -3,10 +3,10 @@ package db
 import (
 	"github.com/better-go/pkg/database/orm/mysql"
 	"github.com/better-go/pkg/log"
-	"github.com/tal-tech/go-zero/core/stores/cache"
-	"github.com/tal-tech/go-zero/core/stores/redis"
-	"github.com/tal-tech/go-zero/core/stores/sqlc"
-	"github.com/tal-tech/go-zero/core/stores/sqlx"
+	"github.com/zeromicro/go-zero/core/stores/cache"
+	"github.com/zeromicro/go-zero/core/stores/redis"
+	"github.com/zeromicro/go-zero/core/stores/sqlc"
+	"github.com/zeromicro/go-zero/core/stores/sqlx"
 	"mall/app/core/queue/proto/config"
 )
 

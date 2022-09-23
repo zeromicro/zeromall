@@ -4,8 +4,8 @@ import (
 	"context"
 
 	"github.com/better-go/pkg/log"
-	"github.com/tal-tech/go-zero/core/conf"
-	"github.com/tal-tech/go-zero/rest"
+	"github.com/zeromicro/go-zero/core/conf"
+	"github.com/zeromicro/go-zero/rest"
 
 	"mall/app/core/queue/internal/router"
 	"mall/app/core/queue/internal/service/outer"

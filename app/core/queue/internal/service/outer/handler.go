@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/better-go/pkg/log"
-	"github.com/tal-tech/go-zero/rest/httpx"
+	"github.com/zeromicro/go-zero/rest/httpx"
 
 	"mall/app/core/queue/proto/api"
 	"mall/app/core/queue/proto/rpc"

@@ -2,11 +2,11 @@ package demo
 
 import (
 	"context"
-	"mall/app/core/demo/proto/config"
+	"demo/proto/config"
 
-	"github.com/tal-tech/go-zero/core/logx"
+	"github.com/zeromicro/go-zero/core/logx"
 
-	"mall/app/core/demo/internal/dao"
+	"demo/internal/dao"
 )
 
 /*

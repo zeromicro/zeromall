@@ -3,7 +3,7 @@ package db
 import (
 	"context"
 
-	"mall/app/core/demo/proto/model"
+	"demo/proto/model"
 )
 
 // 用户登录认证:

@@ -1,14 +1,15 @@
 syntax = "proto3";
 
-import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+//import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 //import "gogoproto/gogo.proto";
 
 
 package queue.rpc;
-option go_package = "rpc";
-option (gogoproto.goproto_getters_all) = false;
-option (gogoproto.testgen_all) = false; // auto gen test codes
-option (gogoproto.goproto_enum_prefix_all) = false; // disable enum prefix, 自己加前缀(防止C++冲突)
+option go_package = "mall/app/core/queue/proto/rpc;rpc";
+
+//option (gogoproto.goproto_getters_all) = false;
+//option (gogoproto.testgen_all) = false; // auto gen test codes
+//option (gogoproto.goproto_enum_prefix_all) = false; // disable enum prefix, 自己加前缀(防止C++冲突)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 特别注意:
@@ -28,7 +29,7 @@ service QueueService {
 
 
 message Request {
-    string from = 1 [(gogoproto.moretags) = 'form:"from"'];
+    string from = 1;
 }
 
 message Response {
@@ -38,7 +39,7 @@ message Response {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 message AdminReq {
-    string from = 1 [(gogoproto.moretags) = 'form:"from"'];
+    string from = 1 ;
 }
 
 message AdminResp {
@@ -50,7 +51,7 @@ message AdminResp {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 message RestReq {
-    string from = 1 [(gogoproto.moretags) = 'form:"from"'];
+    string from = 1 ;
 }
 
 message RestResp {

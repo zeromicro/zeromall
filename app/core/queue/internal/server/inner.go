@@ -2,8 +2,8 @@ package server
 
 import (
 	"github.com/better-go/pkg/log"
-	"github.com/tal-tech/go-zero/core/conf"
-	"github.com/tal-tech/go-zero/zrpc"
+	"github.com/zeromicro/go-zero/core/conf"
+	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"
 
 	"mall/app/core/queue/internal/service/inner"

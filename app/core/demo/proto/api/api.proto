@@ -1,65 +1,9 @@
+syntax = "proto3";
+
 // 定义项目 API 的 proto 文件 可以同时描述 gRPC 和 HTTP API
 // protobuf 文件参考:
 //  - https://developers.google.com/protocol-buffers/
-syntax = "proto3";
 
-import "github.com/gogo/protobuf/gogoproto/gogo.proto";
-//import "google/protobuf/empty.proto";
-//import "google/protobuf/wrappers.proto";
-//import "google/api/annotations.proto";
 
-// package 命名使用 {appid}.{version} 的方式, version 形如 v1, v2 ..
-package ugcpay.common;
-
-// NOTE: 最后请删除这些无用的注释 (゜-゜)つロ
-
-option go_package = "api";
-option (gogoproto.goproto_getters_all) = true;
-option (gogoproto.testgen_all) = false; // auto gen test codes
-option (gogoproto.goproto_enum_prefix_all) = false; // disable enum prefix, 自己加前缀(防止C++冲突)
-
-////////////////////////////////////////////////////////////////////
-// enum:
-////////////////////////////////////////////////////////////////////
-
-// 充值订单状态: 1.消费中 2.消费成功 3.消费失败
-enum IncomeOrderState {
-    // 未定义
-    IncomeOrderState_Undefined = 0;
-    // 消费中
-    IncomeOrderState_Pending = 1;
-    // 消费成功
-    IncomeOrderState_Completed = 2;
-    // 消费失败
-    IncomeOrderState_Failed = 3;
-}
-
-////////////////////////////////////////////////////////////////////
-// message:
-////////////////////////////////////////////////////////////////////
-
-// 分页信息:
-message Page {
-    // 第几页: page no
-    uint32 num = 1 [(gogoproto.jsontag) = "num"]; // disable omitempty
-    // 分页大小: page size
-    uint32 size = 2 [(gogoproto.jsontag) = "size"];
-    // 记录总数(不是分页总数): record total count
-    uint32 total = 3 [(gogoproto.jsontag) = "total"];
-}
-
-// sql create:
-message SqlCreateResp {
-    // 最大 ID:
-    int64 last_id = 1;
-}
-
-// sql update:
-message SqlUpdateResp {
-    // 影响行数
-    int64 affected = 1;
-    // 执行状态:
-    bool status = 2;
-    // 出错信息:
-    string msg = 3;
-}
+package demo.api;
+option go_package = "app/core/demo/proto/api;api";

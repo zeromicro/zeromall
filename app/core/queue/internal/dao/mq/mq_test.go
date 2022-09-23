@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/better-go/pkg/log"
-	"github.com/tal-tech/go-zero/core/conf"
+	"github.com/zeromicro/go-zero/core/conf"
 
 	"mall/app/core/queue/proto/config"
 )

@@ -1,6 +1,6 @@
 package db
 
-import "mall/app/core/demo/proto/config"
+import "demo/proto/config"
 
 /*
 所有 DB CRUD 操作

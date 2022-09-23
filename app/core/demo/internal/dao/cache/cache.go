@@ -1,6 +1,6 @@
 package cache
 
-import "mall/app/core/demo/proto/config"
+import "demo/proto/config"
 
 /*
 所有 Cache Set/Get 操作

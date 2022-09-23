@@ -1,0 +1,4 @@
+syntax = "proto3";
+
+package model;
+option go_package = "app/core/user/identity/proto/model;model";

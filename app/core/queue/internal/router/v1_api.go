@@ -3,7 +3,7 @@ package router
 import (
 	"net/http"
 
-	"github.com/tal-tech/go-zero/rest"
+	"github.com/zeromicro/go-zero/rest"
 
 	"mall/app/core/queue/internal/service/outer"
 )

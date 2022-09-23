@@ -26,6 +26,10 @@ tasks:
     cmds:
       - task: init:db
 
+  tidy:
+    cmds:
+      - go mod tidy -v
+
   #
   # init db:
   #	- https://segmentfault.com/a/1190000020211225
@@ -105,6 +109,21 @@ tasks:
   test:api:graphql:
     cmds:
       - curl -i http://localhost:8000/graphql/do
+
+
+  proto:gen:
+    cmds:
+      - |
+        find ./ -iname "*.proto" -exec \
+          protoc --proto_path=. \
+            --proto_path=../../../pkg/x \
+            --go_out=paths=source_relative:. \
+            --go-http_out=paths=source_relative:. \
+            --go-grpc_out=paths=source_relative:. \
+            --openapi_out==paths=source_relative:. \
+            {} \;
+      - go generate ./...
+
 
 
   #
