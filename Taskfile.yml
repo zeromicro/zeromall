@@ -82,7 +82,7 @@ tasks:
 
   tidy:
     cmds:
-#      - go mod tidy -v
+      #      - go mod tidy -v
       - task: app:demo:tidy
       - task: app:queue:tidy
 
@@ -90,8 +90,8 @@ tasks:
     cmds:
       - export GOPROXY=https://goproxy.cn; go get -u -v github.com/better-go/pkg@v0.1.17
       - echo $GOPROXY
-#      - export GOPROXY=https://goproxy.cn; go get -u -v github.com/tal-tech/go-zero@v1.2.0
-#      - export GOPROXY=https://goproxy.cn; go get -u -v github.com/tal-tech/go-zero@v1.1.10
+  #      - export GOPROXY=https://goproxy.cn; go get -u -v github.com/tal-tech/go-zero@v1.2.0
+  #      - export GOPROXY=https://goproxy.cn; go get -u -v github.com/tal-tech/go-zero@v1.1.10
 
   version:
     cmds:
@@ -158,6 +158,9 @@ tasks:
 
   ################################################################################################
 
+
   push:
     cmds:
-      - task: base:push
+      - git push origin main --tags
+      - repo_url=`git remote -v | grep push | awk -F ":" '{print $2}' | awk -F ".git" '{print "https://github.com/"$1}'`; open $repo_url
+
