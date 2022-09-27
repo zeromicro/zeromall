@@ -1,10 +1,27 @@
-
 # zero mall
 
 - [x] 基于 `go` + `go-zero` + `gRPC`, 以`微服务`方式实现的`B2B2C`通用电商平台.
 - [x] 目标:
     - [x] 综合社区`最佳实践`, 力求`产品级`项目, 而不是 `demo 玩具`.
     - [x] 通用业务单元: 可以自由组合使用.
+
+## WIP:
+
+- 🚀 架构公式: [biz](app/biz) = [core](app/core) + [unit](app/unit)
+
+> 产品列表:
+
+- 💖 [app/biz/mall](app/biz/mall): B2B2C 电商平台
+- 💖 [app/biz/eshop](app/biz/eshop): 虚拟商品售卖商城
+
+> 服务列表:
+
+- ☀️ [app/unit/license/key](./app/unit/license/key): 注册码服务
+    - 售卖 app `密钥/注册码`服务
+
+> 基础服务列表:
+
+- 🔧 [app/core/queue](app/core/queue): 队列服务
 
 ## Wiki:
 
@@ -22,13 +39,10 @@
 - [x] flutter 2.5.0+
 - [x] GetX: 主要框架
 
-
 ## Server:
-
 
 - 基于 go + go-zero 实现
 - [app](./app)
-
 
 ### Requirements:
 
@@ -43,7 +57,6 @@
 - [x] docker + docker-compose
 
 > 这也是掌握本项目, 需要熟知的先修技能栈.
-
 
 #### Development Environment:
 
@@ -94,18 +107,15 @@ make app.gen.biz
 make app.gen.basic
 ```
 
-
 #### 示例服务:
 
 - [x] [示例服务 app/basic/demo - wiki](https://github.com/zeromicro/zeromall/wiki/demo-service)
 - [x] 服务启动说明, 辅助理解代码结构
 
-
 ### Structure:
 
 - [项目目录结构详细说明 - wiki](https://github.com/zeromicro/zeromall/wiki/project-structure)
 - 非常详细的目录说明, 快速理解项目
-
 
 ## RoadMap:
 
