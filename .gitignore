@@ -51,3 +51,13 @@ dist/
 
 # env file:
 .env
+
+# add 2022-09:
+
+# TODO X: fix gen ent files:
+**/ent/*
+!**/ent/schema/
+!**/ent/generate.go
+
+# generate from proto/sql
+#**/proto/model/*

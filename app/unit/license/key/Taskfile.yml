@@ -10,7 +10,7 @@ vars:
 # global env:
 env:
   ENV1: testing
-#  OUT_DIR: "/Users/dev/Documents/iSpace/better-go/matrix/app/try/volo-example"
+  DB_URL: "mysql://root:root@127.0.0.1:13306"
 
 
 # env file:
@@ -31,6 +31,13 @@ tasks:
       - GOPROXY=https://goproxy.cn/,direct go install github.com/zeromicro/go-zero/tools/goctl@latest
       - goctl -v
       - goctl env check -i -f --verbose
+
+  init:db:
+    cmds:
+#      - usql --help
+      - usql ${DB_URL} -f "proto/sql/db.sql"
+      - usql ${DB_URL} -f "proto/sql/schema.sql"
+
 
   # 运行：
   run:api:

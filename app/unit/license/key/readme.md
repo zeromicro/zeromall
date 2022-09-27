@@ -10,14 +10,34 @@
 
 ## 说明：
 
-- 此示例 repo， 可以当作模板
-- 修复了 goctl 生成的一些不好的点， rpc 示例， 可以当模板
+- 启动依赖的 docker 中间件:
+    - mysql
+    - redis
+    - kafka
+    - etcd
+
+> 服务初始化:
+
+- db 创建, 表生成
+
+```ruby
+cd zeromall/
+
+# db 初始化:
+task license:key:init:db
+
+```
+
+> 服务代码生成:
 
 ```ruby
 cd learn-go/
 
 # pb 新增api， 动态生成新的模板代码：
 task try:zero:gen:pb
+
+# 生成 model CRUD 代码
+
 
 ```
 
