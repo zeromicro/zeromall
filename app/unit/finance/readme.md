@@ -1,4 +1,4 @@
-# B2B2C - financial: 金融财务单元
+# B2B2C - finance: 金融财务单元
 
 ## 服务列表:
 
