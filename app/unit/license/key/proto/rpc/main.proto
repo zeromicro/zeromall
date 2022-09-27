@@ -21,12 +21,88 @@ message Response {
     string pong = 1;
 }
 
+// 批量生成注册码:
+message LicenseKeyGenerateReq {
+    // 生成数量
+    string batchNum = 1;
+}
+
+// 批量生成注册码:
+message LicenseKeyGenerateResp {
+    // 状态
+    int32 status = 1;
+}
+
+// 注册码分配:
+message LicenseKeyAssignReq {
+    // 消费者id:
+    string consumer_id = 1;
+    // 产品id:
+    string product_id = 2;
+    // 店铺id:
+    string shop_id = 3;
+    // 订单号
+    string order_no = 4;
+}
+
+// 注册码分配:
+message LicenseKeyAssignResp {
+    // 公钥:
+    string public_key = 1;
+    // 私钥:
+    string secret_key = 2;
+    string consumer_id = 3;
+    string product_id = 4;
+    string shop_id = 5;
+    // 状态
+    int32 status = 6;
+}
+
+
+// 注册码查询:
+message LicenseKeyGetReq {
+    // 公钥:
+    string public_key = 1;
+}
+
+// 注册码查询:
+message LicenseKeyGetResp {
+    // 公钥:
+    string public_key = 1;
+    // 私钥:
+    string secret_key = 2;
+    string consumer_id = 3;
+    string product_id = 4;
+    string shop_id = 5;
+    // 状态
+    int32 status = 6;
+}
+
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////
 
 //
 // todo x: 控制生成的 rpc 文件夹名, 统一命名为 Service， 无需更改
 //
 service Service {
-    rpc Ping(Request) returns(Response);
-    rpc Greet(Request) returns(Response);
+    // 注册码批量生成:
+    rpc LicenseKeyGenerate(LicenseKeyGenerateReq) returns(LicenseKeyGenerateResp);
+
+    // 注册码分配:
+    rpc LicenseKeyAssign(LicenseKeyAssignReq) returns(LicenseKeyAssignResp);
+
+    // 注册码查询:
+    rpc LicenseKeyGet(LicenseKeyGetReq) returns(LicenseKeyGetResp);
+
+    // 注册码批量查询:
+    rpc LicenseKeyList(Request) returns(Response);
+
+    // 注册码状态: 有效期
+    rpc LicenseKeyStatus(Request) returns(Response);
+
+    // 注册码封禁:
+    rpc LicenseKeyDisable(Request) returns(Response);
 }

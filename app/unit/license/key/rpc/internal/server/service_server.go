@@ -22,12 +22,38 @@ func NewServiceServer(svcCtx *svc.ServiceContext) *ServiceServer {
 	}
 }
 
-func (s *ServiceServer) Ping(ctx context.Context, in *pb.Request) (*pb.Response, error) {
-	l := logic.NewPingLogic(ctx, s.svcCtx)
-	return l.Ping(in)
+//  注册码批量生成:
+func (s *ServiceServer) LicenseKeyGenerate(ctx context.Context, in *pb.LicenseKeyGenerateReq) (*pb.LicenseKeyGenerateResp, error) {
+	l := logic.NewLicenseKeyGenerateLogic(ctx, s.svcCtx)
+	return l.LicenseKeyGenerate(in)
 }
 
-func (s *ServiceServer) Greet(ctx context.Context, in *pb.Request) (*pb.Response, error) {
-	l := logic.NewGreetLogic(ctx, s.svcCtx)
-	return l.Greet(in)
+//  注册码分配:
+func (s *ServiceServer) LicenseKeyAssign(ctx context.Context, in *pb.LicenseKeyAssignReq) (*pb.LicenseKeyAssignResp, error) {
+	l := logic.NewLicenseKeyAssignLogic(ctx, s.svcCtx)
+	return l.LicenseKeyAssign(in)
+}
+
+//  注册码查询:
+func (s *ServiceServer) LicenseKeyGet(ctx context.Context, in *pb.LicenseKeyGetReq) (*pb.LicenseKeyGetResp, error) {
+	l := logic.NewLicenseKeyGetLogic(ctx, s.svcCtx)
+	return l.LicenseKeyGet(in)
+}
+
+//  注册码批量查询:
+func (s *ServiceServer) LicenseKeyList(ctx context.Context, in *pb.Request) (*pb.Response, error) {
+	l := logic.NewLicenseKeyListLogic(ctx, s.svcCtx)
+	return l.LicenseKeyList(in)
+}
+
+//  注册码状态: 有效期
+func (s *ServiceServer) LicenseKeyStatus(ctx context.Context, in *pb.Request) (*pb.Response, error) {
+	l := logic.NewLicenseKeyStatusLogic(ctx, s.svcCtx)
+	return l.LicenseKeyStatus(in)
+}
+
+//  注册码封禁:
+func (s *ServiceServer) LicenseKeyDisable(ctx context.Context, in *pb.Request) (*pb.Response, error) {
+	l := logic.NewLicenseKeyDisableLogic(ctx, s.svcCtx)
+	return l.LicenseKeyDisable(in)
 }

@@ -9,22 +9,23 @@ import (
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-type PingLogic struct {
+type LicenseKeyGetLogic struct {
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 	logx.Logger
 }
 
-func NewPingLogic(ctx context.Context, svcCtx *svc.ServiceContext) *PingLogic {
-	return &PingLogic{
+func NewLicenseKeyGetLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LicenseKeyGetLogic {
+	return &LicenseKeyGetLogic{
 		ctx:    ctx,
 		svcCtx: svcCtx,
 		Logger: logx.WithContext(ctx),
 	}
 }
 
-func (l *PingLogic) Ping(in *pb.Request) (*pb.Response, error) {
+//  注册码查询:
+func (l *LicenseKeyGetLogic) LicenseKeyGet(in *pb.LicenseKeyGetReq) (*pb.LicenseKeyGetResp, error) {
 	// todo: add your logic here and delete this line
 
-	return &pb.Response{}, nil
+	return &pb.LicenseKeyGetResp{}, nil
 }
