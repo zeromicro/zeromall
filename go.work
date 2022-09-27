@@ -3,4 +3,5 @@ go 1.18
 use (
 	./app/core/demo
 	./app/core/queue
+	./app/unit/license/key
 )

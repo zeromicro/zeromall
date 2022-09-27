@@ -1,0 +1,60 @@
+type Request {
+	Name string `path:"name,options=you|me"`
+}
+
+type Response {
+	Message string `json:"message"`
+}
+
+// 注册码创建:
+type LicenseCreateReq {
+	ConsumerID string `json:"consumer_id"`
+	ProductID  string `json:"product_id"`
+	ShopID     string `json:"shop_id"`
+}
+
+type LicenseCreateResp {
+	ConsumerID string `json:"consumer_id"`
+	ProductID  string `json:"product_id"`
+	ShopID     string `json:"shop_id"`
+
+	// meta:
+	PublicKey string `json:"public_key"`
+	SecretKey string `json:"secret_key"`
+}
+
+type LicenseGetReq {
+	PublicKey string `json:"public_key"`
+}
+
+type LicenseGetResp {
+	PublicKey string `json:"public_key"`
+
+	// meta:
+	SecretKey       string `json:"secret_key"`
+	ConsumerID      string `json:"consumer_id"`
+	ProductID       string `json:"product_id"`
+	ShopID          string `json:"shop_id"`
+	Status          string `json:"status"`
+	DeviceLimit     string `json:"device_limit"`
+	ActivatedDevice int    `json:"activated_device"`
+}
+
+// todo x: 影响 etc 配置文件名称
+service main {
+	// 创建一个注册码
+	@handler LicenseCreate
+	post /license/key (LicenseCreateReq) returns (LicenseCreateResp)
+	
+	// 查询一个注册码
+	@handler LicenseGet
+	get /license/key (LicenseGetReq) returns (LicenseGetResp)
+	
+	// 批量查询
+	@handler LicenseList
+	get /license/keys (Request) returns (Response)
+	
+	// 封禁注册码
+	@handler LicenseDisable
+	post /license/key/disable (Request) returns (Response)
+}

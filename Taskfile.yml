@@ -29,7 +29,7 @@ includes:
     dir: ./deploy/local
 
   #
-  # 待测试的服务根目录: 不支持从 .env 读取
+  # 待测试的服务根目录:
   #
   app:demo:
     taskfile: ./app/core/demo
@@ -38,6 +38,10 @@ includes:
   app:queue:
     taskfile: ./app/core/queue
     dir: ./app/core/queue
+
+  license:key:
+    taskfile: ./app/unit/license/key
+    dir: ./app/unit/license/key
 
 ################################################################################################
 
@@ -68,15 +72,10 @@ tasks:
       - task: init
       - task: run
 
-  install:
-    cmds:
-      - task: os:install
-      - task: go:install
-      - task: go:install-go-zero
-      - task: go:install-proto
 
   init:
     cmds:
+      - cp .env.local .env
       - task: os:init
       - task: go:init
 
@@ -158,6 +157,20 @@ tasks:
 
   ################################################################################################
 
+  new:api:
+    cmds:
+      - goctl api new hello
+
+  new:api:docker:
+    - cd hello; goctl docker -go hello.go
+
+  new:rpc:
+    cmds:
+      - goctl rpc new hello_rpc
+
+  build:docker:api:
+    cmds:
+      - docker build -t hello:v1 -f hello/Dockerfile .
 
   push:
     cmds:

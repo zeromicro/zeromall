@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+//
+// todo x: proto 文件命名不能是 `rpc.proto`, 会冲突. pb 文件名， 控制 main（）文件名
+//
+
+// todo x: 控制 grpc 注册服务名
+package demo.inner; // TODO X: 每个服务都不同， 需要更改此参数来区分+注册
+
+// todo x: 统一命名为 pb，无需更改
+option go_package = "./pb";
+
+
+////////////////////////////////////////////////////////////////////////////////////
+
+message Request {
+    string ping = 1;
+}
+
+message Response {
+    string pong = 1;
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+//
+// todo x: 控制生成的 rpc 文件夹名, 统一命名为 Service， 无需更改
+//
+service Service {
+    rpc Ping(Request) returns(Response);
+    rpc Greet(Request) returns(Response);
+}
