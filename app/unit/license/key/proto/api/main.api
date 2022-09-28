@@ -1,59 +1,48 @@
-type Request {
-	Name string `path:"name,options=you|me"`
-}
+syntax = "v1"
 
-type Response {
-	Message string `json:"message"`
-}
+import (
+	"type/type.api"
+)
 
-// 注册码创建:
-type LicenseCreateReq {
-	ConsumerID string `json:"consumer_id"`
-	ProductID  string `json:"product_id"`
-	ShopID     string `json:"shop_id"`
-}
+/*
+    TODO X:
+        - 完整语法手册:
+            - https://go-zero.dev/cn/docs/design/grammar/
+            - 重点关注 type, service 语法块
+        - jwt 使用:
+            - https://go-zero.dev/cn/docs/advance/jwt
+        - 示例:
+            - https://github.com/feihua/zero-admin/blob/master/rpc/sys/internal/logic/loginlogic.go#L75
+            - https://github.com/Mikaelemmmm/go-zero-looklook/blob/main/app/usercenter/cmd/api/desc/usercenter.api
+*/
 
-type LicenseCreateResp {
-	ConsumerID string `json:"consumer_id"`
-	ProductID  string `json:"product_id"`
-	ShopID     string `json:"shop_id"`
-
-	// meta:
-	PublicKey string `json:"public_key"`
-	SecretKey string `json:"secret_key"`
-}
-
-type LicenseGetReq {
-	PublicKey string `json:"public_key"`
-}
-
-type LicenseGetResp {
-	PublicKey string `json:"public_key"`
-
-	// meta:
-	SecretKey       string `json:"secret_key"`
-	ConsumerID      string `json:"consumer_id"`
-	ProductID       string `json:"product_id"`
-	ShopID          string `json:"shop_id"`
-	Status          string `json:"status"`
-	DeviceLimit     string `json:"device_limit"`
-	ActivatedDevice int    `json:"activated_device"`
-}
+info(
+	title: "注册码服务"
+	desc: "注册码, 密钥, 生成/查询/激活/反激活等"
+	version: "v1"
+)
 
 // todo x: 影响 etc 配置文件名称
+//no need login
+@server(
+	prefix: eshop/v1   // todo x: 会在 handler/routes.go 添加 API 统一前缀
+	//    jwt: Auth          // todo x: 字段对应 config 内定义, 先在 config 内定义, 然后改此文件
+	//	group: license // todo x: 会影响 handler 目录生成, 生成 handler/group/xxxx
+	//  middleware: AuthMiddleware
+)
 service main {
 	// 创建一个注册码
 	@handler LicenseCreate
 	post /license/key (LicenseCreateReq) returns (LicenseCreateResp)
-	
+
 	// 查询一个注册码
 	@handler LicenseGet
 	get /license/key (LicenseGetReq) returns (LicenseGetResp)
-	
+
 	// 批量查询
 	@handler LicenseList
 	get /license/keys (Request) returns (Response)
-	
+
 	// 封禁注册码
 	@handler LicenseDisable
 	post /license/key/disable (Request) returns (Response)

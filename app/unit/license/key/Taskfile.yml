@@ -11,7 +11,8 @@ vars:
 env:
   ENV1: testing
   DB_URL: "mysql://root:root@127.0.0.1:13306"
-
+  AccessSecret: "test_auth_secret"
+  AccessExpire: 3600
 
 # env file:
 #dotenv:

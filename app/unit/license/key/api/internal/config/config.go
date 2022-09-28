@@ -8,6 +8,12 @@ import (
 type Config struct {
 	rest.RestConf
 
+	// jwt auth: https://go-zero.dev/cn/docs/advance/jwt
+	Auth struct {
+		AccessSecret string
+		AccessExpire int64
+	}
+
 	// 注册码服务:
 	LicenseKeyRPC zrpc.RpcClientConf
 }

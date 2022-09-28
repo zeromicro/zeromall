@@ -6,6 +6,15 @@ Port: 8888
 # rpc config:
 ####################################################################################
 
+# jwt auth:
+Auth:
+  AccessSecret: test_auth_secret # ${AccessSecret}
+  AccessExpire: 86400 # ${AccessExpire}
+
+####################################################################################
+# rpc config:
+####################################################################################
+
 #
 # consul://[user:passwd]@host/service?param=value'
 # format like this

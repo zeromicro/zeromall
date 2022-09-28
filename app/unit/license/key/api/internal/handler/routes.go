@@ -33,5 +33,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: LicenseDisableHandler(serverCtx),
 			},
 		},
+		rest.WithPrefix("/eshop/v1"),
 	)
 }
