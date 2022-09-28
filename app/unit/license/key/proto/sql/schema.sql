@@ -16,11 +16,11 @@ CREATE TABLE `license_key_volume`
   `updated_at` datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status`     tinyint(1)                                                    NOT NULL DEFAULT '0' COMMENT '状态： <0=异常状态, >0=正常状态, 1=已分配, -1=封禁',
-  `desc`       varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '描述信息',
+  `desc`       varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '描述信息',
 
   -- 唯一键
-  `public_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '公钥',
-  `secret_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '私钥',
+  `public_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '公钥',
+  `secret_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '私钥',
 
   PRIMARY KEY (`id`),
   KEY `idx_updated_at` (`updated_at`),
@@ -30,7 +30,7 @@ CREATE TABLE `license_key_volume`
   UNIQUE KEY `uk_secret_key` (`secret_key`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_general_ci COMMENT ='注册码库存表';
+  COLLATE = utf8mb4_unicode_ci COMMENT ='注册码库存表';
 
 
 -- ----------------------------
@@ -44,14 +44,14 @@ CREATE TABLE `license_key_assign`
   `updated_at`  datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at`  datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status`      tinyint(1)                                                    NOT NULL DEFAULT '0' COMMENT '状态： <0=异常状态, >0=正常状态, 1=已分配, -1=封禁',
-  `desc`        varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '描述信息',
+  `desc`        varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '描述信息',
 
   -- 唯一键
-  `public_key`  varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '公钥',
-  `product_id`  varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '产品id',
-  `shop_id`     varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '店铺id',
-  `consumer_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '消费者id',
-  `order_no`    varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '订单号',
+  `public_key`  varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '公钥',
+  `product_id`  varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '产品id',
+  `shop_id`     varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '店铺id',
+  `consumer_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '消费者id',
+  `order_no`    varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '订单号',
 
 
   PRIMARY KEY (`id`),
@@ -65,7 +65,7 @@ CREATE TABLE `license_key_assign`
   KEY `idx_shop_id` (`shop_id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_general_ci COMMENT ='注册码售卖记录';
+  COLLATE = utf8mb4_unicode_ci COMMENT ='注册码售卖记录';
 
 
 -- ----------------------------
@@ -79,10 +79,10 @@ CREATE TABLE `license_key_attr`
   `updated_at`   datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at`   datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status`       tinyint(1)                                                    NOT NULL DEFAULT '0' COMMENT '状态： <0=异常状态, >0=正常状态, 1=已分配, -1=封禁',
-  `desc`         varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '描述信息',
+  `desc`         varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '描述信息',
 
   -- 唯一键
-  `public_key`   varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '公钥',
+  `public_key`   varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '公钥',
   `expired`      tinyint(1)                                                    NOT NULL DEFAULT '0' COMMENT '有效期： <0=异常状态, >0=正常状态, 1=已分配, -1=封禁',
   `permission`   tinyint(1)                                                    NOT NULL DEFAULT '0' COMMENT '权限: 完整, 部分',
   `lifecycle`    tinyint(1)                                                    NOT NULL DEFAULT '0' COMMENT '付费方式: 按月续费, 永久有效, 年付费, 订阅： <0=异常状态, >0=正常状态, 1=已分配, -1=封禁',
@@ -97,7 +97,7 @@ CREATE TABLE `license_key_attr`
 
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_general_ci COMMENT ='用户授权表';
+  COLLATE = utf8mb4_unicode_ci COMMENT ='用户授权表';
 
 
 

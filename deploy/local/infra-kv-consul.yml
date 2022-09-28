@@ -1,0 +1,40 @@
+##########################################################################################
+#                              consul service:
+# ref:
+#   - https://github.com/bitnami/containers
+#     - https://github.com/bitnami/containers/blob/main/bitnami/consul/docker-compose.yml
+#   - 本地浏览器访问:
+#     - http://localhost:8500/ui/
+##########################################################################################
+
+version: '3'
+
+services:
+  consul:
+    image: docker.io/bitnami/consul:1
+    container_name: consul
+    networks:
+      - consul_net
+    volumes:
+      - consul_data:/bitnami/consul
+    ports:
+      - '8300:8300'
+      - '8301:8301'
+      - '8301:8301/udp'
+      - '8500:8500'
+      - '8600:8600'
+      - '8600:8600/udp'
+
+##########################################################################################
+#                                 自定义依赖:
+##########################################################################################
+
+# 自定义网络:
+networks:
+  consul_net:
+    driver: bridge
+
+# 自定义数据卷:
+volumes:
+  consul_data:
+    driver: local

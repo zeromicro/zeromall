@@ -20,6 +20,10 @@ tasks:
     cmds:
       - task: init
 
+  echo:
+    cmds:
+      - echo "hello deploy/local"
+
 
   ################################################################################################
 
@@ -76,6 +80,13 @@ tasks:
       - task: docker:up
         vars:
           { COMPOSE_FILE: infra-kv-etcd.yml }
+
+  up:consul:
+    cmds:
+      - echo "hello consul"
+      - docker-compose -f infra-kv-consul.yml up -d
+
+
 
   ################################################################################################
 
