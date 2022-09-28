@@ -1,4 +1,0 @@
-syntax = "proto3";
-
-package api.identity;
-option go_package = "app/core/user/identity/proto/api;api";

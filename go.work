@@ -5,6 +5,8 @@ use (
 	./app/core/queue
 	./app/core/user/authn  // fix no matched module
 	./app/core/user/authz
+	./app/core/user/identity // 用户基础信息
+
 	./app/core/notification/sms     // 短信服务
 	./app/core/notification/email   // 邮件服务
 	./app/core/notification/push    // Android/iOS系统推送服务

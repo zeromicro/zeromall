@@ -5,7 +5,7 @@ syntax = "proto3";
 //
 
 // todo x: 控制 grpc 注册服务名
-package user.authn.inner; // TODO X: 每个服务都不同， 需要更改此参数来区分+注册
+package user.identity.rpc; // TODO X: 每个服务都不同， 需要更改此参数来区分+注册
 
 // todo x: 统一命名为 pb，无需更改
 option go_package = "./pb";
@@ -18,6 +18,27 @@ option go_package = "./pb";
 //
 service Service {
     // 用户注册:
+    rpc UserPasswordUpdate(UserRegisterReq) returns(UserRegisterResp);
+
+    // 用户注册:
+    rpc UserProfileUpdate(UserRegisterReq) returns(UserRegisterResp);
+
+    // 用户注册:
+    rpc UserProfileGet(UserRegisterReq) returns(UserRegisterResp);
+
+    // 用户注册:
+    rpc UserEmailUpdate(UserRegisterReq) returns(UserRegisterResp);
+
+    // 用户注册:
+    rpc UserMobileUpdate(UserRegisterReq) returns(UserRegisterResp);
+
+
+
+
+
+
+
+    // 用户注册:
     rpc Register(UserRegisterReq) returns(UserRegisterResp);
 
     // 用户登录:
@@ -26,11 +47,8 @@ service Service {
     // 用户退出:
     rpc Logout(UserLogoutReq) returns(UserLogoutResp);
 
-    // 移动端: 鉴权 + token
-    rpc AuthMobile(AuthMobileReq) returns(AuthMobileResp);
-
-    // web端: 鉴权 + cookie
-    rpc AuthWeb(AuthWebReq) returns(AuthWebResp);
+    // 用户 token:
+    rpc Token(AuthTokenReq) returns(AuthTokenResp);
 }
 
 
@@ -98,23 +116,11 @@ message UserLogoutResp {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-message AuthMobileReq {
+message AuthTokenReq {
     string user_id = 1;
 }
 
-message AuthMobileResp {
-    string user_id = 1;
-    string token = 2;
-    string status = 3;
-}
-
-////////////////////////////////////////////////////////////////////////////////////
-
-message AuthWebReq {
-    string user_id = 1;
-}
-
-message AuthWebResp {
+message AuthTokenResp {
     string user_id = 1;
     string token = 2;
     string status = 3;
