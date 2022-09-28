@@ -5,25 +5,29 @@
 #     - https://github.com/bitnami/containers/blob/main/bitnami/consul/docker-compose.yml
 #   - 本地浏览器访问:
 #     - http://localhost:8500/ui/
+#   - FAQ:
+#     - docker 启动失败报 volume 无操作权限, 可以删除 volume, 重新启动
+#
 ##########################################################################################
 
 version: '3'
 
 services:
   consul:
-    image: docker.io/bitnami/consul:1
+    image: consul:latest
     container_name: consul
+    #    platform: linux/amd64
+    #    restart: always
+    #    environment:
+    #      CONSUL_BIND_INTERFACE: eth0
+    volumes:
+      - consul_data:/consul/data/
     networks:
       - consul_net
-    volumes:
-      - consul_data:/bitnami/consul
     ports:
-      - '8300:8300'
-      - '8301:8301'
-      - '8301:8301/udp'
-      - '8500:8500'
-      - '8600:8600'
-      - '8600:8600/udp'
+      - "8500:8500"
+    command: [ agent,-server,-ui,-client=0.0.0.0,-bootstrap-expect=1, -node=node1 ]
+
 
 ##########################################################################################
 #                                 自定义依赖:

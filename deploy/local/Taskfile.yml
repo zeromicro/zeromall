@@ -32,7 +32,7 @@ tasks:
       - task: up:mysql
       - task: up:redis
       - task: up:rabbitmq
-#      - task: up:etcd
+      #      - task: up:etcd
       - task: up:etcd2    # check here!
 
   clean:
@@ -83,9 +83,16 @@ tasks:
 
   up:consul:
     cmds:
-      - echo "hello consul"
+      - echo "run consul"
       - docker-compose -f infra-kv-consul.yml up -d
+      - docker-compose -f infra-kv-consul.yml logs  # -f
 
+
+  down:consul:
+    cmds:
+      - echo "stop consul"
+      - docker-compose -f infra-kv-consul.yml down
+      - docker ps
 
 
   ################################################################################################
@@ -94,7 +101,7 @@ tasks:
     cmds:
       - task: docker:exec
         vars:
-          {CONTANIER_NAME: etcd_test}
+          { CONTANIER_NAME: etcd_test }
 
   ################################################################################################
 
