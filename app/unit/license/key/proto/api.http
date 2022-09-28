@@ -1,0 +1,9 @@
+
+### GET 注册码查询
+GET {{host}}/license/key
+Content-Type: application/json
+Accept: application/json
+
+{
+    "public_key": "test"
+}

@@ -1,6 +1,20 @@
 Name: main.rpc
 ListenOn: 127.0.0.1:8080
-Etcd:
-  Hosts:
-  - 127.0.0.1:2379
-  Key: main.rpc
+
+#Etcd:
+#  Hosts:
+#    - 127.0.0.1:2379
+#  Key: main.rpc
+
+#
+# 替代 etcd:
+#
+Consul:
+  Host: 127.0.0.1:8500 # consul endpoint
+  #  Token: 'f0512db6-76d6-f25e-f344-a98cc3484d42' # consul ACL token (optional)
+  Key: mall.license.key.rpc # service name registered to Consul
+  Meta:
+    Protocol: grpc
+  Tag:
+    - license.key
+    - rpc

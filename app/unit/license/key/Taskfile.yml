@@ -97,10 +97,17 @@ tasks:
 
   tidy:
     cmds:
+#      - go get -u github.com/zeromicro/zero-contrib/zrpc/registry/consul
       - go mod tidy -v
+
+  fmt:
+    cmds:
+      - go fmt .
 
   # 测试 API 服务运行正常：
   api:test:
     cmds:
       - curl -i -X GET http://localhost:8888/from/you
+      - curl -i -X GET http://localhost:8888/license/key
       - open http://localhost:8888/from/you
+      - open http://localhost:8888/license/key

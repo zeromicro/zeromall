@@ -1,3 +1,25 @@
 Name: main
 Host: 0.0.0.0
 Port: 8888
+
+####################################################################################
+# rpc config:
+####################################################################################
+
+#
+# consul://[user:passwd]@host/service?param=value'
+# format like this
+#
+
+
+LicenseKeyRPC:
+  Target: consul://127.0.0.1:8500/mall.license.key.rpc?wait=14s
+
+#rpc
+#OrderRpcConf:
+#  Endpoints:
+#    - 127.0.0.1:2001
+#  NonBlock: true
+
+Check:
+  Target: consul://127.0.0.1:8500/check.rpc?wait=14s

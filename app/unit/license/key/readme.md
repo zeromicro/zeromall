@@ -41,6 +41,16 @@ task try:zero:gen:pb
 
 ```
 
+## 使用 consul 注册/发现服务:
+
+- etcd 没有 web ui, 使用不方便, 采用 consul 替代.
+- consul docker 启动脚本: [infra-kv-consul.yml](../../../../deploy/local/infra-kv-consul.yml)
+
+> 参考示例:
+
+- [registry/consul 插件](https://github.com/zeromicro/zero-contrib/blob/main/zrpc/registry/consul/README.md)
+- [应用示例](https://github.com/zeromicro/zero-examples/blob/main/discovery/consul/server/etc/consul.yaml)
+
 ## 目录结构说明：
 
 ```ruby

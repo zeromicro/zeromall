@@ -27,5 +27,10 @@ func NewLicenseKeyGetLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Lic
 func (l *LicenseKeyGetLogic) LicenseKeyGet(in *pb.LicenseKeyGetReq) (*pb.LicenseKeyGetResp, error) {
 	// todo: add your logic here and delete this line
 
-	return &pb.LicenseKeyGetResp{}, nil
+	l.Logger.Infof("rpc call: req=%+v", in)
+
+	return &pb.LicenseKeyGetResp{
+		PublicKey: "test-public-key",
+		SecretKey: "test-secret-key",
+	}, nil
 }
