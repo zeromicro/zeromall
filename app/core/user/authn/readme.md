@@ -1,46 +1,28 @@
-# key:
+# user/authn(Authentication):
 
-- 授权码 / 注册码 生成服务
+- Authentication
 
-## 服务列表：
+## 功能:
 
-- 注册码生成
-- 注册码分配
-- 注册码管理
+- 用户注册
+- 用户登录
+- 用户退出
 
-## 说明：
+## 方案:
 
-- 启动依赖的 docker 中间件:
-    - mysql
-    - redis
-    - kafka
-    - etcd
+- ✅ Basic Auth（HTTP 基本认证）: http + password
+- ✅ 基于 Session 的认证: http + cookie + session
+- ✅ Bearer Token 或者 Basic Auth Password
+- ✅ JWT(JSON WEB TOKEN)
+- ✅ OAuth (开放授权)
+- ✅ SSO
+- ✅ 硬件加密设备: hardware tokens (FIDO U2F tokens, RSA tokens, Yubikey)
+- ✅ 外部软件设备: mobile devices (SMS/call verification, push approvals, TOTP apps)
+- ✅ 生物芯片: 指纹/人脸识别等
+- ✅ Two-factor authentication: 2FA, TFA, second-factor authentication
+- ✅ Multi-factor authentication (MFA)
 
-> 服务初始化:
-
-- db 创建, 表生成
-
-```ruby
-cd zeromall/
-
-# db 初始化:
-task license:key:init:db
-
-```
-
-> 服务代码生成:
-
-```ruby
-cd learn-go/
-
-# pb 新增api， 动态生成新的模板代码：
-task try:zero:gen:pb
-
-# 生成 model CRUD 代码
-
-
-```
 
 ## 参考:
 
-- https://www.cloudflare.com/zh-cn/learning/access-management/authn-vs-authz/
+- https://github.com/hhstore/blog/issues/381

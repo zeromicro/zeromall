@@ -1,8 +1,11 @@
-# authz:
+# authz(Authorization):
+
+- 权限控制:
+    - ✅ Role-based access control (RBAC): 基于角色的访问控制
+    - ✅ Attribute-based access control (ABAC): 基于属性的访问控制
 
 ## 方案:
 
-- rabc
 - casbin
 
 ## 功能:
