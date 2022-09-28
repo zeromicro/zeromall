@@ -12,3 +12,5 @@ CREATE
 select @@sql_mode;
 set
   sql_mode = '';
+
+-- show databases;

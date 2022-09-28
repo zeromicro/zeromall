@@ -37,8 +37,8 @@ tasks:
     cmds:
       #      - usql --help
       - usql ${DB_URL} -f "proto/sql/db.sql"
+      - sleep 2
       - usql ${DB_URL} -f "proto/sql/schema.sql"
-
 
   # 运行：
   run:api:

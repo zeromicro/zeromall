@@ -17,38 +17,29 @@ option go_package = "./pb";
 // todo x: 控制生成的 rpc 文件夹名, 统一命名为 Service， 无需更改
 //
 service Service {
-    // 用户注册:
+    // 用户创建:
+    rpc UserCreate(UserRegisterReq) returns(UserRegisterResp);
+
+    // 用户查询:
+    rpc UserGet(UserRegisterReq) returns(UserRegisterResp);
+
+    // 用户批量查询:
+    rpc UserList(UserRegisterReq) returns(UserRegisterResp);
+
+    // 用户封禁: 临时封禁 vs 永久封禁
+    rpc UserDisable(UserRegisterReq) returns(UserRegisterResp);
+
+    // 用户密码更新:
     rpc UserPasswordUpdate(UserRegisterReq) returns(UserRegisterResp);
 
-    // 用户注册:
+    // 用户信息更新:
     rpc UserProfileUpdate(UserRegisterReq) returns(UserRegisterResp);
 
-    // 用户注册:
-    rpc UserProfileGet(UserRegisterReq) returns(UserRegisterResp);
-
-    // 用户注册:
+    // 用户邮箱更新:
     rpc UserEmailUpdate(UserRegisterReq) returns(UserRegisterResp);
 
-    // 用户注册:
+    // 用户手机号更新:
     rpc UserMobileUpdate(UserRegisterReq) returns(UserRegisterResp);
-
-
-
-
-
-
-
-    // 用户注册:
-    rpc Register(UserRegisterReq) returns(UserRegisterResp);
-
-    // 用户登录:
-    rpc Login(UserLoginReq) returns(UserLoginResp);
-
-    // 用户退出:
-    rpc Logout(UserLogoutReq) returns(UserLogoutResp);
-
-    // 用户 token:
-    rpc Token(AuthTokenReq) returns(AuthTokenResp);
 }
 
 
