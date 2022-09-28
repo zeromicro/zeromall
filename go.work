@@ -6,6 +6,7 @@ use (
 	./app/core/user/authn  // fix no matched module
 	./app/core/user/authz
 	./app/core/user/identity // 用户基础信息
+	./app/core/user/system   // 平台超级用户: 内部用户, 开发, 管理员
 
 	./app/core/notification/sms     // 短信服务
 	./app/core/notification/email   // 邮件服务
