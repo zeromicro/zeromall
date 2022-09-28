@@ -39,6 +39,22 @@ includes:
     taskfile: ./app/core/queue
     dir: ./app/core/queue
 
+  authn:
+    taskfile: app/core/user/authn/
+    dir: app/core/user/authn/
+
+  authz:
+    taskfile: ./app/core/user/authz
+    dir: ./app/core/user/authz
+
+  sms:
+    taskfile: app/core/notification/sms
+    dir: app/core/notification/sms
+
+  email:
+    taskfile: ./app/core/notification/email
+    dir: ./app/core/notification/email
+
   license:key:
     taskfile: ./app/unit/license/key
     dir: ./app/unit/license/key

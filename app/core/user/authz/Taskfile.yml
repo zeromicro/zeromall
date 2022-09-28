@@ -1,0 +1,114 @@
+version: "3"
+
+
+#
+# global vars: https://taskfile.dev/#/usage?id=variables
+#
+vars:
+  VAR1: "some-var"
+
+# global env:
+env:
+  ENV1: testing
+  DB_URL: "mysql://root:root@127.0.0.1:13306"
+  AccessSecret: "test_auth_secret"
+  AccessExpire: 3600
+
+# env file:
+#dotenv:
+#  - .env
+
+################################################################################################
+
+tasks:
+
+  run:
+    cmds:
+      - go run main.go
+
+  # ref: https://go-zero.dev/cn/docs/goctl/installation/
+  install:
+    cmds:
+      - GOPROXY=https://goproxy.cn/,direct go install github.com/zeromicro/go-zero/tools/goctl@latest
+      - goctl -v
+      - goctl env check -i -f --verbose
+
+  init:db:
+    cmds:
+#      - usql --help
+      - usql ${DB_URL} -f "proto/sql/db.sql"
+      - usql ${DB_URL} -f "proto/sql/schema.sql"
+
+
+  # 运行：
+  run:api:
+    cmds:
+      - |
+        cd api/; go run main.go -f etc/main.yaml
+
+  # 运行：
+  run:rpc:
+    cmds:
+      - |
+        cd rpc/; go run main.go -f etc/main.yaml
+
+  new:api:
+    cmds:
+      - goctl api new api
+
+  new:rpc:
+    cmds:
+      - goctl rpc new inner
+
+  # 更改proto文件， 可以方便生成业务框架代码
+  gen:rpc:
+    cmds:
+      # - cd hello_rpc/; goctl rpc protoc rpc.proto --go_out=./pb --go-grpc_out=./pb --zrpc_out=.
+      #      - cd rpc/; goctl rpc protoc main.proto --go_out=. --go-grpc_out=. --zrpc_out=. --style go_zero
+      - goctl rpc protoc "./proto/rpc/main.proto" --go_out=./rpc --go-grpc_out=./rpc --zrpc_out=./rpc --style go_zero
+
+  # ref: https://go-zero.dev/cn/docs/design/grammar
+  gen:api:
+    cmds:
+      #      - cd api; goctl api go --api api.api --dir . --style go_zero
+      - goctl api go --api "./proto/api/main.api" --dir="./api" --style go_zero
+
+  # 基于 sql， 生成 model CRUD 代码
+  gen:model:
+    cmds:
+      #      - goctl model mysql ddl -src="./*.sql" -dir="./sql/model" -c --style go_zero
+      - cd proto; goctl model mysql ddl -src="./sql/*.sql" -dir="./model" -c --style go_zero
+
+  # 为 dart 客户端生成代码
+  gen:dart:
+    cmds:
+      - goctl api dart --api "./proto/api/main.api" --dir="./dart"
+
+  # 生成 docker 构建文件
+  gen:docker:
+    cmds:
+      - cd api; goctl docker -go main.go
+      - cd rpc; goctl docker -go main.go
+    ignore_error: true
+
+  # 构建 docker 镜像：
+  build:docker:api:
+    cmds:
+      - docker build -t api:v1 -f api/Dockerfile .
+
+  tidy:
+    cmds:
+#      - go get -u github.com/zeromicro/zero-contrib/zrpc/registry/consul
+      - go mod tidy -v
+
+  fmt:
+    cmds:
+      - go fmt .
+
+  # 测试 API 服务运行正常：
+  api:test:
+    cmds:
+      - curl -i -X GET http://localhost:8888/from/you
+      - curl -i -X GET http://localhost:8888/license/key
+      - open http://localhost:8888/from/you
+      - open http://localhost:8888/license/key

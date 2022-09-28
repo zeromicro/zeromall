@@ -1,0 +1,43 @@
+syntax = "v1"
+
+type Request {
+    Name string `path:"name,options=you|me"`
+}
+
+type Response {
+    Message string `json:"message"`
+}
+
+type UserRegisterReq {
+    UserName string `json:"user_name"`
+    Password string `json:"password"`
+    Email string `json:"email"`
+    MobileNo string `json:"mobile_no"`
+    MobileCountry string `json:"mobile_country"`
+    SmsCode string `json:"sms_code"`
+    RegisterType string `json:"register_type"`
+}
+
+
+type UserRegisterResp {
+    UserName string `json:"user_name"`
+    UserID string `json:"user_id"`
+    Token string `json:"token"`
+}
+
+
+type UserLoginReq {
+    UserName string `json:"user_name"`
+    Password string `json:"password"`
+    Email string `json:"email"`
+    MobileNo string `json:"mobile_no"`
+    MobileCountry string `json:"mobile_country"`
+    SmsCode string `json:"sms_code"`
+    LoginType string `json:"login_type"`
+}
+
+type UserLoginResp {
+    UserName string `json:"user_name"`
+    UserID string `json:"user_id"`
+    Token string `json:"token"`
+}
