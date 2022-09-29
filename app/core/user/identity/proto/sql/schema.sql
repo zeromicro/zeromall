@@ -186,8 +186,9 @@ CREATE TABLE `user_kyc`
   `last_name`        varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '名',
 
   -- 年龄, 性别, 身份证号 证件
-  `sex`              tinyint(1) NOT NULL DEFAULT '0' COMMENT '性别： <0=异常状态, >0=正常状态, 1=已分配, -1=封禁',
-  `birth`            varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户名',
+  `gender`           tinyint(1) NOT NULL DEFAULT '0' COMMENT '性别',
+  `birthday`         varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '生日',
+  `language`         varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '语言',
 
   -- 证件信息: 证件类型, 证件编号
   `certificate_no`   varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '证件编号',
