@@ -2,13 +2,15 @@
 
 -- del:
 DROP
-  DATABASE IF EXISTS `mall_license`;
+  DATABASE IF EXISTS `mall_user`;
 
 -- new:
 CREATE
-  DATABASE `mall_license` DEFAULT CHARACTER SET = `utf8mb4` DEFAULT COLLATE `utf8mb4_unicode_ci`;
+  DATABASE `mall_user` DEFAULT CHARACTER SET = `utf8mb4` DEFAULT COLLATE `utf8mb4_unicode_ci`;
 
 -- fix for deleted_at = 0
 select @@sql_mode;
 set
   sql_mode = '';
+
+-- show databases;
