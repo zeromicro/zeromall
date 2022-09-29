@@ -18,28 +18,31 @@ option go_package = "./pb";
 //
 service Service {
     // 用户创建:
-    rpc UserCreate(UserRegisterReq) returns(UserRegisterResp);
+    rpc UserCreate(UserCreateReq) returns(UserCreateReq);
+
+    // 用户状态: 1, 正常, 2:注册(未激活) 0, 无效. -1:封禁
+    rpc UserStatus(UserCreateReq) returns(UserCreateReq);
 
     // 用户查询:
-    rpc UserGet(UserRegisterReq) returns(UserRegisterResp);
+    rpc UserGet(UserGetReq) returns(UserGetResp);
 
     // 用户批量查询:
-    rpc UserList(UserRegisterReq) returns(UserRegisterResp);
+    rpc UserList(UserListReq) returns(UserListResp);
 
     // 用户封禁: 临时封禁 vs 永久封禁
-    rpc UserDisable(UserRegisterReq) returns(UserRegisterResp);
+    rpc UserDisable(UserDisableReq) returns(UserDisableResp);
 
     // 用户密码更新:
-    rpc UserPasswordUpdate(UserRegisterReq) returns(UserRegisterResp);
+    rpc UserPasswordUpdate(UserPasswordUpdateReq) returns(UserPasswordUpdateResp);
 
     // 用户信息更新:
-    rpc UserProfileUpdate(UserRegisterReq) returns(UserRegisterResp);
+    rpc UserProfileUpdate(UserProfileUpdateReq) returns(UserProfileUpdateResp);
 
     // 用户邮箱更新:
-    rpc UserEmailUpdate(UserRegisterReq) returns(UserRegisterResp);
+    rpc UserEmailUpdate(UserEmailUpdateReq) returns(UserEmailUpdateResp);
 
     // 用户手机号更新:
-    rpc UserMobileUpdate(UserRegisterReq) returns(UserRegisterResp);
+    rpc UserMobileUpdate(UserMobileUpdateReq) returns(UserMobileUpdateResp);
 }
 
 
@@ -56,63 +59,129 @@ message Response {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+message UserCreateReq {
+    string user_id = 1;
+    string username = 2;
+    string password = 3;
+}
 
-message UserRegisterReq {
-    string username = 1;
-    string password = 2;
+message UserCreateResp {
+    string user_id = 1;
+    string status = 2;
+}
 
+////////////////////////////////////////////////////////////////////////////////////
+
+message UserStatusReq {
+    string user_id = 1;
+}
+
+message UserStatusResp {
+    string user_id = 1;
+    string status = 2;
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+message UserGetReq {
+    string user_id = 1;
+}
+
+message UserGetResp {
+    string user_id = 1;
+    string status = 2;
     string email = 3;
-    string mobile_no = 4;
-    string mobile_country = 5;
-    string register_type = 6;
+    string mobile = 4;
+    string username = 5;
 }
-
-message UserRegisterResp {
-    string user_id = 1;
-    string token = 2;
-    string status = 3;
-}
-
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 
-message UserLoginReq {
-    string username = 1;
-    string password = 2;
+message UserListReq {
+    string created_start = 1;
+    string created_end = 2;
+    string status = 3;
+}
+
+message UserListResp {
+    // list:
+    repeated UserListItem list = 1;
+    // max id:
+    int64 max_id = 2;
+
+}
+
+
+message UserListItem {
+    string user_id = 1;
+    string status = 2;
     string email = 3;
-    string mobile_no = 4;
-    string mobile_country = 5;
-    string sms_code = 6;
-    string login_type = 7;
-}
+    string mobile = 4;
+    string username = 5;
 
-message UserLoginResp {
-    string user_id = 1;
-    string token = 2;
-    string status = 3;
-}
-
-
-////////////////////////////////////////////////////////////////////////////////////
-
-message UserLogoutReq {
-    string user_id = 1;
-}
-
-message UserLogoutResp {
-    string user_id = 1;
-    string status = 3;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-message AuthTokenReq {
+message UserDisableReq {
     string user_id = 1;
 }
 
-message AuthTokenResp {
+message UserDisableResp {
     string user_id = 1;
-    string token = 2;
-    string status = 3;
+    string status = 2;
+
 }
+
+////////////////////////////////////////////////////////////////////////////////////
+
+message UserPasswordUpdateReq {
+    string user_id = 1;
+    string password = 2;
+}
+
+message UserPasswordUpdateResp {
+    string user_id = 1;
+    string status = 2;
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+
+message UserProfileUpdateReq {
+    string user_id = 1;
+    string profile = 2;
+}
+
+message UserProfileUpdateResp {
+    string user_id = 1;
+    string status = 2;
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+
+message UserEmailUpdateReq {
+    string user_id = 1;
+    string email = 2;
+}
+
+message UserEmailUpdateResp {
+    string user_id = 1;
+    string status = 2;
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+message UserMobileUpdateReq {
+    string user_id = 1;
+    string mobile_no = 2;
+    string mobile_country = 3;
+}
+
+message UserMobileUpdateResp {
+    string user_id = 1;
+    string status = 2;
+}
+
