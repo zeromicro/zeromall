@@ -1,6 +1,14 @@
 Name: main.rpc
 ListenOn: 127.0.0.1:8080
 
+
+# mysql:
+DataSource: root:root@tcp(localhost:13306)/mall_license
+
+# cache:
+Cache:
+  - Host: localhost:6379
+
 #Etcd:
 #  Hosts:
 #    - 127.0.0.1:2379

@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
@@ -13,6 +14,9 @@ func LicenseGetHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.LicenseGetReq
 		if err := httpx.Parse(r, &req); err != nil {
+
+			fmt.Println("Error parsing license request: ", err)
+
 			httpx.Error(w, err)
 			return
 		}

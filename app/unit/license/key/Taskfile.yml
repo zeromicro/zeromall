@@ -108,7 +108,17 @@ tasks:
   # 测试 API 服务运行正常：
   api:test:
     cmds:
-      - curl -i -X GET http://localhost:8888/from/you
-      - curl -i -X GET http://localhost:8888/license/key
-      - open http://localhost:8888/from/you
-      - open http://localhost:8888/license/key
+#      - curl -i -X GET http://localhost:8888/eshop/v1/license/key?public_key="test1"
+#      - open http://localhost:8888/from/you
+#      - open http://localhost:8888/license/key
+
+      - |
+        curl --request POST \
+        --url http://localhost:8888/eshop/v1/license/key \
+        --header 'content-type: application/json' \
+        --data '{"product_id": "p1",  "consumer_id": "c1", "shop_id": "shop1"}'
+      - |
+        curl --request GET \
+        --url http://localhost:8888/eshop/v1/license/key \
+        --header 'content-type: application/json' \
+        --data '{"public_key": "pk"}'

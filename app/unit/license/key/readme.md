@@ -2,6 +2,15 @@
 
 - 授权码 / 注册码 生成服务
 
+## 服务启动顺序:
+
+- ✅ 依次启动中间件:
+    - mysql
+    - redis
+    - consul
+- ✅ 启动 rpc server
+- ✅ 启动 http server
+
 ## 服务列表：
 
 - 注册码生成
@@ -11,10 +20,10 @@
 ## 说明：
 
 - 启动依赖的 docker 中间件:
-    - mysql
-    - redis
+    - ✅mysql
+    - ✅redis
     - kafka
-    - etcd
+    - ✅consul (etcd)
 
 > 服务初始化:
 

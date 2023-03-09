@@ -7,3 +7,16 @@ Accept: application/json
 {
     "public_key": "test"
 }
+
+
+### POST 创建注册码
+POST {{host}}/{{prefix}}/license/key
+Content-Type: application/json
+Accept: application/json
+
+{
+    "consumer_id": "u123",
+    "product_id": "product1",
+    "shop_id": "shop1"
+}
+

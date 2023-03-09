@@ -40,6 +40,22 @@ tasks:
       - sleep 2
       - usql ${DB_URL} -f "proto/sql/schema.sql"
 
+  dump:db:
+    cmds:
+      # 远程导出 即MySQL服务端不在本地
+      - |
+        mysqldump \
+          -uroot \
+          -proot \
+          -h127.0.0.1 \
+          -P13306  \
+          --single-transaction \
+          --no-data \
+          --column-statistics=0 \
+          mall_user \
+          --result-file="tmp/db.sql"
+
+
   # 运行：
   run:api:
     cmds:

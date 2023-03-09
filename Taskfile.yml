@@ -104,6 +104,7 @@ tasks:
       #      - go mod tidy -v
       - task: app:demo:tidy
       - task: app:queue:tidy
+      - go work sync
 
   update:
     cmds:
