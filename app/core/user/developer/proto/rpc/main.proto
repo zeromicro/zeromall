@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+//
+// todo x: proto 文件命名不能是 `rpc.proto`, 会冲突. pb 文件名， 控制 main（）文件名
+//
+
+// todo x: 控制 grpc 注册服务名
+package user.system.rpc; // TODO X: 每个服务都不同， 需要更改此参数来区分+注册
+
+// todo x: 统一命名为 pb，无需更改
+option go_package = "./pb";
+
+
+////////////////////////////////////////////////////////////////////////////////////
+
+//
+// todo x: 控制生成的 rpc 文件夹名, 统一命名为 Service， 无需更改
+//
+service Service {
+    // 用户添加:
+    rpc SysUserAdd(UserRegisterReq) returns(UserRegisterResp);
+
+    // 用户停用:
+    rpc SysUserDisable(UserRegisterReq) returns(UserRegisterResp);
+
+    // 用户信息:
+    rpc SysUserProfile(UserRegisterReq) returns(UserRegisterResp);
+
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////
+
+message Request {
+    string ping = 1;
+}
+
+message Response {
+    string pong = 1;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////
+
+
+message UserRegisterReq {
+    string username = 1;
+    string password = 2;
+
+    string email = 3;
+    string mobile_no = 4;
+    string mobile_country = 5;
+    string register_type = 6;
+}
+
+message UserRegisterResp {
+    string user_id = 1;
+    string token = 2;
+    string status = 3;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////
+
+
+message UserLoginReq {
+    string username = 1;
+    string password = 2;
+    string email = 3;
+    string mobile_no = 4;
+    string mobile_country = 5;
+    string sms_code = 6;
+    string login_type = 7;
+}
+
+message UserLoginResp {
+    string user_id = 1;
+    string token = 2;
+    string status = 3;
+}
+

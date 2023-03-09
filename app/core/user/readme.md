@@ -11,6 +11,14 @@
 
 ## 服务列表:
 
+- ✅ [identity](identity): 用户基础信息
+- ✅ [system](system) : 系统(平台)/管理员用户
+- ✅ [developer](developer) : 开发者用户
+- ✅ [authn](authn)
+- ✅ [authz](authz)
+- ✅ [oauth](oauth)
+
+
 ### [identity](identity):
 
 - 客户管理
