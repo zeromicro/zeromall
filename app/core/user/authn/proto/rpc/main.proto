@@ -5,7 +5,7 @@ syntax = "proto3";
 //
 
 // todo x: 控制 grpc 注册服务名
-package user.authn.inner; // TODO X: 每个服务都不同， 需要更改此参数来区分+注册
+package user.authn.rpc; // TODO X: 每个服务都不同， 需要更改此参数来区分+注册
 
 // todo x: 统一命名为 pb，无需更改
 option go_package = "./pb";

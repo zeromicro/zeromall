@@ -46,16 +46,6 @@ service Service {
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////
-
-message Request {
-    string ping = 1;
-}
-
-message Response {
-    string pong = 1;
-}
-
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -126,6 +116,8 @@ message UserListItem {
 
 message UserDisableReq {
     string user_id = 1;
+    // 封禁类型: 1, 临时, 2, 永久
+    int64 type = 2;
 }
 
 message UserDisableResp {
@@ -138,7 +130,10 @@ message UserDisableResp {
 
 message UserPasswordUpdateReq {
     string user_id = 1;
-    string password = 2;
+    // 旧密码:
+    string password_old = 2;
+    // 新密码:
+    string password_new = 3;
 }
 
 message UserPasswordUpdateResp {
@@ -176,7 +171,10 @@ message UserEmailUpdateResp {
 
 message UserMobileUpdateReq {
     string user_id = 1;
+
+    // 手机号:
     string mobile_no = 2;
+    // 手机国家码:
     string mobile_country = 3;
 }
 

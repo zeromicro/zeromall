@@ -61,3 +61,6 @@ dist/
 
 # generate from proto/sql
 #**/proto/model/*
+
+# goctl gen models
+*_gen.go
