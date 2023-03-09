@@ -21,7 +21,7 @@ service Service {
     rpc UserCreate(UserCreateReq) returns(UserCreateReq);
 
     // 用户状态: 1, 正常, 2:注册(未激活) 0, 无效. -1:封禁
-    rpc UserStatus(UserCreateReq) returns(UserCreateReq);
+    rpc UserStatus(UserStatusReq) returns(UserStatusResp);
 
     // 用户查询:
     rpc UserGet(UserGetReq) returns(UserGetResp);

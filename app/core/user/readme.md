@@ -14,8 +14,8 @@
 - ✅ [identity](identity): 用户基础信息
 - ✅ [system](system) : 系统(平台)/管理员用户
 - ✅ [developer](developer) : 开发者用户
-- ✅ [authn](authn)
-- ✅ [authz](authz)
+- ✅ [authn](authn) : 注册/登录
+- ✅ [authz](authz) : 权限控制/资源访问
 - ✅ [oauth](oauth)
 
 

@@ -4,7 +4,7 @@ FOREIGN_KEY_CHECKS = 0;
 
 -- 选择 db:
 USE
-mall_user;
+app_user;
 
 -- ----------------------------
 -- Table structure for user_identity: 用户基础信息表
@@ -21,7 +21,11 @@ CREATE TABLE `user`
 
   -- 唯一键
   `user_id`        varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户id',
+  `password`       varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '密码',
+
+  -- 帐号核心信息
   `username`       varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户名',
+  `username_sn`    varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户名编号',
   `email`          varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '邮箱',
   `mobile_no`      varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '手机号',
   `mobile_country` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '手机号国家码',
@@ -42,27 +46,30 @@ CREATE TABLE `user`
 DROP TABLE IF EXISTS `user_authn`;
 CREATE TABLE `user_authn`
 (
-  `id`         bigint                                                        NOT NULL AUTO_INCREMENT,
-  `created_at` datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `deleted_at` datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status`     tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态： <0=异常状态, >0=正常状态, 1=已分配, -1=封禁',
-  `desc`       varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '描述信息',
+  `id`          bigint                                                        NOT NULL AUTO_INCREMENT,
+  `created_at`  datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at`  datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deleted_at`  datetime                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status`      tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态： <0=异常状态, >0=正常状态, 1=已分配, -1=封禁',
+  `desc`        varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '描述信息',
 
   -- 唯一键
-  `unique_via` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '唯一可登录信息: 可以是: 用户名, 手机号<国家码-手机号>, 邮箱, 等',
-  `auth_type`  tinyint(1) NOT NULL DEFAULT '0' COMMENT '登录方式：1=用户名, 2=邮箱, 3=短信 4=2fa, 5=oauth',
-  `user_id`    varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户id',
-  `password`   varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户名',
+  `auth_type`   tinyint(1) NOT NULL DEFAULT '0' COMMENT '登录方式：1=用户名, 2=邮箱, 3=短信 4=2fa, 5=oauth',
+  `auth_unique` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '唯一可登录信息: 可以是: 用户名, 手机号<国家码-手机号>, 邮箱, 等',
+  `auth_field1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '登录分拆字段1',
+  `auth_field2` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '登录分拆字段2',
+  `auth_field3` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '登录分拆字段3',
+  `user_id`     varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户id',
+
+--   `password`    varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户名',
 
   PRIMARY KEY (`id`),
-  KEY          `idx_updated_at` (`updated_at`),
-  KEY          `idx_created_at` (`created_at`),
-  KEY          `idx_auth_type` (`auth_type`),
+  KEY           `idx_updated_at` (`updated_at`),
+  KEY           `idx_created_at` (`created_at`),
+  KEY           `idx_auth_type` (`auth_type`),
 
-  UNIQUE KEY `uk_unique_via` (`unique_via`),
-  UNIQUE KEY `uk_unique_via_type_id` (`unique_via`, `auth_type`, `user_id`)
-
+  UNIQUE KEY `uk_auth_unique` (`auth_unique`),
+  UNIQUE KEY `uk_auth_unique_type_id` (`auth_unique`, `auth_type`, `user_id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_unicode_ci COMMENT ='用户登录方式表';
