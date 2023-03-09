@@ -35,21 +35,35 @@ service main {
 	@handler Register
 	post /register (UserRegisterReq) returns (UserRegisterResp)
 	
-	// 短信注册
-	@handler RegisterBySms
-	post /register/sms (UserLoginReq) returns (UserLoginResp)
+	// 帐号去重复检查(注册前)
+	@handler RegisterCheck
+	post /register/check (UserRegisterCheckReq) returns (UserRegisterCheckResp)
 	
-	// 短信注册
-	@handler RegisterWithSmsConfirm
-	post /register/sms/verify (UserLoginReq) returns (UserLoginResp)
+	// 快捷注册(登录): 短信+验证码
+	@handler QuickBySmsCode
+	post /quick/code/sms (UserRegisterReq) returns (UserLoginResp)
+	
+	// 快捷注册(登录): 邮箱+验证码
+	@handler QuickByEmailCode
+	post /quick/code/email (UserRegisterReq) returns (UserLoginResp)
+	
+	// 发送验证码:
+	@handler SendEmailCode
+	post /send/code/email (SendEmailCodeReq) returns (SendCodeResp)
+	
+	// 发送验证码
+	@handler SendSmsCode
+	post /send/code/sms (SendSmsCodeReq) returns (SendCodeResp)
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// 短信+密码
+	@handler RegisterBySms
+	post /register/sms (UserRegisterReq) returns (UserLoginResp)
 	
 	// 邮箱注册
 	@handler RegisterByEmail
-	post /register/email (UserLoginReq) returns (UserLoginResp)
-	
-	// 短信注册
-	@handler RegisterWithEmailConfirm
-	post /register/email/verify (UserLoginReq) returns (UserLoginResp)
+	post /register/email (UserRegisterReq) returns (UserLoginResp)
 	
 	// 第三方授权登录+注册:
 	@handler RegisterByOauth
@@ -80,6 +94,10 @@ service main {
 	// oauth 登录:
 	@handler LoginOauth
 	post /login/oauth (UserLoginReq) returns (UserLoginResp)
+	
+	// oauth 登录:
+	@handler Login2Fa
+	post /login/2fa (UserLoginReq) returns (UserLoginResp)
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	
