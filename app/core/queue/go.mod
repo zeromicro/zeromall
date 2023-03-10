@@ -10,7 +10,7 @@ require (
 	github.com/better-go/pkg/database v0.0.0-20220923023940-c922e8210ef0
 	github.com/better-go/pkg/log v0.0.0-20220923023940-c922e8210ef0
 	github.com/better-go/pkg/x/go-zero v0.0.0-20220923023940-c922e8210ef0
-	github.com/zeromicro/go-zero v1.4.1
+	github.com/zeromicro/go-zero v1.5.0
 	google.golang.org/grpc v1.49.0
 	google.golang.org/protobuf v1.28.1
 )
