@@ -1,43 +1,127 @@
 syntax = "v1"
 
-type Request {
-    Name string `path:"name,options=you|me"`
-}
-
-type Response {
-    Message string `json:"message"`
-}
-
-type UserRegisterReq {
-    UserName string `json:"user_name"`
-    Password string `json:"password"`
-    Email string `json:"email"`
+type SmsSendSmsReq {
+    // member id
+    MemberID int64 `json:"member_id"`
+    // mobile no
     MobileNo string `json:"mobile_no"`
+    // mobile country
     MobileCountry string `json:"mobile_country"`
-    SmsCode string `json:"sms_code"`
-    RegisterType string `json:"register_type"`
+    // content
+    Content string `json:"content"`
 }
 
-
-type UserRegisterResp {
-    UserName string `json:"user_name"`
-    UserID string `json:"user_id"`
-    Token string `json:"token"`
+type SmsSendSmsResp {
+    // member id
+    MemberID int64 `json:"member_id"`
+    // uuid
+    UUID string `json:"uuid"`
+    // uuid int64
+    IUUID int64 `json:"iuuid"`
+    // status
+    Status string `json:"status"`
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////
 
-type UserLoginReq {
-    UserName string `json:"user_name"`
-    Password string `json:"password"`
-    Email string `json:"email"`
+// user mobile entity
+type UserMobileEntity struct {
+    // member id
+    MemberID int64 `json:"member_id"`
+    // mobile no
     MobileNo string `json:"mobile_no"`
+    // mobile country
     MobileCountry string `json:"mobile_country"`
-    SmsCode string `json:"sms_code"`
-    LoginType string `json:"login_type"`
 }
 
-type UserLoginResp {
-    UserName string `json:"user_name"`
-    UserID string `json:"user_id"`
-    Token string `json:"token"`
+// sms send batch req
+type SmsSendBatchReq struct {
+    // user mobiles
+    UserMobiles []UserMobileEntity `json:"user_mobiles"`
+    // template id
+    TemplateID int64 `json:"template_id"`
+    // template params
+    TemplateParams []string `json:"template_params"`
+}
+
+type SmsSendBatchResp struct {
+    // uuid
+    UUID string `json:"uuid"`
+    // uuid int64
+    IUUID int64 `json:"iuuid"`
+    // status
+    Status string `json:"status"`
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+type SmsSendTemplateReq struct {
+    // member id
+    MemberID int64 `json:"member_id"`
+    // mobile no
+    MobileNo string `json:"mobile_no"`
+    // mobile country
+    MobileCountry string `json:"mobile_country"`
+    // template id
+    TemplateID int64 `json:"template_id"`
+    // template param
+    TemplateParam string `json:"template_param"`
+}
+
+type SmsSendTemplateResp struct {
+    // member id
+    MemberID int64 `json:"member_id"`
+    // uuid
+    UUID string `json:"uuid"`
+    // uuid int64
+    IUUID int64 `json:"iuuid"`
+    // status
+    Status string `json:"status"`
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+type SmsGetTemplateReq struct {
+    // template id
+    TemplateID int64 `json:"template_id"`
+}
+
+type SmsGetTemplateResp struct {
+    // template id
+    TemplateID int64 `json:"template_id"`
+    // template name
+    TemplateName string `json:"template_name"`
+    // template content
+    TemplateContent string `json:"template_content"`
+    // template type
+    TemplateType string `json:"template_type"`
+    // template status
+    TemplateStatus string `json:"template_status"`
+    // template remark
+    TemplateRemark string `json:"template_remark"`
+
+    // approver
+    Approver string `json:"approver"`
+    // created at
+    CreatedAt string `json:"created_at"`
+    // updated at
+    UpdatedAt string `json:"updated_at"`
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+type SmsCheckMobileStatusReq struct {
+    // mobile no
+    MobileNo string `json:"mobile_no"`
+    // mobile country
+    MobileCountry string `json:"mobile_country"`
+}
+
+type SmsCheckMobileStatusResp struct {
+    // mobile no
+    MobileNo string `json:"mobile_no"`
+    // mobile country
+    MobileCountry string `json:"mobile_country"`
+    // status
+    Status string `json:"status"`
 }
