@@ -1,0 +1,119 @@
+syntax = "v1"
+
+import (
+	"type/type.api"
+)
+
+/*
+TODO X:
+- 完整语法手册:
+- https://go-zero.dev/cn/docs/design/grammar/
+- 重点关注 type, service 语法块
+- jwt 使用:
+- https://go-zero.dev/cn/docs/advance/jwt
+- 示例:
+- https://github.com/feihua/zero-admin/blob/master/rpc/sys/internal/logic/loginlogic.go#L75
+- https://github.com/Mikaelemmmm/go-zero-looklook/blob/main/app/usercenter/cmd/api/desc/usercenter.api
+*/
+
+info(
+	title: "user.authn"
+	desc: "用户授权(登录/注册/退出)"
+	version: "v1"
+)
+
+// todo x: 影响 etc 配置文件名称
+//no need login
+@server(
+	prefix: eshop/v1/user/authn   // todo x: 会在 handler/routes.go 添加 API 统一前缀
+	//    jwt: Auth               // todo x: 字段对应 config 内定义, 先在 config 内定义, 然后改此文件
+	//	group: login              // todo x: 会影响 handler 目录生成, 生成 handler/group/xxxx
+	//  middleware: AuthMiddleware
+)
+service main {
+	// 注册(统一+混合):
+	@handler Register
+	post /register (UserRegisterReq) returns (UserRegisterResp)
+	
+	// 帐号去重复检查(注册前)
+	@handler RegisterCheck
+	post /register/check (UserRegisterCheckReq) returns (UserRegisterCheckResp)
+	
+	// 快捷注册(登录): 短信+验证码
+	@handler QuickBySmsCode
+	post /quick/code/sms (UserRegisterReq) returns (UserLoginResp)
+	
+	// 快捷注册(登录): 邮箱+验证码
+	@handler QuickByEmailCode
+	post /quick/code/email (UserRegisterReq) returns (UserLoginResp)
+	
+	// 发送验证码:
+	@handler SendEmailCode
+	post /send/code/email (SendEmailCodeReq) returns (SendCodeResp)
+	
+	// 发送验证码
+	@handler SendSmsCode
+	post /send/code/sms (SendSmsCodeReq) returns (SendCodeResp)
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// 短信+密码
+	@handler RegisterBySms
+	post /register/sms (UserRegisterReq) returns (UserLoginResp)
+	
+	// 邮箱注册
+	@handler RegisterByEmail
+	post /register/email (UserRegisterReq) returns (UserLoginResp)
+	
+	// 第三方授权登录+注册:
+	@handler RegisterByOauth
+	post /register/oauth (UserLoginReq) returns (UserLoginResp)
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// 统一登录: 多方案混合
+	@handler Login
+	post /login (UserLoginReq) returns (UserLoginResp)
+	
+	// 邮箱+密码
+	@handler LoginByEmail
+	post /login/email (UserLoginReq) returns (UserLoginResp)
+	
+	// 邮箱+验证码
+	@handler LoginByEmailCode
+	post /login/email/code (UserLoginReq) returns (UserLoginResp)
+	
+	// 手机号+密码:
+	@handler LoginByMobile
+	post /login/mobile (UserLoginReq) returns (UserLoginResp)
+	
+	// 手机号+验证码:
+	@handler LoginByMobileCode
+	post /login/mobile/code (UserLoginReq) returns (UserLoginResp)
+	
+	// oauth 登录:
+	@handler LoginOauth
+	post /login/oauth (UserLoginReq) returns (UserLoginResp)
+	
+	// oauth 登录:
+	@handler Login2Fa
+	post /login/2fa (UserLoginReq) returns (UserLoginResp)
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// 创建一个注册码
+	@handler AntiRobot
+	post /security/anti/robot (UserLoginReq) returns (UserLoginResp)
+	
+	// 创建一个注册码
+	@handler Mfa2faCreate
+	post /security/mfa/2fa (UserLoginReq) returns (UserLoginResp)
+	
+	// 创建一个注册码
+	@handler Mfa2faVerify
+	post /security/mfa/2fa/verify (UserLoginReq) returns (UserLoginResp)
+	
+	// 创建一个注册码
+	@handler Logout
+	post /logout (UserLoginReq) returns (UserLoginResp)
+}

@@ -1,0 +1,128 @@
+syntax = "v1"
+
+type Request {
+    Name string `path:"name,options=you|me"`
+}
+
+type Response {
+    Message string `json:"message"`
+}
+
+
+////////////////////////////////////////////////////////////////////////
+
+// 注册前的重复检查
+type UserRegisterCheckReq {
+    // 邮箱:
+    Email string `json:"email"`
+
+    // 手机号:
+    MobileNo string `json:"mobile_no"`
+    MobileCountry string `json:"mobile_country"`
+
+    // 注册类型:
+    RegisterType string `json:"register_type"`
+}
+
+type UserRegisterCheckResp {
+    // 帐号是否已经存在
+    Status string `json:"status"`
+}
+
+
+////////////////////////////////////////////////////////////////////////
+
+// 用户注册:
+type UserRegisterReq {
+    // 用户名:
+    UserName string `json:"user_name"`
+    // 邮箱:
+    Email string `json:"email"`
+    // 手机号:
+    MobileNo string `json:"mobile_no"`
+    MobileCountry string `json:"mobile_country"`
+
+    // 密码:
+    Password string `json:"password"`
+    // 短信验证码:
+    SmsCode string `json:"sms_code"`
+    // 邮箱验证码:
+    EmailCode string `json:"email_code"`
+
+    // 第三方授权注册:
+    OauthToken string `json:"oauth_token"`
+    // 第三方平台: [wechat, twitter, facebook, google, github,]
+    OauthProvider string `json:"oauth_provider"`
+
+    // 注册类型:
+    RegisterType string `json:"register_type"`
+}
+
+
+type UserRegisterResp {
+    UserName string `json:"user_name"`
+    UserID string `json:"user_id"`
+
+    // 认证 token
+    Token string `json:"token"`
+}
+
+////////////////////////////////////////////////////////////////////////
+
+type UserLoginReq {
+    // 用户名:
+    UserName string `json:"user_name"`
+    // 用户名编号: 类似暴雪游戏ID方案, 是 用户名+数字编号, 组合去重
+    UserNameSn string `json:"user_name_sn"`
+
+    // 邮箱:
+    Email string `json:"email"`
+
+    // 手机号:
+    MobileNo string `json:"mobile_no"`
+    MobileCountry string `json:"mobile_country"`
+
+    // 密码:
+    Password string `json:"password"`
+
+    // 短信验证码
+    SmsCode string `json:"sms_code"`
+
+    // google 2fa code:
+    MfaCode string `json:"mfa_code"`
+
+    // 登录类型:
+    LoginType string `json:"login_type"`
+}
+
+type UserLoginResp {
+    UserName string `json:"user_name"`
+
+    // 用户 id:
+    UserID string `json:"user_id"`
+
+    // 认证 token:
+    Token string `json:"token"`
+}
+
+
+////////////////////////////////////////////////////////////////////////
+
+// 发送验证码
+type SendEmailCodeReq {
+    Code string `json:"code"`
+    Email string `json:"email"`
+}
+
+// 发送验证码
+type SendSmsCodeReq {
+    Code string `json:"code"`
+    MobileNo string `json:"mobile_no"`
+    MobileCountry string `json:"mobile_country"`
+}
+
+// 发送验证码
+type SendCodeResp {
+    Message string `json:"message"`
+    Status string `json:"status"`
+}

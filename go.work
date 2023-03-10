@@ -1,7 +1,15 @@
 go 1.18
 
 use (
-	./app/core/demo
+	//
+	// template servcie:
+	//
+	./infra/template/style1
+	./infra/template/style2
+
+	//
+	// core service:
+	//
 	./app/core/queue
 	./app/core/user/authn  // fix no matched module
 	./app/core/user/authz
