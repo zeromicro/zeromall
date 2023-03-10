@@ -1,5 +1,5 @@
 Name: app.user.authn.rpc             # todo x: update this
-ListenOn: 0.0.0.0:12300
+ListenOn: 0.0.0.0:10200              # todo x: [命名规则: 10X00: rpc, 10X01: job, 10X02: admin, 10X08: api]
 
 # mysql:
 DataSource: root:root@tcp(localhost:13306)/app_user

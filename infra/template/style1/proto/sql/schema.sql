@@ -7,7 +7,7 @@ USE
 app_user;
 
 -- ----------------------------
--- Table structure for user_identity: 用户基础信息表
+-- Table structure for user_member: 用户基础信息表
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`

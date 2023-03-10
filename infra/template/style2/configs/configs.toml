@@ -92,7 +92,7 @@
 ############################################################################################################
 
 [biz]
-    ServiceName = "user.identity"
+    ServiceName = "user.member"
     ServiceToken = "token1"
     AuthGatewayUrl = "http://127.0.0.1:8080/api/v1/user/auth/gateway/verify" # API auth 网关
 

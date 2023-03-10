@@ -1,9 +1,8 @@
 # user:
 
-- union
-- 注意服务顺序性:
-    - identity -> authn -> authz
-- 用户中心:
+- ✅ 注意服务顺序性:
+    - member -> authn -> authz
+- ✅ 用户中心:
     - 账户系统
     - 登录鉴权
     - 用户角色
@@ -11,15 +10,18 @@
 
 ## 服务列表:
 
-- ✅ [identity](identity): 用户基础信息
-- ✅ [system](system) : 系统(平台)/管理员用户
-- ✅ [developer](developer) : 开发者用户
-- ✅ [authn](authn) : 注册/登录
-- ✅ [authz](authz) : 权限控制/资源访问
-- ✅ [oauth](oauth)
+- ✅ 服务的端口号 = 服务编号 + 服务类型编码
 
+| 服务                     | 编号   | 说明      | 依赖服务             | 服务等级 |
+|------------------------|------|---------|------------------|------|
+| [member](member)       | 1010 | 用户基础信息  | 无                | L0   |
+| [authn](authn)         | 1011 | 注册/登录   | [member](member) | L1   |
+| [authz](authz)         | 1012 | 权限控制    |                  | L1   |
+| [oauth](oauth)         | 1013 | 第三方授权登录 |                  | L1   |
+| [system](system)       | 1014 | 系统用户    |                  | L1   |
+| [developer](developer) | 1015 | 开发者用户   |                  | L2   |
 
-### [identity](identity):
+### [member](member):
 
 - 客户管理
 - 用户基础信息: 查询, 更新

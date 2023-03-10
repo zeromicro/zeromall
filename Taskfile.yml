@@ -40,8 +40,8 @@ includes:
     dir: ./app/core/queue
 
   user:
-    taskfile: app/core/user/identity/
-    dir: app/core/user/identity/
+    taskfile: app/core/user/member/
+    dir: app/core/user/member/
 
   authn:
     taskfile: app/core/user/authn/

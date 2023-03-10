@@ -1,4 +1,4 @@
-# user/identity:
+# user/member:
 
 - 账号系统, 支持各种第三方登录方式
 
