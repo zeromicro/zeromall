@@ -17,19 +17,19 @@ option go_package = "./pb";
 // todo x: 控制生成的 rpc 文件夹名, 统一命名为 Service， 无需更改
 //
 service Service {
-    // 用户注册:
+    // Register 用户注册:
     rpc Register(UserRegisterReq) returns(UserRegisterResp);
 
-    // 用户登录:
+    // Login 用户登录:
     rpc Login(UserLoginReq) returns(UserLoginResp);
 
-    // 用户退出:
+    // Logout 用户退出:
     rpc Logout(UserLogoutReq) returns(UserLogoutResp);
 
-    // 移动端: 鉴权 + token
+    // AuthMobile 移动端: 鉴权 + token
     rpc AuthMobile(AuthMobileReq) returns(AuthMobileResp);
 
-    // web端: 鉴权 + cookie
+    // AuthWeb web端: 鉴权 + cookie
     rpc AuthWeb(AuthWebReq) returns(AuthWebResp);
 }
 
