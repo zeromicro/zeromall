@@ -5,7 +5,7 @@ syntax = "proto3";
 //
 
 // todo x: 控制 grpc 注册服务名
-package user.authn.inner; // TODO X: 每个服务都不同， 需要更改此参数来区分+注册
+package notification.sms.rpc; // TODO X: 每个服务都不同， 需要更改此参数来区分+注册
 
 // todo x: 统一命名为 pb，无需更改
 option go_package = "./pb";
@@ -17,90 +17,158 @@ option go_package = "./pb";
 // todo x: 控制生成的 rpc 文件夹名, 统一命名为 Service， 无需更改
 //
 service Service {
-    // 用户注册:
-    rpc Register(UserRegisterReq) returns(UserRegisterResp);
+    // Send 发送短信:
+    rpc Send(SendReq) returns(SendResp);
 
-    // 用户登录:
-    rpc Login(UserLoginReq) returns(UserLoginResp);
+    // SendTemplate 模板发送:
+    rpc SendTemplate(SendTemplateReq) returns(SendTemplateResp);
 
-    // 用户退出:
-    rpc Logout(UserLogoutReq) returns(UserLogoutResp);
+    // GetTemplate 查询模板
+    rpc GetTemplate(GetTemplateReq) returns (GetTemplateResp);
 
-    // 用户 token:
-    rpc Token(AuthTokenReq) returns(AuthTokenResp);
+    // SendBatch 批量发送:
+    rpc SendBatch(SendBatchReq) returns(SendBatchResp);
+
+    // CheckMobileStatus 检查手机号码状态:
+    rpc CheckMobileStatus(CheckMobileStatusReq) returns(CheckMobileStatusResp);
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-message Request {
-    string ping = 1;
+// SendReq 发送短信请求
+message SendReq {
+    // 用户id
+    int64 member_id = 1;
+    // 手机号码
+    string mobile_no = 2;
+    // 国家代码
+    string mobile_country = 3;
+    // 短信内容
+    string content = 4;
 }
 
-message Response {
-    string pong = 1;
-}
+// SendResp 发送短信响应
+message SendResp {
+    // 用户id
+    int64 member_id = 1;
+    // uuid
+    string uuid = 2;
+    // uuid int64
+    int64 iuuid = 3;
+    // status
+    string status = 4;
 
+}
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-
-message UserRegisterReq {
-    string username = 1;
-    string password = 2;
-
-    string email = 3;
-    string mobile_no = 4;
-    string mobile_country = 5;
-    string register_type = 6;
+message UserMobileEntity {
+    // 用户id
+    int64 member_id = 1;
+    // 手机号码
+    string mobile_no = 2;
+    // 国家代码
+    string mobile_country = 3;
 }
 
-message UserRegisterResp {
-    string user_id = 1;
-    string token = 2;
+
+message SendBatchReq {
+    // user mobiles
+    repeated UserMobileEntity user_mobiles = 1;
+    // template id
+    string template_id = 2;
+    // template param
+    string template_param = 3;
+}
+
+message SendBatchResp {
+    // uuid
+    string uuid = 1;
+    // uuid int64
+    int64 iuuid = 2;
+    // status
     string status = 3;
 }
 
-
 ////////////////////////////////////////////////////////////////////////////////////
 
-
-message UserLoginReq {
-    string username = 1;
-    string password = 2;
-    string email = 3;
-    string mobile_no = 4;
-    string mobile_country = 5;
-    string sms_code = 6;
-    string login_type = 7;
+message SendTemplateReq {
+    // member id
+    int64 member_id = 1;
+    // mobile no
+    string mobile_no = 2;
+    // mobile country
+    string mobile_country = 3;
+    // template id
+    string template_id = 4;
+    // template param
+    string template_param = 5;
 }
 
-message UserLoginResp {
-    string user_id = 1;
-    string token = 2;
-    string status = 3;
-}
-
-
-////////////////////////////////////////////////////////////////////////////////////
-
-message UserLogoutReq {
-    string user_id = 1;
-}
-
-message UserLogoutResp {
-    string user_id = 1;
+message SendTemplateResp {
+    // uuid
+    string uuid = 1;
+    // uuid int64
+    int64 iuuid = 2;
+    // status
     string status = 3;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-message AuthTokenReq {
-    string user_id = 1;
+message GetTemplateReq {
+    // 模板编号
+    string template_no = 1;
 }
 
-message AuthTokenResp {
-    string user_id = 1;
-    string token = 2;
+message GetTemplateResp {
+    // 模板编号
+    string template_no = 1;
+    // 模板内容
+    string template_content = 2;
+    // 英文模板
+    string template_en = 3;
+
+    // 模板类型
+    int32 template_type = 4;
+    // 模板状态
+    int32 template_status = 5;
+
+    // 审批人
+    string approver = 6;
+    // 提交人
+    string submitter = 7;
+
+    // 业务类型
+    string business = 8;
+
+    // 创建时间
+    int64 created_at = 9;
+    // 修改时间
+    int64 updated_at = 10;
+    // 回调地址
+    string callback = 11;
+    // 参数
+    repeated string param = 12;
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+// check mobile status
+message CheckMobileStatusReq {
+    // mobile no
+    string mobile_no = 1;
+    // mobile country
+    string mobile_country = 2;
+}
+
+message CheckMobileStatusResp {
+    // mobile no
+    string mobile_no = 1;
+    // mobile country
+    string mobile_country = 2;
+    // status
     string status = 3;
 }
+
