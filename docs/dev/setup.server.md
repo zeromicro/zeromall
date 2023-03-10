@@ -1,0 +1,70 @@
+# Setup Server Development Environment
+
+- [ZeroMall - wiki](https://github.com/zeromicro/zeromall/wiki)
+- 项目文档
+- [app](./app)
+
+## Requirements:
+
+- ✅ go 1.15+
+- ✅ go-zero: go 微服务框架
+- ✅ gRPC: RPC 框架
+- ✅ consul: 服务注册/服务发现, 未使用 go-zero 默认的 etcd (个人偏好, 可根据需要改回 etcd)
+- ✅ mysql: 存储
+- ✅ redis: 缓存
+- ✅ kafka/rabbitmq: 队列
+- ✅ docker + docker-compose: 本地开发环境
+
+## Development:
+
+- [x] [reference - wiki](https://github.com/zeromicro/zeromall/wiki/reference)
+- [x] [搭建本地开发环境 - wiki](https://github.com/zeromicro/zeromall/wiki/setup-development)
+    - 请务必仔细查看文档, 有详细说明
+- [deploy/docs](./deploy/readme.md)
+
+- install:
+
+```
+
+# clone repo:
+git clone git@github.com:zeromicro/zeromall.git
+
+# enter project root:
+cd zeromall/
+
+
+# run mysql/redis/rabbitmq/etcd:
+task local:init
+
+# install:
+make install
+make init
+
+# install go pkg:
+task tidy
+
+
+# run:
+task run
+
+
+```
+
+- 创建新服务目录:
+    - [go-zero 微服务创建脚手架: cookiecutter-go](https://github.com/better-go/cookiecutter-go)
+
+```bash
+cd zeromall/
+
+# 在 app/biz 下创建一个新的业务服务目录:
+make app.gen.biz
+
+# 在 app/basic 下创建一个新的基础服务目录:
+make app.gen.basic
+```
+
+## 示例服务:
+
+- [x] [示例服务 app/basic/demo - wiki](https://github.com/zeromicro/zeromall/wiki/demo-service)
+- [x] 服务启动说明, 辅助理解代码结构
+

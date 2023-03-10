@@ -8,118 +8,57 @@
 ## WIP:
 
 - 🚀 架构公式: [biz](app/biz) = [core](app/core) + [unit](app/unit)
+    - ✅ [biz](app/biz): 产品构成
+    - ✅ [core](app/core): 基础服务, 公共服务
+    - ✅ [unit](app/unit): 业务单元, 通用业务单元
 
-> 产品列表:
+### 产品:
 
-- 💖 [app/biz/mall](app/biz/mall): B2B2C 电商平台
-- 💖 [app/biz/eshop](app/biz/eshop): 虚拟商品售卖商城
+| [产品(app/biz) ](app/biz)           | 说明         |
+|:----------------------------------|------------|
+| 💖 [app/biz/mall](app/biz/mall)   | B2B2C 电商平台 |
+| 💖 [app/biz/eshop](app/biz/eshop) | 虚拟商品售卖商城   |
 
-> 服务列表:
+### 核心服务:
 
-- ☀️ [app/unit/license/key](./app/unit/license/key): 注册码服务
-    - 售卖 app `密钥/注册码`服务
+| [核心服务(app/core)](app/core)                 | 服务           |
+|:-------------------------------------------|--------------|
+| [app/core/user/authn](app/core/user/authn) | 用户服务: 注册/登录  |
+| [app/core/user/authz](app/core/user/authz) | 用户服务: 访问权限控制 |
+| [app/core/queue](app/core/queue)           | 基础队列服务       |
 
-> 基础服务列表:
+### 服务矩阵:
 
-- 🔧 [app/core/queue](app/core/queue): 队列服务
+| [业务单元(app/unit)](app/unit)                              | 说明                 |
+|:--------------------------------------------------------|--------------------|
+| ☀️ [app/unit/license/key](app/unit/license/key)         | 注册码服务: 售卖 app `密钥` |
+| ☀️ [app/unit/cart](app/unit/cart)                       | 购物车系统              |
+| ☀️ [app/unit/order](app/unit/order)                     | 订单系统               |
+| ☀️ [app/unit/finance/payment](app/unit/finance/payment) | 支付系统               |
 
-## Wiki:
+## Development:
 
-- [ZeroMall - wiki](https://github.com/zeromicro/zeromall/wiki)
-- 项目文档
+- ✅ [Taskfile.yml](./Taskfile.yml)
+- ✅ 所有`微服务`启动脚本, 依赖`中间件`启动, 都在此.
 
-## Client:
+### Server:
 
-- [client](./client)
-- https://github.com/zeromicro/zeromall/wiki/client
-- 基于 flutter 实现客户端(Web/iOS/Android/Windows/MacOS/Linux)
+- [x] [Setup Server Development Environment](./docs/dev/setup.server.md)
 
-### Requirements:
+### Client:
 
-- [x] flutter 2.5.0+
-- [x] GetX: 主要框架
+- [x] [Setup Client Development Environment](./docs/dev/setup.client.md)
 
-## Server:
+## 示例服务:
 
-- 基于 go + go-zero 实现
-- [app](./app)
-
-### Requirements:
-
-- [x] go 1.15+
-- [x] go-zero: 全功能的 go 微服务框架
-- [x] gRPC: RPC 领域事实上的标准
-- [x] etcd: 服务注册/服务发现
-- [x] mysql: 存储
-- [x] redis: 缓存
-- [x] kafka: 队列
-- [x] rabbitmq: 队列
-- [x] docker + docker-compose
-
-> 这也是掌握本项目, 需要熟知的先修技能栈.
-
-#### Development Environment:
-
-- [x] [reference - wiki](https://github.com/zeromicro/zeromall/wiki/reference)
-- [x] [搭建本地开发环境 - wiki](https://github.com/zeromicro/zeromall/wiki/setup-development)
-    - 请务必仔细查看文档, 有详细说明
-- [deploy/docs](./deploy/readme.md)
+- ✅ [app/unit/license](app/unit/license) : 授权码服务(app license key)
+    - [app/unit/license/key/Taskfile.yml](app/unit/license/key/Taskfile.yml)
+- ✅ 以此服务为例, 可以快速熟悉整个项目的架构.
+- ✅ 每个服务内都有 [Taskfile.yml](app/unit/license/key/Taskfile.yml), 包含服务所有启动脚本.
 
 
-- install:
-
-```
-
-# clone repo:
-git clone git@github.com:zeromicro/zeromall.git
-
-# enter project root:
-cd zeromall/
 
 
-# run mysql/redis/rabbitmq/etcd:
-task local:init
 
-# install:
-make install
-make init
-
-# install go pkg:
-task tidy
-
-
-# run:
-task run
-
-
-```
-
-- 创建新服务目录:
-    - [go-zero 微服务创建脚手架: cookiecutter-go](https://github.com/better-go/cookiecutter-go)
-
-```bash
-cd zeromall/
-
-# 在 app/biz 下创建一个新的业务服务目录:
-make app.gen.biz
-
-# 在 app/basic 下创建一个新的基础服务目录:
-make app.gen.basic
-```
-
-#### 示例服务:
-
-- [x] [示例服务 app/basic/demo - wiki](https://github.com/zeromicro/zeromall/wiki/demo-service)
-- [x] 服务启动说明, 辅助理解代码结构
-
-### Structure:
-
-- [项目目录结构详细说明 - wiki](https://github.com/zeromicro/zeromall/wiki/project-structure)
-- 非常详细的目录说明, 快速理解项目
-
-## RoadMap:
-
-- https://github.com/zeromicro/zeromall/issues/3
-- https://github.com/zeromicro/zeromall/projects/1
 
 

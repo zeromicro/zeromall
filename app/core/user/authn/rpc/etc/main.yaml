@@ -1,6 +1,27 @@
-Name: main.rpc
-ListenOn: 0.0.0.0:8080
-Etcd:
-  Hosts:
-  - 127.0.0.1:2379
-  Key: main.rpc
+Name: app.user.authn.rpc             # todo x: update this
+ListenOn: 0.0.0.0:12300
+
+# mysql:
+DataSource: root:root@tcp(localhost:13306)/app_user
+
+# cache:
+Cache:
+  - Host: localhost:6379
+
+#Etcd:
+#  Hosts:
+#    - 127.0.0.1:2379
+#  Key: main.rpc
+
+#
+# 替代 etcd:
+#
+Consul:
+  Host: 127.0.0.1:8500 # consul endpoint
+  #  Token: 'f0512db6-76d6-f25e-f344-a98cc3484d42' # consul ACL token (optional)
+  Key: app.user.authn.rpc # todo x: service name registered to Consul
+  Meta:
+    Protocol: grpc
+  Tag:
+    - app.user.authn   # todo x: update this
+    - rpc
