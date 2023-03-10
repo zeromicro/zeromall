@@ -32,8 +32,8 @@ includes:
   # 待测试的服务根目录:
   #
   app:demo:
-    taskfile: ./app/core/demo
-    dir: ./app/core/demo
+    taskfile: ./infra/template/style2
+    dir: ./infra/template/style2
 
   app:queue:
     taskfile: ./app/core/queue

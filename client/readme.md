@@ -1,22 +1,18 @@
-
-
-
 # client:
 
 - 电商平台客户端:
 - admin: 平台运营系统
-  - web: PC web 客户端
-  - app(iOS/Android): 移动端
-  - desktop: 桌面版
+    - web: PC web 客户端
+    - app(iOS/Android): 移动端
+    - desktop: 桌面版
 - to C: 消费者客户端
-  - web: PC web 客户端
-  - app(iOS/Android): 移动端
-  - desktop: 桌面版
+    - web: PC web 客户端
+    - app(iOS/Android): 移动端
+    - desktop: 桌面版
 - to B: 商户管理端
-  - web: PC web 客户端
-  - app(iOS/Android): 移动端
-  - desktop: 桌面版
-
+    - web: PC web 客户端
+    - app(iOS/Android): 移动端
+    - desktop: 桌面版
 
 ## 架构方案:
 
