@@ -1,6 +1,27 @@
-Name: main.rpc
-ListenOn: 0.0.0.0:8080
-Etcd:
-  Hosts:
-  - 127.0.0.1:2379
-  Key: main.rpc
+Name: app.notification.sms.rpc       # todo x: update this
+ListenOn: 0.0.0.0:10010              # todo x: [命名规则: 100X0: rpc, 100X1: job, 100X2: admin, 100X8: api]
+
+# mysql: 参数必带
+DataSource: root:root@tcp(localhost:13306)/app_sms?parseTime=true
+
+# cache:
+Cache:
+  - Host: localhost:6379
+
+#Etcd:
+#  Hosts:
+#    - 127.0.0.1:2379
+#  Key: main.rpc
+
+#
+# 替代 etcd:
+#
+Consul:
+  Host: 127.0.0.1:8500 # consul endpoint
+  #  Token: 'f0512db6-76d6-f25e-f344-a98cc3484d42' # consul ACL token (optional)
+  Key: app.notification.sms.rpc  # todo x: service name registered to Consul
+  Meta:
+    Protocol: grpc
+  Tag:
+    - app.notification.sms   # todo x: update this
+    - rpc

@@ -25,7 +25,23 @@ func NewSendLogic(ctx context.Context, svcCtx *svc.ServiceContext) *SendLogic {
 
 // Send 发送短信:
 func (l *SendLogic) Send(in *pb.SendReq) (*pb.SendResp, error) {
-	// todo: add your logic here and delete this line
+	/*
+		todo x: 发送短信流程
+			1. 校验参数
+			2. 校验短信模板
+			3. 发送短信
+			4. 记录发送日志
+			5. 返回结果
+	*/
 
-	return &pb.SendResp{}, nil
+	// mock
+	resp := &pb.SendResp{
+		Uuid:   "uuid123546",
+		Status: "success",
+	}
+
+	// TODO: DO SEND SMS HERE
+
+	l.Logger.Debugf("Send SMS: req: %+v, resp: %+v", in, resp)
+	return resp, nil
 }
