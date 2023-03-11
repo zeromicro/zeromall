@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+
 	"user/authn/proto/model"
 	"user/authn/rpc/internal/svc"
 	"user/authn/rpc/pb"
@@ -34,14 +35,9 @@ func (l *RegisterLogic) Register(in *pb.UserRegisterReq) (*pb.UserRegisterResp, 
 	l.Logger.Debugf("Register req=%+v", in)
 	ret, err := l.svcCtx.MAuthn.FindOneByAuthUnique(l.ctx, authUnique)
 	l.Logger.Debugf("Register query account: ret=%+v, err=%v", ret, err)
-	if err != nil {
-		// logger
-		l.Logger.Errorf("FindOneByAuthUnique err=%v", err)
-		return nil, err
-	}
 
 	// existed, return error
-	if ret.AuthUnique != "" {
+	if ret != nil {
 		// 重复
 		resp.Status = "account repeated" // 0: success, -1: fail
 		return resp, err

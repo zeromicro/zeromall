@@ -1,7 +1,7 @@
 Name: app.user.authn.rpc             # todo x: update this
 ListenOn: 0.0.0.0:10200              # todo x: [命名规则: 10X00: rpc, 10X01: job, 10X02: admin, 10X08: api]
 
-# mysql: 参数必带
+# mysql: 参数必带, for unit test
 DataSource: root:root@tcp(localhost:13306)/app_user?parseTime=true
 
 # cache:
