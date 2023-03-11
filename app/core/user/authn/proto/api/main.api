@@ -25,7 +25,7 @@ info(
 // todo x: 影响 etc 配置文件名称
 //no need login
 @server(
-	prefix: eshop/v1/user/authn   // todo x: 会在 handler/routes.go 添加 API 统一前缀
+	prefix: api/v1/user/authn   // todo x: 会在 handler/routes.go 添加 API 统一前缀
 	//    jwt: Auth               // todo x: 字段对应 config 内定义, 先在 config 内定义, 然后改此文件
 	//	group: login              // todo x: 会影响 handler 目录生成, 生成 handler/group/xxxx
 	//  middleware: AuthMiddleware

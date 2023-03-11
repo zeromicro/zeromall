@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package user.authn.api.ecode.v1; // TODO X: 每个服务都不同， 需要更改此参数来区分+注册
+
+// todo x: 统一命名
+option go_package = "./ecode";
+
+// api auth error code
+enum AuthECode {
+    // 未定义
+    Undefined = 0;
+
+    // 正常
+    OK = 1;
+
+    //////////////////////// 通用错误码 ////////////////////////
+
+    // 无效的请求
+    InvalidRequest = -1;
+    // 无效的参数
+    InvalidParam = -2;
+    // 无效的签名
+    InvalidSign = -3;
+    // 无效的token
+    InvalidToken = -4;
+    // 无效的用户
+    InvalidUser = -5;
+    // 无效的密码
+    InvalidPassword = -6;
+    // 无效的验证码
+    InvalidCaptcha = -7;
+    // 无效的手机号
+    InvalidPhoneNumber = -8;
+    // 无效的邮箱
+    InvalidEmail = -9;
+    // 无效的用户名
+    InvalidUsername = -10;
+    // 无效的用户类型
+    InvalidUserType = -11;
+    // 无效的用户状态
+    InvalidUserStatus = -12;
+    // 无效的用户角色
+    InvalidUserRole = -13;
+    // 无效的用户权限
+    InvalidUserPermission = -14;
+
+    // 限速
+    RateLimit = -100;
+    // 服务繁忙
+    ServiceBusy = -101;
+    // 服务不可用
+    ServiceUnavailable = -102;
+    // 服务超时
+    ServiceTimeout = -103;
+    // 服务错误
+    ServiceError = -104;
+    // 服务异常
+    ServiceException = -105;
+    // 服务不支持
+    ServiceNotSupport = -106;
+}

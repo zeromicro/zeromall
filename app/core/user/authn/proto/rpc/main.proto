@@ -5,7 +5,7 @@ syntax = "proto3";
 //
 
 // todo x: 控制 grpc 注册服务名
-package user.authn.rpc; // TODO X: 每个服务都不同， 需要更改此参数来区分+注册
+package user.authn.rpc.v1; // TODO X: 每个服务都不同， 需要更改此参数来区分+注册
 
 // todo x: 统一命名为 pb，无需更改
 option go_package = "./pb";
@@ -48,6 +48,24 @@ message Response {
 ////////////////////////////////////////////////////////////////////////////////////
 
 
+// auth_type: for register and login
+enum AuthType {
+    Unknown = 0;
+    // mobile + password
+    Mobile = 1;
+    // email + password
+    Email = 2;
+    // username + password
+    Username = 3;
+    // mobile + sms_code
+    MobileSms = 4;
+    // email + email_code
+    EmailCode = 5;
+    // oauth
+    Oauth = 6;
+}
+
+
 message UserRegisterReq {
     string username = 1;
     string password = 2;
@@ -55,7 +73,7 @@ message UserRegisterReq {
     string email = 3;
     string mobile_no = 4;
     string mobile_country = 5;
-    string register_type = 6;
+    AuthType register_type = 6;
 }
 
 message UserRegisterResp {

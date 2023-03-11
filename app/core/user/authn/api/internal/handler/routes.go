@@ -113,6 +113,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: LogoutHandler(serverCtx),
 			},
 		},
-		rest.WithPrefix("/eshop/v1/user/authn"),
+		rest.WithPrefix("/api/v1/user/authn"),
 	)
 }

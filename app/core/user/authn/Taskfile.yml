@@ -66,6 +66,7 @@ tasks:
       # - cd hello_rpc/; goctl rpc protoc rpc.proto --go_out=./pb --go-grpc_out=./pb --zrpc_out=.
       #      - cd rpc/; goctl rpc protoc main.proto --go_out=. --go-grpc_out=. --zrpc_out=. --style go_zero
       - goctl rpc protoc "./proto/rpc/main.proto" --go_out=./rpc --go-grpc_out=./rpc --zrpc_out=./rpc --style go_zero
+    ignore_error: true
 
   # ref: https://go-zero.dev/cn/docs/design/grammar
   # todo x: fix 报错, 注意 go.work 添加子路径
@@ -79,6 +80,15 @@ tasks:
     cmds:
       #      - goctl model mysql ddl -src="./*.sql" -dir="./sql/model" -c --style go_zero
       - cd proto; goctl model mysql ddl -src="./sql/*.sql" -dir="./model" -c --style go_zero
+
+  gen:ecode:
+    cmds:
+      - |
+        protoc --go_out=. --go_opt=paths=source_relative \
+                --go-grpc_out=. --go-grpc_opt=paths=source_relative \
+                ./proto/error/*.proto
+
+
 
   # 为 dart 客户端生成代码
   gen:dart:

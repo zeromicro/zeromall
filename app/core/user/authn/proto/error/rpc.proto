@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package user.authn.rpc.ecode.v1; // TODO X: 每个服务都不同， 需要更改此参数来区分+注册
+
+// todo x: 统一命名
+option go_package = "./ecode";
+
+enum RpcECode {
+    // unknown error
+    Unknown = 0;
+    // ok
+    OK = 1;
+    // invalid argument < 0
+    NotValid = -1;
+    // not found
+    NotFound = -2;
+    // internal error
+    Internal = -3;
+    // unauthenticated
+    Unauthenticated = -4;
+    // permission denied
+    PermissionDenied = -5;
+    // unavailable
+    Unavailable = -6;
+    // already exists
+    AlreadyExists = -7;
+}
