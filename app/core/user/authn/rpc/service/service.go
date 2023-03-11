@@ -13,22 +13,26 @@ import (
 )
 
 type (
-	AuthMobileReq    = pb.AuthMobileReq
-	AuthMobileResp   = pb.AuthMobileResp
-	AuthWebReq       = pb.AuthWebReq
-	AuthWebResp      = pb.AuthWebResp
-	Request          = pb.Request
-	Response         = pb.Response
-	UserLoginReq     = pb.UserLoginReq
-	UserLoginResp    = pb.UserLoginResp
-	UserLogoutReq    = pb.UserLogoutReq
-	UserLogoutResp   = pb.UserLogoutResp
-	UserRegisterReq  = pb.UserRegisterReq
-	UserRegisterResp = pb.UserRegisterResp
+	AuthMobileReq        = pb.AuthMobileReq
+	AuthMobileResp       = pb.AuthMobileResp
+	AuthWebReq           = pb.AuthWebReq
+	AuthWebResp          = pb.AuthWebResp
+	Request              = pb.Request
+	Response             = pb.Response
+	UserCheckAccountReq  = pb.UserCheckAccountReq
+	UserCheckAccountResp = pb.UserCheckAccountResp
+	UserLoginReq         = pb.UserLoginReq
+	UserLoginResp        = pb.UserLoginResp
+	UserLogoutReq        = pb.UserLogoutReq
+	UserLogoutResp       = pb.UserLogoutResp
+	UserRegisterReq      = pb.UserRegisterReq
+	UserRegisterResp     = pb.UserRegisterResp
 
 	Service interface {
 		// Register 用户注册:
 		Register(ctx context.Context, in *UserRegisterReq, opts ...grpc.CallOption) (*UserRegisterResp, error)
+		// CheckAccount 帐号状态检测:
+		CheckAccount(ctx context.Context, in *UserCheckAccountReq, opts ...grpc.CallOption) (*UserCheckAccountResp, error)
 		// Login 用户登录:
 		Login(ctx context.Context, in *UserLoginReq, opts ...grpc.CallOption) (*UserLoginResp, error)
 		// Logout 用户退出:
@@ -54,6 +58,12 @@ func NewService(cli zrpc.Client) Service {
 func (m *defaultService) Register(ctx context.Context, in *UserRegisterReq, opts ...grpc.CallOption) (*UserRegisterResp, error) {
 	client := pb.NewServiceClient(m.cli.Conn())
 	return client.Register(ctx, in, opts...)
+}
+
+// CheckAccount 帐号状态检测:
+func (m *defaultService) CheckAccount(ctx context.Context, in *UserCheckAccountReq, opts ...grpc.CallOption) (*UserCheckAccountResp, error) {
+	client := pb.NewServiceClient(m.cli.Conn())
+	return client.CheckAccount(ctx, in, opts...)
 }
 
 // Login 用户登录:

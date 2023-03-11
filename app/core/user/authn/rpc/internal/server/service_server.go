@@ -28,6 +28,12 @@ func (s *ServiceServer) Register(ctx context.Context, in *pb.UserRegisterReq) (*
 	return l.Register(in)
 }
 
+// CheckAccount 帐号状态检测:
+func (s *ServiceServer) CheckAccount(ctx context.Context, in *pb.UserCheckAccountReq) (*pb.UserCheckAccountResp, error) {
+	l := logic.NewCheckAccountLogic(ctx, s.svcCtx)
+	return l.CheckAccount(in)
+}
+
 // Login 用户登录:
 func (s *ServiceServer) Login(ctx context.Context, in *pb.UserLoginReq) (*pb.UserLoginResp, error) {
 	l := logic.NewLoginLogic(ctx, s.svcCtx)

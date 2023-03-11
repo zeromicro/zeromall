@@ -20,6 +20,9 @@ service Service {
     // Register 用户注册:
     rpc Register(UserRegisterReq) returns(UserRegisterResp);
 
+    // CheckAccount 帐号状态检测:
+    rpc CheckAccount(UserCheckAccountReq) returns(UserCheckAccountResp);
+
     // Login 用户登录:
     rpc Login(UserLoginReq) returns(UserLoginResp);
 
@@ -85,6 +88,22 @@ message UserRegisterResp {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+// check account
+message UserCheckAccountReq {
+    string username = 1;
+    string email = 2;
+    string mobile_no = 3;
+    string mobile_country = 4;
+    AuthType register_type = 5;
+}
+
+message UserCheckAccountResp {
+    string user_id = 1;
+    // 帐号状态
+    string status = 2;
+}
+
+////////////////////////////////////////////////////////////////////////////////////
 
 message UserLoginReq {
     string username = 1;

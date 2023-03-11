@@ -26,7 +26,15 @@ func NewRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Register
 
 // Register 用户注册:
 func (l *RegisterLogic) Register(in *pb.UserRegisterReq) (*pb.UserRegisterResp, error) {
-	// todo: add your logic here and delete this line
+	/*
+		TODO X :注册流程
+			1. 校验参数
+			2. 校验账号是否存在
+			3. 根据注册方式, 执行不同的注册逻辑:
+				3.1 手机号注册: 生成验证码, 发送短信, 保存验证码, 保存账号, 返回账号信息, 返回token,
+				3.2 邮箱注册: 生成验证码, 发送邮件, 保存验证码, 保存账号
+				3.3 用户名+密码注册: 保存账号, 返回账号信息, 返回token
+	*/
 
 	var resp = new(pb.UserRegisterResp)
 

@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package user.authn.model.ecode.v1; // TODO X: 每个服务都不同， 需要更改此参数来区分+注册
+
+// todo x: 统一命名
+option go_package = "./ecode";
+
+/*
+枚举值定义规范:
+    1. 0 是未定义, 不使用.
+    2. > 0, 为正常值.
+    3. < 0, 为异常值.
+*/
+
+// user status
+enum UserStatus {
+    // undefined
+    Undefined = 0;
+
+    // 帐号正常
+    Normal = 1;
+
+    // 未验证
+    Unverified = 2;
+
+    // 已删除
+    Deleted = -1;
+
+    // 锁定
+    Locked = -2;
+}
+
+
+
+

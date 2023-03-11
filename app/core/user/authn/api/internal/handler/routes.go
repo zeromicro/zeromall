@@ -4,6 +4,10 @@ package handler
 import (
 	"net/http"
 
+	auth "user/authn/api/internal/handler/auth"
+	quick "user/authn/api/internal/handler/quick"
+	register "user/authn/api/internal/handler/register"
+	security "user/authn/api/internal/handler/security"
 	"user/authn/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
@@ -14,105 +18,93 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		[]rest.Route{
 			{
 				Method:  http.MethodPost,
+				Path:    "/quick/sms",
+				Handler: quick.AuthBySmsCodeHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/quick/email",
+				Handler: quick.AuthByEmailCodeHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/quick/oauth",
+				Handler: quick.AuthByOauthHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/send/sms",
+				Handler: quick.SendSmsCodeHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/send/email",
+				Handler: quick.SendEmailCodeHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/api/v1/user/authn"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
 				Path:    "/register",
-				Handler: RegisterHandler(serverCtx),
+				Handler: register.RegisterHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodPost,
 				Path:    "/register/check",
-				Handler: RegisterCheckHandler(serverCtx),
+				Handler: register.CheckAccountHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodPost,
-				Path:    "/quick/code/sms",
-				Handler: QuickBySmsCodeHandler(serverCtx),
+				Path:    "/register/verify",
+				Handler: register.VerifyHandler(serverCtx),
 			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/quick/code/email",
-				Handler: QuickByEmailCodeHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/send/code/email",
-				Handler: SendEmailCodeHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/send/code/sms",
-				Handler: SendSmsCodeHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/register/sms",
-				Handler: RegisterBySmsHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/register/email",
-				Handler: RegisterByEmailHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/register/oauth",
-				Handler: RegisterByOauthHandler(serverCtx),
-			},
+		},
+		rest.WithPrefix("/api/v1/user/authn"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
 			{
 				Method:  http.MethodPost,
 				Path:    "/login",
-				Handler: LoginHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/login/email",
-				Handler: LoginByEmailHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/login/email/code",
-				Handler: LoginByEmailCodeHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/login/mobile",
-				Handler: LoginByMobileHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/login/mobile/code",
-				Handler: LoginByMobileCodeHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/login/oauth",
-				Handler: LoginOauthHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/login/2fa",
-				Handler: Login2FaHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/security/anti/robot",
-				Handler: AntiRobotHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/security/mfa/2fa",
-				Handler: Mfa2faCreateHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPost,
-				Path:    "/security/mfa/2fa/verify",
-				Handler: Mfa2faVerifyHandler(serverCtx),
+				Handler: auth.LoginHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodPost,
 				Path:    "/logout",
-				Handler: LogoutHandler(serverCtx),
+				Handler: auth.LogoutHandler(serverCtx),
 			},
 		},
 		rest.WithPrefix("/api/v1/user/authn"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/captcha",
+				Handler: security.CaptchaHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/mfa/add",
+				Handler: security.MfaAddHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/mfa/verify",
+				Handler: security.MfaVerifyHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/mfa/remove",
+				Handler: security.MfaRemoveHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/api/v1/user/authn/security"),
 	)
 }
