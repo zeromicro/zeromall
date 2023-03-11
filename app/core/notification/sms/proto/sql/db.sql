@@ -1,12 +1,12 @@
--- 数据库创建: 用户数据库
+-- 数据库创建: 短信服务
 
 -- del:
 DROP
-  DATABASE IF EXISTS `mall_license`;
+  DATABASE IF EXISTS `app_sms`;
 
 -- new:
 CREATE
-  DATABASE `mall_license` DEFAULT CHARACTER SET = `utf8mb4` DEFAULT COLLATE `utf8mb4_unicode_ci`;
+  DATABASE `app_sms` DEFAULT CHARACTER SET = `utf8mb4` DEFAULT COLLATE `utf8mb4_unicode_ci`;
 
 -- fix for deleted_at = 0
 select @@sql_mode;

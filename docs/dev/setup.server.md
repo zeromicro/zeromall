@@ -25,6 +25,8 @@
 - install:
 
 ```
+# 安装 go-task 工具:
+brew install go-task/tap/go-task
 
 # clone repo:
 git clone git@github.com:zeromicro/zeromall.git
