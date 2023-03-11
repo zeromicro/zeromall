@@ -24,4 +24,3 @@ Consul:
     Protocol: grpc
   Tag:
     - app.notification.sms   # todo x: update this
-    - rpc
