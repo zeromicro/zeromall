@@ -1,0 +1,74 @@
+version: 3
+
+tasks:
+
+  install:
+    cmds:
+      - npm install
+
+  dev:
+    cmds:
+      - npm start
+
+  run:fr:
+    cmds:
+      - npm run start -- --locale fr
+
+  run:zh:
+    cmds:
+      - npm run start -- --locale zh-CN
+
+  i18n:
+    cmds:
+      - npm run write-translations -- --locale en
+      - npm run write-translations -- --locale fr
+      - npm run write-translations -- --locale zh-CN
+
+  i18n:zh:
+    cmds:
+      - mkdir -p i18n/zh-CN/docusaurus-plugin-content-docs/current
+      - cp -r docs/** i18n/zh-CN/docusaurus-plugin-content-docs/current
+
+      - mkdir -p i18n/zh-CN/docusaurus-plugin-content-blog
+      - cp -r blog/** i18n/zh-CN/docusaurus-plugin-content-blog
+
+      - mkdir -p i18n/zh-CN/docusaurus-plugin-content-pages
+      - cp -r src/pages/**.md i18n/zh-CN/docusaurus-plugin-content-pages
+      - cp -r src/pages/**.mdx i18n/zh-CN/docusaurus-plugin-content-pages
+    ignore_error: true
+
+
+  i18n:fr:
+    cmds:
+      - mkdir -p i18n/fr/docusaurus-plugin-content-docs/current
+      - cp -r docs/** i18n/fr/docusaurus-plugin-content-docs/current
+
+      - mkdir -p i18n/fr/docusaurus-plugin-content-blog
+      - cp -r blog/** i18n/fr/docusaurus-plugin-content-blog
+
+      - mkdir -p i18n/fr/docusaurus-plugin-content-pages
+      - cp -r src/pages/**.md i18n/fr/docusaurus-plugin-content-pages
+      - cp -r src/pages/**.mdx i18n/fr/docusaurus-plugin-content-pages
+
+  deploy:
+    cmds:
+      - DEPLOYMENT_BRANCH=gh-pages USE_SSH=true yarn deploy
+
+  ###########################################################################
+
+  quick:
+    cmds:
+      - task: commit
+      - task: commit
+    ignore_error: true
+
+  commit:
+    cmds:
+      - git add .
+      - git commit -m "update"
+    ignore_error: true
+
+  push:
+    cmds:
+      - git push origin main --tags
+      - repo_url=`git remote -v | grep push | awk -F ":" '{print $2}' | awk -F ".git " '{print "https://github.com/"$1}'`; open $repo_url ; echo $repo_url;

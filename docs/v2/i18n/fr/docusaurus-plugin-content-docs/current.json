@@ -1,0 +1,166 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.guide": {
+    "message": "guide",
+    "description": "The label for category guide in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Rust 快速开始": {
+    "message": "Rust 快速开始",
+    "description": "The label for category Rust 快速开始 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Rust 快速开始.link.generated-index.description": {
+    "message": "5 minutes to learn the most important Rust concepts.",
+    "description": "The generated-index page description for category Rust 快速开始 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Rust 入门实践": {
+    "message": "Rust 入门实践",
+    "description": "The label for category Rust 入门实践 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Rust 入门实践.link.generated-index.description": {
+    "message": "Rust 入门实践项目, 边学边练.",
+    "description": "The generated-index page description for category Rust 入门实践 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Rust 基础语法": {
+    "message": "Rust 基础语法",
+    "description": "The label for category Rust 基础语法 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Rust 基础语法.link.generated-index.description": {
+    "message": "5 minutes to learn the most important Docusaurus concepts.",
+    "description": "The generated-index page description for category Rust 基础语法 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Rust 进阶语法": {
+    "message": "Rust 进阶语法",
+    "description": "The label for category Rust 进阶语法 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Rust 读书笔记": {
+    "message": "Rust 读书笔记",
+    "description": "The label for category Rust 读书笔记 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Rust 读书笔记.link.generated-index.description": {
+    "message": "5 minutes to learn the most important Docusaurus concepts.",
+    "description": "The generated-index page description for category Rust 读书笔记 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.参考资料": {
+    "message": "参考资料",
+    "description": "The label for category 参考资料 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.参考资料.link.generated-index.description": {
+    "message": "参考资料/文献.",
+    "description": "The generated-index page description for category 参考资料 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.annotated": {
+    "message": "annotated",
+    "description": "The label for category annotated in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Rust 标准库": {
+    "message": "Rust 标准库",
+    "description": "The label for category Rust 标准库 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Rust 标准库.link.generated-index.description": {
+    "message": "5 minutes to learn the most important Rust concepts.",
+    "description": "The generated-index page description for category Rust 标准库 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Rust 热门项目": {
+    "message": "Rust 热门项目",
+    "description": "The label for category Rust 热门项目 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Rust 热门项目.link.generated-index.description": {
+    "message": "Rust hot - 社区热门项目源码分析.",
+    "description": "The generated-index page description for category Rust 热门项目 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.ecosystem": {
+    "message": "ecosystem",
+    "description": "The label for category ecosystem in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.core-libs": {
+    "message": "core-libs",
+    "description": "The label for category core-libs in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.web": {
+    "message": "web",
+    "description": "The label for category web in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.i18n": {
+    "message": "i18n",
+    "description": "The label for category i18n in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.zh-CN": {
+    "message": "zh-CN",
+    "description": "The label for category zh-CN in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.docs": {
+    "message": "docs",
+    "description": "The label for category docs in sidebar tutorialSidebar"
+  },
+  "sidebar.guide.category.Rust 快速开始": {
+    "message": "Rust 快速开始",
+    "description": "The label for category Rust 快速开始 in sidebar guide"
+  },
+  "sidebar.guide.category.Rust 快速开始.link.generated-index.description": {
+    "message": "5 minutes to learn the most important Rust concepts.",
+    "description": "The generated-index page description for category Rust 快速开始 in sidebar guide"
+  },
+  "sidebar.guide.category.Rust 入门实践": {
+    "message": "Rust 入门实践",
+    "description": "The label for category Rust 入门实践 in sidebar guide"
+  },
+  "sidebar.guide.category.Rust 入门实践.link.generated-index.description": {
+    "message": "Rust 入门实践项目, 边学边练.",
+    "description": "The generated-index page description for category Rust 入门实践 in sidebar guide"
+  },
+  "sidebar.guide.category.Rust 基础语法": {
+    "message": "Rust 基础语法",
+    "description": "The label for category Rust 基础语法 in sidebar guide"
+  },
+  "sidebar.guide.category.Rust 基础语法.link.generated-index.description": {
+    "message": "5 minutes to learn the most important Docusaurus concepts.",
+    "description": "The generated-index page description for category Rust 基础语法 in sidebar guide"
+  },
+  "sidebar.guide.category.Rust 进阶语法": {
+    "message": "Rust 进阶语法",
+    "description": "The label for category Rust 进阶语法 in sidebar guide"
+  },
+  "sidebar.guide.category.Rust 读书笔记": {
+    "message": "Rust 读书笔记",
+    "description": "The label for category Rust 读书笔记 in sidebar guide"
+  },
+  "sidebar.guide.category.Rust 读书笔记.link.generated-index.description": {
+    "message": "5 minutes to learn the most important Docusaurus concepts.",
+    "description": "The generated-index page description for category Rust 读书笔记 in sidebar guide"
+  },
+  "sidebar.guide.category.参考资料": {
+    "message": "参考资料",
+    "description": "The label for category 参考资料 in sidebar guide"
+  },
+  "sidebar.guide.category.参考资料.link.generated-index.description": {
+    "message": "参考资料/文献.",
+    "description": "The generated-index page description for category 参考资料 in sidebar guide"
+  },
+  "sidebar.annotated.category.Rust 标准库": {
+    "message": "Rust 标准库",
+    "description": "The label for category Rust 标准库 in sidebar annotated"
+  },
+  "sidebar.annotated.category.Rust 标准库.link.generated-index.description": {
+    "message": "5 minutes to learn the most important Rust concepts.",
+    "description": "The generated-index page description for category Rust 标准库 in sidebar annotated"
+  },
+  "sidebar.annotated.category.Rust 热门项目": {
+    "message": "Rust 热门项目",
+    "description": "The label for category Rust 热门项目 in sidebar annotated"
+  },
+  "sidebar.annotated.category.Rust 热门项目.link.generated-index.description": {
+    "message": "Rust hot - 社区热门项目源码分析.",
+    "description": "The generated-index page description for category Rust 热门项目 in sidebar annotated"
+  },
+  "sidebar.ecosystem.category.core-libs": {
+    "message": "core-libs",
+    "description": "The label for category core-libs in sidebar ecosystem"
+  },
+  "sidebar.ecosystem.category.web": {
+    "message": "web",
+    "description": "The label for category web in sidebar ecosystem"
+  }
+}

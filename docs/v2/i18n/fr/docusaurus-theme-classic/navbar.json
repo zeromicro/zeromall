@@ -1,0 +1,26 @@
+{
+  "title": {
+    "message": "Rust 学习",
+    "description": "The title in the navbar"
+  },
+  "item.label.教程": {
+    "message": "教程",
+    "description": "Navbar item with label 教程"
+  },
+  "item.label.生态": {
+    "message": "生态",
+    "description": "Navbar item with label 生态"
+  },
+  "item.label.源码分析": {
+    "message": "源码分析",
+    "description": "Navbar item with label 源码分析"
+  },
+  "item.label.博客": {
+    "message": "博客",
+    "description": "Navbar item with label 博客"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}

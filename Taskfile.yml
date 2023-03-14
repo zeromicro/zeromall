@@ -29,8 +29,8 @@ includes:
     dir: ./deploy/local
 
   docs:
-    taskfile: ./docs
-    dir: ./docs
+    taskfile: ./docs/v2
+    dir: ./docs/v2
 
   #
   # 待测试的服务根目录:
