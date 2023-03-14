@@ -25,12 +25,12 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'eShop',
+    title: 'eShop: S2B2C 电商平台',
     Svg: require('@site/static/img/logo.svg').default,
     description: (
       <>
         <ul>
-          <li>eShop:小型电商官网.</li>
+          <li>eShop: S2B2C 电商平台.</li>
           <li>集成授权码/license 售卖服务.</li>
           <li>集成微信/支付宝/数字货币等支付工具.</li>
         </ul>

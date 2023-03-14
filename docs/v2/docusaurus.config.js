@@ -7,7 +7,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "ZeroMall",
-  tagline: "a Mall base on Go + Go-Zero.",
+  tagline: "a Mall base on Go-Zero.",
   url: "https://zeromicro.github.io/zeromall/", // todo x: update
   baseUrl: "/zeromall/",  // todo x: fix for github pages
   onBrokenLinks: "throw",
@@ -108,27 +108,33 @@ const config = {
             type: "docSidebar",
             position: "left",
             sidebarId: "biz",
-            label: "产品列表",
+            label: "产品形态",
           },
           {
             type: "docSidebar",
             position: "left",
             sidebarId: "service",
-            label: "微服务列表",
+            label: "微服务矩阵",
+          },
+          {
+            type: "docSidebar",
+            position: "left",
+            sidebarId: "api",
+            label: "API",
           },
 
 
           // todo x: 生态
           {
             type: "docSidebar",
-            position: "left",
+            position: "right",
             sidebarId: "ecosystem",
             label: "生态",
           },
 
 
           // TODO X: 博客
-          {to: "/blog", label: "博客", position: "left"},
+          {to: "/blog", label: "博客", position: "right"},
 
           {
             href: "https://github.com/zeromicro/zeromall",

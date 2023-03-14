@@ -1,6 +1,6 @@
 {
-  "label": "💖 快速开始",
-  "position": 0,
+  "label": "Setup",
+  "position": 2,
   "collapsed": false,
   "link": {
     "type": "generated-index",
