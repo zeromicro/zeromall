@@ -4,6 +4,7 @@
 - [x] 目标:
     - [x] 综合社区`最佳实践`, 力求`产品级`项目, 而不是 `demo 玩具`.
     - [x] 通用业务单元: 可以自由组合使用.
+- [x] 文档: https://zeromicro.github.io/zeromall/
 
 ## WIP:
 
