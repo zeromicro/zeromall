@@ -2,3 +2,15 @@ Name: main
 Host: 0.0.0.0
 Port: 10208      # todo x: [命名规则: 10X00: rpc, 10X01: job, 10X02: admin, 10X08: api]
 
+####################################################################################
+# rpc config:
+####################################################################################
+
+#
+# consul://[user:passwd]@host/service?param=value'
+# format like this
+#
+
+# 短信服务
+SmsRpc:
+  Target: consul://127.0.0.1:8500/app.notification.sms.rpc?wait=14s

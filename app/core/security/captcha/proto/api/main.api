@@ -1,0 +1,50 @@
+syntax = "v1"
+
+import (
+    "type/type.api"
+)
+
+/*
+TODO X:
+- 完整语法手册:
+- https://go-zero.dev/cn/docs/design/grammar/
+    optional	定义当前字段为可选参数	go-zero	request	            json:"name,optional"
+    options	    定义当前字段的枚举值,多个以竖线|隔开	go-zero	request	json:"gender,options=male"
+    default	    定义当前字段默认值	go-zero	request	                json:"gender,default=male"
+    range	    定义当前字段数值范围	go-zero	request	            json:"age,range=[0:120]"
+- 重点关注 type, service 语法块
+- jwt 使用:
+- https://go-zero.dev/cn/docs/advance/jwt
+- 示例:
+- https://github.com/feihua/zero-admin/blob/master/rpc/sys/internal/logic/loginlogic.go#L75
+- https://github.com/Mikaelemmmm/go-zero-looklook/blob/main/app/usercenter/cmd/api/desc/usercenter.api
+
+*/
+
+info(
+    title: "security.captcha"
+    desc: "安全中心 - 校验码服务"
+    version: "v1"
+)
+
+@server(
+    prefix: api/v1/security/captcha     // todo x: 会在 handler/routes.go 添加 API 统一前缀
+    //    jwt: Auth                     // todo x: 字段对应 config 内定义, 先在 config 内定义, 然后改此文件
+    //    group: quick                  // todo x: 会影响 handler 目录生成, 生成 handler/group/xxxx
+    //  middleware: AuthMiddleware
+)
+service main {
+    @handler ApplyCaptcha     // 申请验证码服务
+    post /apply (ApplyCaptchaReq) returns (ApplyCaptchaResp)
+
+    @handler TerminateCaptcha     // 终止验证码服务
+    post /terminate (TerminateCaptchaReq) returns (TerminateCaptchaResp)
+
+    @handler GenerateCaptcha     // 生成验证码服务
+    post /generate (GenerateCaptchaReq) returns (GenerateCaptchaResp)
+
+    @handler VerifyCaptcha     // 验证验证码服务
+    post /verify (VerifyCaptchaReq) returns (VerifyCaptchaResp)
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////

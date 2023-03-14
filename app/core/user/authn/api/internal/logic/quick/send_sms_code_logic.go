@@ -26,5 +26,10 @@ func NewSendSmsCodeLogic(ctx context.Context, svcCtx *svc.ServiceContext) *SendS
 func (l *SendSmsCodeLogic) SendSmsCode(req *types.SendSmsCodeReq) (resp *types.SendCodeResp, err error) {
 	// todo: add your logic here and delete this line
 
+	/*
+		TODO X:
+		    1. 参数待补充 图形校验码 captcha code 验证结果.
+	*/
+
 	return
 }

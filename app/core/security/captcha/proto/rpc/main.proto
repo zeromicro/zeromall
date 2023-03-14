@@ -1,0 +1,97 @@
+syntax = "proto3";
+
+// 验证码服务
+package security.captcha.rpc.v1; // TODO X: 每个服务都不同， 需要更改此参数来区分+注册
+option go_package = "./pb";
+
+service Service {
+    // 业务方申请服务:
+    rpc Apply(ApplyReq) returns(ApplyResp);
+
+    // 终止服务
+    rpc Terminate(TerminateReq) returns(TerminateResp);
+
+    // 生成验证码:
+    rpc Generate(GenerateReq) returns(GenerateResp);
+
+    // Verify 校验验证码:(自带参数签名校验)
+    rpc Verify(VerifyReq) returns(VerifyResp);
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+// CaptchaType 验证码类型
+enum CaptchaType {
+    Unknown = 0;
+    Number = 1;
+    Letter = 2;
+    NumberLetter = 3;
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+message ApplyReq{
+    string biz_id = 1; // 业务方 id
+    string biz_name = 2; // 业务方名称
+    string use_provider_id = 3; // 服务提供商
+}
+
+message ApplyResp {
+    string biz_id = 1; // 业务方 id
+    int32 status = 2; // status: 0: success, 1: fail
+    string message = 3; // message
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+message TerminateReq{
+    string biz_id = 1; // 业务方 id
+}
+
+message TerminateResp {
+    string biz_id = 1; // 业务方 id
+    int32 status = 2; // status: 0: success, 1: fail
+    string message = 3; // message
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+message GenerateReq {
+    // biz id
+    string biz_id = 1; // 业务方 id
+    int32 captcha_size = 2;     // captcha size
+    int32 captcha_type = 3; // captcha type: 1: number, 2: letter, 3: number + letter
+}
+
+message GenerateResp {
+    string biz_id = 1; // 业务方 id
+    string captcha_sn = 2; // captcha sn
+    string captcha = 3; // captcha
+    string captcha_url = 4; // captcha url
+    int32 captcha_expire = 5; // captcha expire time
+    int32 status = 6; // status: 0: success, 1: fail
+    string message = 7; // message
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+message VerifyReq {
+    string biz_id = 1; // 业务方 id
+    string captcha_sn = 2; // captcha sn
+    string captcha = 3; // captcha code
+
+    // 参数签名+校验
+    string nonce = 4; // nonce
+    int64 timestamp = 5; // timestamp
+    string sign = 6; // signature
+    int32 sign_type = 7; // sign type -1: no sign, 1: sha256, 2: sha512, 3: md5
+}
+
+message VerifyResp {
+    string biz_id = 1; // 业务方 id
+    string captcha_sn = 2; // captcha sn
+    int32 status = 3; // status: 0: success, 1: fail
+    string message = 4; // message
+}
+
+

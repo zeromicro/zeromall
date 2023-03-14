@@ -1,0 +1,75 @@
+syntax = "v1"
+
+/*
+- https://go-zero.dev/cn/docs/design/grammar/
+    optional	定义当前字段为可选参数	go-zero	request	            json:"name,optional"
+    options	    定义当前字段的枚举值,多个以竖线|隔开	go-zero	request	json:"gender,options=male"
+    default	    定义当前字段默认值	go-zero	request	                json:"gender,default=male"
+    range	    定义当前字段数值范围	go-zero	request	            json:"age,range=[0:120]"
+
+*/
+
+
+type ApplyCaptchaReq {
+    BizID int32 `json:"biz_id"`                  // 业务 id
+    BizName string `json:"biz_name"`             // 业务名称
+    UseProviderID int32 `json:"use_provider_id"` // 使用者 id
+}
+
+type ApplyCaptchaResp {
+    BizID int32 `json:"biz_id"`                   // 业务 id
+    Status int32 `json:"status"`                  // 状态码: [1, 成功, -1, 失败]
+    Message string `json:"message"`               // 状态信息
+}
+
+////////////////////////////////////////////////////////////////////////
+
+// terminate captcha
+type TerminateCaptchaReq {
+    BizID int32 `json:"biz_id"`                  // 业务 id
+}
+
+type TerminateCaptchaResp {
+    BizID int32 `json:"biz_id"`                   // 业务 id
+    Status int32 `json:"status"`                  // 状态码: [1, 成功, -1, 失败]
+    Message string `json:"message"`               // 状态信息
+}
+
+////////////////////////////////////////////////////////////////////////
+
+// generate captcha
+type GenerateCaptchaReq {
+    BizID int32 `json:"biz_id"`                  // 业务 id
+    CaptchaSize int32 `json:"captcha_size"`      // 验证码长度
+    CaptchaType int32 `json:"captcha_type"`      // 验证码类型: [1: 数字, 2: 字母, 3: 数字+字母]
+}
+
+type GenerateCaptchaResp {
+    BizID int32 `json:"biz_id"`                   // 业务 id
+    Captcha string `json:"captcha"`               // 验证码
+    CaptchaSn string `json:"captcha_sn"`          // 验证码编号
+    CaptchaURL string `json:"captcha_url"`        // 验证码 url
+    Status int32 `json:"status"`                  // 状态码: [1, 成功, -1, 失败]
+    Message string `json:"message"`               // 状态信息
+}
+
+////////////////////////////////////////////////////////////////////////
+
+// verify captcha
+type VerifyCaptchaReq {
+    BizID int32 `json:"biz_id"`                  // 业务 id
+    Captcha string `json:"captcha"`              // 验证码
+    CaptchaSn string `json:"captcha_sn"`         // 验证码编号
+
+    Nonce string `json:"nonce"`                  // 随机数
+    Timestamp int64 `json:"timestamp"`           // 时间戳
+    Sign string `json:"sign"`                    // 签名
+    SignType string `json:"sign_type"`           // 签名类型: [no sign, md5, sha1, sha256, sha512]
+}
+
+type VerifyCaptchaResp {
+    BizID int32 `json:"biz_id"`                   // 业务 id
+    CaptchaSn string `json:"captcha_sn"`          // 验证码编号
+    Status int32 `json:"status"`                  // 状态码: [1, 成功, -1, 失败]
+    Message string `json:"message"`               // 状态信息
+}
