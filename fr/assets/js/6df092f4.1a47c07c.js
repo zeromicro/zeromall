@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[8082],{212:e=>{e.exports=JSON.parse('{"label":"facebook","permalink":"/zeromall/fr/blog/tags/facebook","allTagsPath":"/zeromall/fr/blog/tags","count":1}')}}]);

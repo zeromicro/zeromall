@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[7285],{5378:e=>{e.exports=JSON.parse('{"title":"\u8bf4\u660e","description":"todo","slug":"/category/\u8bf4\u660e-1","permalink":"/zeromall/docs/category/\u8bf4\u660e-1","navigation":{"next":{"title":"\u670d\u52a1\u5206\u7c7b","permalink":"/zeromall/docs/service/intro/type"}}}')}}]);

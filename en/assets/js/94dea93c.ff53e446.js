@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[8670],{9089:e=>{e.exports=JSON.parse('{"label":"hola","permalink":"/zeromall/en/blog/tags/hola","allTagsPath":"/zeromall/en/blog/tags","count":1}')}}]);
