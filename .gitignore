@@ -64,3 +64,21 @@ dist/
 
 # goctl gen models
 *_gen.go
+
+
+# for vuepress
+node_modules
+coverage
+npm-debug.log
+yarn-error.log
+.nyc_output
+coverage.lcov
+dist
+temp
+test-dts/tsconfig.tsbuildinfo
+packages/*/LICENSE
+explorations
+docs-api
+packages/docs/api
+.yalc
+yalc.lock

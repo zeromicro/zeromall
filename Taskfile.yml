@@ -28,6 +28,10 @@ includes:
     taskfile: ./deploy/local
     dir: ./deploy/local
 
+  docs:
+    taskfile: ./docs
+    dir: ./docs
+
   #
   # 待测试的服务根目录:
   #

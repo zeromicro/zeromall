@@ -1,0 +1,17 @@
+version: '3'
+
+
+tasks:
+  default:
+    cmds:
+      - task: init
+
+  init:
+    cmds:
+      - npx vitepress init  # nodejs > 16
+      - pnpm add @algolia/client-search
+      - pnpm add vitepress
+
+  dev:
+    cmds:
+      - pnpm run docs:dev
